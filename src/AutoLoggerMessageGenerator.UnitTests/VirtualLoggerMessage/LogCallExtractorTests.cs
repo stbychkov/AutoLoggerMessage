@@ -15,6 +15,8 @@ public class LogCallLocationMapTests : BaseSourceGeneratorTest
         var logCall3 = new LogCall { Id = Guid.NewGuid() };
         
         var additionalDeclarations = $$"""
+                          public void Method0(){}
+                          
                           {{LogCallLocationMap.CreateMapping(logCall1)}}
                           public void Method1(){} 
                           
@@ -30,9 +32,12 @@ public class LogCallLocationMapTests : BaseSourceGeneratorTest
             .OfType<MethodDeclarationSyntax>()
             .ToArray();
             
+        var method0Declaration = methodDeclarations.Single(m => m.Identifier.Text == "Method0");
         var method1Declaration = methodDeclarations.Single(m => m.Identifier.Text == "Method1");
         var method2Declaration = methodDeclarations.Single(m => m.Identifier.Text == "Method2");
         var method3Declaration = methodDeclarations.Single(m => m.Identifier.Text == "Method3");
+        
+        LogCallLocationMap.TryMapBack(syntaxTree.GetText(), method0Declaration.GetLocation(), out var logCallId0).Should().BeFalse();
 
         LogCallLocationMap.TryMapBack(syntaxTree.GetText(), method1Declaration.GetLocation(), out var logCallId1).Should().BeTrue();
         logCallId1.Should().Be(logCall1.Id);

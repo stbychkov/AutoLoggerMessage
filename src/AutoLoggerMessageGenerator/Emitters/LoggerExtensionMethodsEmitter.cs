@@ -1,6 +1,7 @@
 using System.CodeDom.Compiler;
 using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace AutoLoggerMessageGenerator.Emitters;
 
@@ -10,8 +11,10 @@ namespace AutoLoggerMessageGenerator.Emitters;
 /// Provides type-specific logging method overrides to avoid boxing.
 /// The <see cref="LoggerExtensions"/> class is pre-generated and saved in the solution
 /// to prevent excessive code duplication when multiple projects use the same library
+/// To run this emitter you need to run LoggerExtensionEmitterTests and take it from the snapshot/>
 internal class LoggerExtensionsEmitter
 {
+    public const string ClassName = "GenericLoggerExtensions";
     public const string ArgumentName = "arg";
 
     public static string Emit()
@@ -20,7 +23,7 @@ internal class LoggerExtensionsEmitter
 
         sb.WriteLine(Constants.GeneratedFileHeader);
 
-        sb.WriteLine("namespace Microsoft.Extensions.Logging");
+        sb.WriteLine($"namespace {Constants.DefaultLoggingNamespace}");
         sb.WriteLine('{');
         sb.Indent++;
 
@@ -28,7 +31,7 @@ internal class LoggerExtensionsEmitter
         sb.WriteLine(Constants.EditorNotBrowsableAttribute);
         sb.WriteLine(Constants.DebuggerStepThroughAttribute);
         sb.WriteLine(Constants.ExcludeFromCoverageAttribute);
-        sb.WriteLine("public static class GenericLoggerExtensions");
+        sb.WriteLine($"public static class {ClassName}");
         sb.WriteLine('{');
         sb.Indent++;
 
@@ -48,7 +51,7 @@ internal class LoggerExtensionsEmitter
                 string.Join(", ", fixedParametersOverload.Select(o => $"{o.Type} {o.Name}"));
             var fixedParameters = string.Join(", ", fixedParametersOverload.Select(o => o.Name));
 
-            for (int i = 0; i < Constants.MaxLogParameters; i++)
+            for (int i = 0; i <= Constants.MaxLogParameters; i++)
             {
                 var parameters = Enumerable.Range(0, i).ToArray();
 
@@ -103,7 +106,7 @@ internal class LoggerExtensionsEmitter
         sb.WriteLine('{');
         sb.Indent++;
 
-        sb.WriteLine($"@logger.Log{logLevel}({fixedParameters}{objectParameters});");
+        sb.WriteLine($"{Constants.DefaultLoggingNamespace}.{nameof(LoggerExtensions)}.Log{logLevel}(@logger, {fixedParameters}{objectParameters});");
 
         sb.Indent--;
         sb.WriteLine('}');
@@ -118,7 +121,7 @@ internal class LoggerExtensionsEmitter
         sb.WriteLine('{');
         sb.Indent++;
 
-        sb.WriteLine($"@logger.Log(@logLevel, {fixedParameters}{objectParameters});");
+        sb.WriteLine($"{Constants.DefaultLoggingNamespace}.{nameof(LoggerExtensions)}.{nameof(LoggerExtensions.Log)}(@logger, @logLevel, {fixedParameters}{objectParameters});");
 
         sb.Indent--;
         sb.WriteLine('}');

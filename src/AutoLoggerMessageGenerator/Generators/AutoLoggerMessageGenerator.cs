@@ -2,6 +2,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using AutoLoggerMessageGenerator.Caching;
 using AutoLoggerMessageGenerator.Configuration;
 using AutoLoggerMessageGenerator.Emitters;
 using AutoLoggerMessageGenerator.Extractors;
@@ -41,10 +42,11 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
             .Collect()
             .WithTrackingName("Searching for log calls");
 
-        var inputSource = context.CompilationProvider.Combine(configuration.Combine(modulesProvider.Combine(logCallsProvider)));
+        var inputSource = context.CompilationProvider.Combine(configuration.Combine(modulesProvider.Combine(logCallsProvider)))
+            .WithComparer(new InputSourceComparer());
 
         context.RegisterImplementationSourceOutput(inputSource,
-            static (ctx, t) => GenerateCode(ctx, t.Left, t.Right.Left, t.Right.Right.Left, t.Right.Right.Right));
+            static (ctx, t) => GenerateCode(ctx, t.Item1, t.Item2.Item1, t.Item2.Item2.Item1, t.Item2.Item2.Item2));
 
         context.RegisterImplementationSourceOutput(configuration, static (ctx, configuration) =>
         {

@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using AutoLoggerMessageGenerator.Emitters;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -14,27 +13,25 @@ public abstract class BaseSourceGeneratorTest
     
     protected static (CSharpCompilation Compilation, SyntaxTree SyntaxTree) CompileSourceCode(string body, string additionalClassMemberDeclarations = "")
     {
-        var sourceCode = $@"
-using Microsoft.Extensions.Logging;
+        var sourceCode = $$"""
+                           using System;
+                           using {{Constants.DefaultLoggingNamespace}};
 
-namespace {Namespace};
+                           namespace {{Namespace}};
 
-public class {ClassName}(ILogger {LoggerName})
-{{
-    {additionalClassMemberDeclarations}
-
-    public void Main()
-    {{
-        {body}
-    }}
-}}
-";
+                           public class {{ClassName}}(ILogger {{LoggerName}})
+                           {
+                               {{additionalClassMemberDeclarations}}
+                           
+                               public void Main()
+                               {
+                                   {{body}}
+                               }
+                           }
+                           """;
 
         var syntaxTree = CSharpSyntaxTree.ParseText(sourceCode);
 
-        var logExtensions = LoggerExtensionsEmitter.Emit();
-        var logExtensionsSyntaxTree = CSharpSyntaxTree.ParseText(logExtensions);
-        
         var references = AppDomain.CurrentDomain.GetAssemblies()
             .Where(assembly => !assembly.IsDynamic)
             .Select(assembly => MetadataReference.CreateFromFile(assembly.Location))
@@ -43,9 +40,9 @@ public class {ClassName}(ILogger {LoggerName})
 
         var loggerAssemblyLocation = Path.Join(AppContext.BaseDirectory, "Microsoft.Extensions.Logging.Abstractions.dll");
         references.Add(MetadataReference.CreateFromFile(loggerAssemblyLocation));
-
+        
         var compilation = CSharpCompilation.Create("SourceGeneratorTests",
-            new[] { syntaxTree, logExtensionsSyntaxTree },
+            new[] { syntaxTree },
             references,
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 

@@ -14,27 +14,32 @@ public class LogCallFilterTests : BaseSourceGeneratorTest
         var additionalDeclarations = """
                                      public class AnotherObject
                                      {
-                                        public void LogInformation(string message) {}
-                                        public void LogInformation2(string message) {}
+                                        public void LogInformation(string message, DateTime arg1) {}
+                                        public void LogInformation2(string message, DateTime arg1) {}
                                      }
                                      
-                                     public void LogInformation(string message) {}
-                                     public void LogSomething(string message) {}
-                                     public void AnotherMethod(string message) {}
+                                     public void LogInformation(string message, DateTime arg1) {}
+                                     public void LogSomething(string message, DateTime arg1) {}
+                                     public void AnotherMethod(string message, DateTime arg1) {}
                                      
                                      """;
-        var sourceCode = $"""
-                         AnotherMethod(default);
-                         LogInformation(default);
-                         LogSomething(default);
-                         new AnotherObject().LogInformation(default);
-                         new AnotherObject().LogInformation2(default);
-                         {LoggerName}.LogInformation(default);
+        var sourceCode = $$"""
+                         const string message = "Event received at: {EventTime}";
+                         var eventTime = DateTime.Now;
+ 
+                         {{LoggerName}}.LogInformation(message, eventTime);
+
+                         AnotherMethod(message, eventTime);
+                         LogInformation(message, eventTime);
+                         LogSomething(message, eventTime);
+                         new AnotherObject().LogInformation(message, eventTime);
+                         new AnotherObject().LogInformation2(message, eventTime);
                          """;
         var (compilation, syntaxTree) = CompileSourceCode(sourceCode, additionalDeclarations);
 
-        var nodes = syntaxTree.GetRoot().DescendantNodes();
-        var invocationExpressions = nodes.Where(c => LogCallFilter.IsLogCallInvocation(c, CancellationToken.None))
+        var invocationExpressions = syntaxTree.GetRoot()
+            .DescendantNodes()
+            .Where(c => LogCallFilter.IsLogCallInvocation(c, CancellationToken.None))
             .ToArray();
 
         var semanticModel = compilation.GetSemanticModel(syntaxTree);

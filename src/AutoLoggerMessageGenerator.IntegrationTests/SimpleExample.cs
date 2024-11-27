@@ -1,14 +1,14 @@
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AutoLoggerMessageGenerator.IntegrationTests;
 
-public static class Program
+public static class SimpleExample
 {
-    private static readonly ILogger Logger = new ConsoleLogger("console", (category, level) => true, true);
+    private static readonly ILogger Logger = NullLogger.Instance;
 
-    public static void Main()
+    public static void Run()
     {
-        Logger.LogWarning("Hello world {arg1} {arg2}!", 1, true);
+        // Logger.LogWarning("Hello world {arg1} {arg2}!", 1, true);
     }
 }

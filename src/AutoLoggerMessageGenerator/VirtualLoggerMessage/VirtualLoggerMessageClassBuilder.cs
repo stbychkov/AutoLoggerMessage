@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Linq;
+using AutoLoggerMessageGenerator.Configuration;
 using AutoLoggerMessageGenerator.Models;
 using AutoLoggerMessageGenerator.Utilities;
 using Microsoft.CodeAnalysis;
@@ -10,7 +11,9 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace AutoLoggerMessageGenerator.VirtualLoggerMessage;
 
-internal class VirtualLoggerMessageClassBuilder(bool useTelemetryExtensions = false)
+internal class VirtualLoggerMessageClassBuilder(
+    SourceGeneratorConfiguration configuration,
+    bool useTelemetryExtensions = false)
 {
     private const string LoggerMessageAttributeName = LoggerMessageGenerator.Parser.LoggerMessageAttribute;
     private const string LogPropertiesAttribute = "Microsoft.Extensions.Logging.LogPropertiesAttribute";
@@ -46,7 +49,8 @@ internal class VirtualLoggerMessageClassBuilder(bool useTelemetryExtensions = fa
             return parameter;
         }).ToArray();
 
-        var methodName = IdentifierHelper.ToValidCSharpMethodName($"{Constants.LogMethodPrefix}{logCall.Namespace}{logCall.ClassName}_{logCall.Location.Line}_{logCall.Location.Character}");
+        var methodName = IdentifierHelper.ToValidCSharpMethodName(
+            $"{Constants.LogMethodPrefix}{logCall.Namespace}{logCall.ClassName}_{logCall.Location.Line}_{logCall.Location.Character}");
 
         var logCallMappingLocation = ParseLeadingTrivia(LogCallLocationMap.CreateMapping(logCall));
         var methodDeclaration = MethodDeclaration(PredefinedType(Token(SyntaxKind.VoidKeyword)), methodName)
@@ -64,7 +68,7 @@ internal class VirtualLoggerMessageClassBuilder(bool useTelemetryExtensions = fa
         return methodDeclaration;
     }
 
-    private static AttributeListSyntax GenerateLoggerMessageAttribute(LogCall logCall)
+    private AttributeListSyntax GenerateLoggerMessageAttribute(LogCall logCall)
     {
         var attribute = Attribute(ParseName(LoggerMessageAttributeName))
             .WithArgumentList(
@@ -72,9 +76,13 @@ internal class VirtualLoggerMessageClassBuilder(bool useTelemetryExtensions = fa
                     SeparatedList(new[]
                     {
                         AttributeArgument(
-                            ParseExpression($"Level = {Constants.DefaultLoggingNamespace}.LogLevel.{logCall.LogLevel}")),
+                            ParseExpression(
+                                $"Level = {Constants.DefaultLoggingNamespace}.LogLevel.{logCall.LogLevel}")),
                         AttributeArgument(
-                            ParseExpression($"Message = \"{logCall.Message}\""))
+                            ParseExpression($"Message = \"{logCall.Message}\"")),
+                        AttributeArgument(
+                            ParseExpression(
+                                $"SkipEnabledCheck = {configuration.GenerateSkipEnabledCheck.ToLowerBooleanString()}"))
                     })
                 )
             );
@@ -83,19 +91,31 @@ internal class VirtualLoggerMessageClassBuilder(bool useTelemetryExtensions = fa
         return attributeList;
     }
 
-    private static AttributeListSyntax GenerateLogPropertiesAttribute()
+    private AttributeListSyntax GenerateLogPropertiesAttribute()
     {
-        // TODO: Add configuration
+        var attributeArguments = SeparatedList(new[]
+        {
+            AttributeArgument(
+                ParseExpression(
+                    $"OmitReferenceName = {configuration.GenerateOmitReferenceName.ToLowerBooleanString()}")),
+            AttributeArgument(
+                ParseExpression(
+                    $"SkipNullProperties = {configuration.GenerateSkipNullProperties.ToLowerBooleanString()}"))
+        });
+
+        if (configuration.GenerateTransitive)
+        {
+            attributeArguments = attributeArguments.Add(
+                AttributeArgument(
+                    ParseExpression(
+                        $"Transitive = {configuration.GenerateTransitive.ToLowerBooleanString()}"))
+            );
+        }
+
         var attribute = Attribute(ParseName(LogPropertiesAttribute))
             .WithArgumentList(
                 AttributeArgumentList(
-                    SeparatedList(new[]
-                    {
-                        AttributeArgument(
-                            ParseExpression($"OmitReferenceName = true")),
-                        AttributeArgument(
-                            ParseExpression($"SkipNullProperties = true"))
-                    })
+                    SeparatedList(attributeArguments)
                 )
             );
 

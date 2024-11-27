@@ -7,14 +7,14 @@ namespace AutoLoggerMessageGenerator.Configuration;
 internal static class GeneratorOptionsProvider
 {
     private const string CommonPrefix = $"build_property.{nameof(AutoLoggerMessageGenerator)}";
-    private const string GenerateInterceptorAttributeKey = $"{CommonPrefix}_{nameof(Configuration.GenerateInterceptorAttribute)}";
-    private const string GenerateSkipEnabledCheckKey = $"{CommonPrefix}_{nameof(Configuration.GenerateSkipEnabledCheck)}";
-    private const string GenerateOmitReferenceNameKey = $"{CommonPrefix}_{nameof(Configuration.GenerateOmitReferenceName)}";
-    private const string GenerateSkipNullPropertiesKey = $"{CommonPrefix}_{nameof(Configuration.GenerateSkipNullProperties)}";
-    private const string GenerateTransitiveKey = $"{CommonPrefix}_{nameof(Configuration.GenerateTransitive)}";
+    private const string GenerateInterceptorAttributeKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateInterceptorAttribute)}";
+    private const string GenerateSkipEnabledCheckKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateSkipEnabledCheck)}";
+    private const string GenerateOmitReferenceNameKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateOmitReferenceName)}";
+    private const string GenerateSkipNullPropertiesKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateSkipNullProperties)}";
+    private const string GenerateTransitiveKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateTransitive)}";
 
-    public static IncrementalValueProvider<Configuration> Provide(IncrementalGeneratorInitializationContext context) =>
-        context.AnalyzerConfigOptionsProvider.Select((options, _) => new Configuration(
+    public static IncrementalValueProvider<SourceGeneratorConfiguration> Provide(IncrementalGeneratorInitializationContext context) =>
+        context.AnalyzerConfigOptionsProvider.Select((options, _) => new SourceGeneratorConfiguration(
             GenerateInterceptorAttribute: GetValue(options.GlobalOptions, GenerateInterceptorAttributeKey, true),
             GenerateSkipEnabledCheck: GetValue(options.GlobalOptions, GenerateSkipEnabledCheckKey, false),
             GenerateOmitReferenceName: GetValue(options.GlobalOptions, GenerateOmitReferenceNameKey, false),

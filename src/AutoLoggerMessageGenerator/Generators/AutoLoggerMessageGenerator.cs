@@ -25,7 +25,7 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
     {
         DebugHelper.Debug();
 
-        var generatorOptions = GeneratorOptionsProvider.Provide(context);
+        var configuration = GeneratorOptionsProvider.Provide(context);
         
         var modulesProvider = context.GetMetadataReferencesProvider()
             .SelectMany(static (reference, _) => reference.GetModules())
@@ -41,12 +41,12 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
             .Collect()
             .WithTrackingName("Searching for log calls");
 
-        var inputSource = context.CompilationProvider.Combine(modulesProvider.Combine(logCallsProvider));
+        var inputSource = context.CompilationProvider.Combine(configuration.Combine(modulesProvider.Combine(logCallsProvider)));
 
         context.RegisterImplementationSourceOutput(inputSource,
-            static (ctx, t) => GenerateCode(ctx, t.Left, t.Right.Left, t.Right.Right));
+            static (ctx, t) => GenerateCode(ctx, t.Left, t.Right.Left, t.Right.Right.Left, t.Right.Right.Right));
 
-        context.RegisterImplementationSourceOutput(generatorOptions, static (ctx, configuration) =>
+        context.RegisterImplementationSourceOutput(configuration, static (ctx, configuration) =>
         {
             if (configuration.GenerateInterceptorAttribute)
                 ctx.AddSource("InterceptorAttribute.g.cs", SourceText.From(InterceptorAttributeEmitter.Emit(), Encoding.UTF8));
@@ -68,7 +68,8 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
     }
     
     private static void GenerateCode(SourceProductionContext context, Compilation compilation,
-        ImmutableArray<Reference> modules, ImmutableArray<LogCall> logCalls)
+        SourceGeneratorConfiguration configuration, ImmutableArray<Reference> modules, 
+        ImmutableArray<LogCall> logCalls)
     {
         var telemetryAbstractions = "Microsoft.Extensions.Telemetry.Abstractions.dll";
         var useTelemetryExtensions = modules.Any(c => c.Name == telemetryAbstractions);
@@ -76,8 +77,10 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
         // We need to keep the current LoggerMessage source generator as it makes future updates easier.
         // All [LoggerMessage] attributes are generated to match the current implementation.
         // These attributes are only used to trigger the source generator, so we can create them virtually and add them to the compilation unit.
-        var virtualClassDeclaration = new VirtualLoggerMessageClassBuilder(useTelemetryExtensions).Build(logCalls);
+        var virtualClassDeclaration = new VirtualLoggerMessageClassBuilder(configuration, useTelemetryExtensions)
+            .Build(logCalls);
         compilation = VirtualMembersInjector.InjectMembers(compilation, virtualClassDeclaration);
+        
         var classDeclarations = compilation.SyntaxTrees.Last()
             .GetRoot()
             .DescendantNodes()

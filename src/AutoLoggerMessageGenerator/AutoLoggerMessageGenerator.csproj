@@ -29,9 +29,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="Imports/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.Designer.cs" 
+        <Compile Update="Import/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.Designer.cs" 
                  DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />
-        <EmbeddedResource Update="Imports/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.resx" 
+        <EmbeddedResource Update="Import/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.resx" 
                           Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" 
                           LogicalName="Microsoft.Gen.Logging.Parsing.Resources.resources"/>
         <Compile Update="src\Emitters\LoggerExtensions.g.cs">

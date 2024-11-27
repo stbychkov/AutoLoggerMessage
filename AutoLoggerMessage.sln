@@ -2,9 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoggerMessageGenerator", "src\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.csproj", "{821CF231-77D9-47B3-BEEE-585F0D5381B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoggerMessageGenerator.Sample", "src\AutoLoggerMessageGenerator.IntegrationTests\AutoLoggerMessageGenerator.Sample.csproj", "{0BB90BC1-5488-4739-A3CD-39DAAB634D78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoggerMessageGenerator.IntegrationTests", "src\AutoLoggerMessageGenerator.IntegrationTests\AutoLoggerMessageGenerator.IntegrationTests.csproj", "{0BB90BC1-5488-4739-A3CD-39DAAB634D78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoggerMessageGenerator.Tests", "src\AutoLoggerMessageGenerator.UnitTests\AutoLoggerMessageGenerator.Tests.csproj", "{0D854820-5382-4CFC-9D9B-5A94DBD62B35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoggerMessageGenerator.UnitTests", "src\AutoLoggerMessageGenerator.UnitTests\AutoLoggerMessageGenerator.UnitTests.csproj", "{0D854820-5382-4CFC-9D9B-5A94DBD62B35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

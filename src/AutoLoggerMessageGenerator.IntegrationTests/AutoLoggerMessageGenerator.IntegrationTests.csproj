@@ -10,9 +10,4 @@
         <ProjectReference Include="..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <None Remove="DDD.UbiquitousLanguageRegistry.txt"/>
-        <AdditionalFiles Include="DDD.UbiquitousLanguageRegistry.txt"/>
-    </ItemGroup>
-
 </Project>

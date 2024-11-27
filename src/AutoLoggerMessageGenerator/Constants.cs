@@ -4,7 +4,17 @@ internal static class Constants
 {
     public const string InterceptorNamespace = "System.Runtime.CompilerServices";
     public const string InterceptorAttributeName = "InterceptsLocationAttribute";
+    
+    /// <summary>
+    /// Support for an arbitrary number of logging parameters. LoggerMessage.Define supports a maximum of six.
+    /// Must be synced with LoggerMessageGenerator.Emitter;
+    /// </summary>
+    public const int MaxLogParameters = 6;
 
+    public const string ExcludeFromCoverageAttribute =
+        "[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]";
+    public const string DebuggerStepThroughAttribute =
+        "[System.Diagnostics.DebuggerStepThrough]";
     public static readonly string GeneratedCodeAttribute =
         $"[global::System.CodeDom.Compiler.GeneratedCodeAttribute(" +
         $"\"{typeof(Generators.AutoLoggerMessageGenerator).Assembly.GetName().Name}\", " +

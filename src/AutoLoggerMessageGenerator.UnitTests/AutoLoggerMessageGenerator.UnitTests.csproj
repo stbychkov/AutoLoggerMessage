@@ -24,7 +24,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.csproj"/>
+        <ProjectReference Include="..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.csproj"
+                          ReferenceOutputAssembly="true" />
     </ItemGroup>
 
 </Project>

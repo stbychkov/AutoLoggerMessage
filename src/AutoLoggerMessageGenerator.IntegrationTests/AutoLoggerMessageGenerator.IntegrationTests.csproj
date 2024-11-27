@@ -6,7 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.csproj" 
+                          OutputItemType="Analyzer" 
+                          ReferenceOutputAssembly="true"/>
     </ItemGroup>
 
 </Project>

@@ -48,9 +48,10 @@ public class LogMessageExtractorTests : BaseSourceGeneratorTest
     public void Extract_WithPassingLocalConstVariable_ShouldReturnExpectedMessage()
     {
         var expectedMessage = "Hello world";
-        var (compilation, syntaxTree) = CompileSourceCode(
-            $"const string message = \"{expectedMessage}\";\n" +
-            $"{LoggerName}.LogInformation(message);"
+        var (compilation, syntaxTree) = CompileSourceCode($"""
+                                                          const string message = "{expectedMessage}";
+                                                          {LoggerName}.LogInformation(message);
+                                                          """
         );
 
         var invocationExpression = syntaxTree.GetRoot().DescendantNodes().OfType<InvocationExpressionSyntax>().First();

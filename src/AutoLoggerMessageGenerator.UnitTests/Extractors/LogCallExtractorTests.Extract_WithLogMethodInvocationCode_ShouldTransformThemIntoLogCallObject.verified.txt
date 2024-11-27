@@ -7,12 +7,12 @@
     Context: {
       Kind: SourceFile,
       SourceSpan: {
-        Start: 133,
-        Length: 80
+        Start: 146,
+        Length: 84
       },
       SourceTree: {
         FilePath: ,
-        Length: 223,
+        Length: 239,
         HasCompilationUnitRoot: true,
         Options: {
           LanguageVersion: CSharp12,
@@ -27,7 +27,8 @@
   },
   Namespace: Logging,
   ClassName: GenericLoggerExtensions,
-  LogLevel: Warning,
+  Name: LogInformation,
+  LogLevel: Information,
   Message: Hello world {arg1} {arg2},
   Parameters: [
     {

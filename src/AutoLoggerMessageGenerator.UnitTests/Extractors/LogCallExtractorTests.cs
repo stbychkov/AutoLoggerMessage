@@ -1,4 +1,5 @@
 using AutoLoggerMessageGenerator.Extractors;
+using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -6,15 +7,16 @@ namespace AutoLoggerMessageGenerator.UnitTests.Extractors;
 
 public class LogCallExtractorTests : BaseSourceGeneratorTest
 {
-    [Fact]
-    public async Task Extract_WithLogMethodInvocationCode_ShouldTransformThemIntoLogCallObject()
+    [Theory]
+    [InlineData($$"""GenericLoggerExtensions.LogInformation({{LoggerName}}, "Hello world {arg1} {arg2}", 1, true);""", true)]
+    [InlineData($$"""GenericLoggerExtensions.LogInformation({{LoggerName}}, null);""", false)]
+    [InlineData($$"""GenericLoggerExtensions.LogInformation({{LoggerName}}, "Hello world {arg1}", 1, true);""", false)]
+    public async Task Extract_WithLogMethodInvocationCode_ShouldTransformThemIntoLogCallObject(string sourceCode, bool isValidCall)
     {
-        var sourceCode = $"GenericLoggerExtensions.LogWarning({LoggerName}, \"Hello world {{arg1}} {{arg2}}\", 1, true);";
         var (compilation, syntaxTree) = CompileSourceCode(sourceCode);
-        
+
         var invocationExpression = (await syntaxTree.GetRootAsync()).DescendantNodes()
-            .Where(c => c is InvocationExpressionSyntax)
-            .Cast<InvocationExpressionSyntax>()
+            .OfType<InvocationExpressionSyntax>()
             .Single();
 
         var semanticModel = compilation.GetSemanticModel(syntaxTree);
@@ -22,6 +24,13 @@ public class LogCallExtractorTests : BaseSourceGeneratorTest
 
         var logCall = LogCallExtractor.Extract(methodSymbol, invocationExpression, semanticModel);
 
-        await Verify(logCall);
+        if (isValidCall)
+        {
+            await Verify(logCall);
+        }
+        else
+        {
+            logCall.HasValue.Should().BeFalse();
+        }
     }
 }

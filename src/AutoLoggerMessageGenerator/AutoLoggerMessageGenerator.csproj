@@ -2,14 +2,26 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <IsPackable>false</IsPackable>
+        <IsPackable>true</IsPackable>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
-
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <IsRoslynComponent>true</IsRoslynComponent>
+    </PropertyGroup>
 
-        <PackageId>AutoLoggerMessageGenerator</PackageId>
+    <PropertyGroup>
+        <PackageId>stbychkov.AutoLoggerMessageGenerator</PackageId>
+        <Title>AutoLoggerMessageGenerator</Title>
+        <Description>A source generator that automatically migrates your logging calls to the LoggerMessage version</Description>
+        <Version>1.0.0</Version>
+        <PackageTags>logging;roslyn</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/stbychkov/AutoLoggerMessage</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/stbychkov/AutoLoggerMessage</PackageProjectUrl>
+        <PackageIcon>Assets\icon.jpg</PackageIcon>
+        <OutputPath>$(SolutionDir)/nupkg</OutputPath>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+        <Authors>stbychkov</Authors>
     </PropertyGroup>
 
     <ItemGroup>
@@ -37,5 +49,10 @@
         <Compile Update="src\Emitters\LoggerExtensions.g.cs">
             <DependentUpon>LoggerExtensionMethodsEmitter.cs</DependentUpon>
         </Compile>
+
+        <None Include="Assets/icon.jpg">
+            <Pack>true</Pack>
+            <PackagePath>Assets/icon.jpg</PackagePath>
+        </None>
     </ItemGroup>
 </Project>

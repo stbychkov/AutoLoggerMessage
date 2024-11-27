@@ -36,10 +36,10 @@ internal class LoggerExtensionsEmitter
 
         (string Type, string Name)[][] fixedParametersOverloads =
         [
-            [("string?", "@message")],
-            [("Exception?", "@exception"), ("string?", "@message")],
-            [("EventId", "@eventId"), ("string?", "@message")],
-            [("EventId", "@eventId"), ("Exception?", "@exception"), ("string?", "@message")]
+            [("string", "@message")],
+            [("Exception?", "@exception"), ("string", "@message")],
+            [("EventId", "@eventId"), ("string", "@message")],
+            [("EventId", "@eventId"), ("Exception?", "@exception"), ("string", "@message")]
         ];
 
         foreach (var fixedParametersOverload in fixedParametersOverloads)

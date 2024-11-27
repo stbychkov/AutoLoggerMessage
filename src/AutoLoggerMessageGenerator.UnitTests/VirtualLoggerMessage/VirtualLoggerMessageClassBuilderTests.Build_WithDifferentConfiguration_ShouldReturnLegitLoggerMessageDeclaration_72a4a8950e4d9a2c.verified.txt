@@ -1,0 +1,12 @@
+namespace Microsoft.Extensions.Logging.AutoLoggerMesssage
+{
+    static partial class AutoLoggerMessage
+    {
+        // <LogCallMappingLocation>: Guid_1
+        [Microsoft.Extensions.Logging.LoggerMessageAttribute(Level = Microsoft.Extensions.Logging.LogLevel.Critical, Message = "Hello, World!", SkipEnabledCheck = false)]
+        internal static partial void Log_SomeNamespaceSomeClass_2_22(Microsoft.Extensions.Logging.ILogger Logger, int intParam, string stringParam, bool boolParam, SomeClass classParam, SomeStruct structParam);
+        // <LogCallMappingLocation>: Guid_2
+        [Microsoft.Extensions.Logging.LoggerMessageAttribute(Level = Microsoft.Extensions.Logging.LogLevel.Trace, Message = "Goodbye, World!", SkipEnabledCheck = false)]
+        internal static partial void Log_SomeNamespaceSomeClass_3_33(Microsoft.Extensions.Logging.ILogger Logger, int intParam, string stringParam, bool boolParam, SomeClass classParam, SomeStruct structParam);
+    }
+}

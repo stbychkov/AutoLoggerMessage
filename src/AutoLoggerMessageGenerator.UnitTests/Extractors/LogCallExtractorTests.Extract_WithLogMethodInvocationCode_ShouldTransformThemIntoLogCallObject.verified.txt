@@ -1,0 +1,41 @@
+{
+  Location: {
+    FilePath: ,
+    Line: 12,
+    Character: 16,
+    Context: {
+      Kind: SourceFile,
+      SourceSpan: {
+        Start: 133,
+        Length: 55
+      },
+      SourceTree: {
+        FilePath: ,
+        Length: 198,
+        HasCompilationUnitRoot: true,
+        Options: {
+          LanguageVersion: CSharp12,
+          Language: C#,
+          DocumentationMode: Parse,
+          Errors: null
+        }
+      },
+      IsInSource: true,
+      IsInMetadata: false
+    }
+  },
+  Namespace: Logging,
+  ClassName: LoggerExtensions,
+  LogLevel: Warning,
+  Message: Hello world {arg1} {arg2},
+  Parameters: [
+    {
+      Type: global::System.Int32,
+      Name: @arg1
+    },
+    {
+      Type: global::System.Boolean,
+      Name: @arg2
+    }
+  ]
+}

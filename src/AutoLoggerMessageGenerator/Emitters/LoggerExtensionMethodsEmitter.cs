@@ -12,6 +12,8 @@ namespace AutoLoggerMessageGenerator.Emitters;
 /// to prevent excessive code duplication when multiple projects use the same library
 internal class LoggerExtensionsEmitter
 {
+    public const string ArgumentName = "arg";
+
     public static string Emit()
     {
         using var sb = new IndentedTextWriter(new StringWriter());
@@ -51,13 +53,13 @@ internal class LoggerExtensionsEmitter
                 {
                     var parameters = Enumerable.Range(1, i + 1);
                     var genericDefinition = string.Join(", ", parameters.Select(ix => $"T{ix}"));
-                    var genericParametersDefinition = string.Join(", ", parameters.Select(ix => $"T{ix} @arg{ix}"));
+                    var genericParametersDefinition = string.Join(", ", parameters.Select(ix => $"T{ix} @{ArgumentName}{ix}"));
 
                     sb.WriteLine($"public static void Log{logLevel}<{genericDefinition}>(this ILogger @logger, {fixedParametersDefinition}, {genericParametersDefinition})");
                     sb.WriteLine('{');
                     sb.Indent++;
 
-                    sb.WriteLine($"@logger.Log{logLevel}({fixedParameters}, new object?[] {{ {string.Join(", ", parameters.Select(ix => $"@arg{ix}"))} }});");
+                    sb.WriteLine($"@logger.Log{logLevel}({fixedParameters}, new object?[] {{ {string.Join(", ", parameters.Select(ix => $"@{ArgumentName}{ix}"))} }});");
 
                     sb.Indent--;
                     sb.WriteLine('}');

@@ -30,6 +30,6 @@ internal static class LogCallExtractor
         if (parameters is null)
             return default;
 
-        return new LogCall(Guid.NewGuid(), location, ns, className, logLevel, message, parameters.Value);
+        return new LogCall(Guid.NewGuid(), location, ns, className, methodSymbol.Name, logLevel, message, parameters.Value);
     }
 }

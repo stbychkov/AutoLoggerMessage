@@ -28,7 +28,7 @@ internal class LoggerExtensionsEmitter
         sb.WriteLine(Constants.EditorNotBrowsableAttribute);
         sb.WriteLine(Constants.DebuggerStepThroughAttribute);
         sb.WriteLine(Constants.ExcludeFromCoverageAttribute);
-        sb.WriteLine("internal static class GenericLoggerExtensions");
+        sb.WriteLine("public static class GenericLoggerExtensions");
         sb.WriteLine('{');
         sb.Indent++;
 
@@ -44,41 +44,40 @@ internal class LoggerExtensionsEmitter
 
         foreach (var fixedParametersOverload in fixedParametersOverloads)
         {
-            var fixedParametersDefinition = string.Join(", ", fixedParametersOverload.Select(o => $"{o.Type} {o.Name}"));
+            var fixedParametersDefinition =
+                string.Join(", ", fixedParametersOverload.Select(o => $"{o.Type} {o.Name}"));
             var fixedParameters = string.Join(", ", fixedParametersOverload.Select(o => o.Name));
 
-            foreach (var logLevel in logLevels)
+            for (int i = 0; i < Constants.MaxLogParameters; i++)
             {
-                for (int i = 0; i < Constants.MaxLogParameters; i++)
+                var parameters = Enumerable.Range(0, i).ToArray();
+
+                var genericTypesDefinition = string.Join(", ", parameters.Select(ix => $"T{ix}"));
+                genericTypesDefinition = string.IsNullOrEmpty(genericTypesDefinition)
+                    ? string.Empty
+                    : $"<{genericTypesDefinition}>";
+
+                var genericParametersDefinition =
+                    string.Join(", ", parameters.Select(ix => $"T{ix} @{ArgumentName}{ix}"));
+                genericParametersDefinition = string.IsNullOrEmpty(genericParametersDefinition)
+                    ? string.Empty
+                    : $", {genericParametersDefinition}";
+
+                var objectParameters = string.Join(", ", parameters.Select(ix => $"@{ArgumentName}{ix}"));
+                objectParameters = string.IsNullOrEmpty(objectParameters)
+                    ? string.Empty
+                    : $", new object?[] {{ {objectParameters} }}";
+                
+                foreach (var logLevel in logLevels)
                 {
-                    var parameters = Enumerable.Range(0, i).ToArray();
-                    
-                    var genericTypesDefinition = string.Join(", ", parameters.Select(ix => $"T{ix}"));
-                    genericTypesDefinition = string.IsNullOrEmpty(genericTypesDefinition)
-                        ? string.Empty
-                        : $"<{genericTypesDefinition}>";
-                    
-                    var genericParametersDefinition = string.Join(", ", parameters.Select(ix => $"T{ix} @{ArgumentName}{ix}"));
-                    genericParametersDefinition = string.IsNullOrEmpty(genericParametersDefinition)
-                        ? string.Empty
-                        : $", {genericParametersDefinition}";
-
-                    var objectParameters = string.Join(", ", parameters.Select(ix => $"@{ArgumentName}{ix}"));
-                    objectParameters = string.IsNullOrEmpty(objectParameters)
-                        ? string.Empty
-                        : $", new object?[] {{ {objectParameters} }}";
-
-                    sb.WriteLine($"public static void Log{logLevel}{genericTypesDefinition}(this ILogger @logger, {fixedParametersDefinition}{genericParametersDefinition})");
-                    sb.WriteLine('{');
-                    sb.Indent++;
-
-                    sb.WriteLine($"@logger.Log{logLevel}({fixedParameters}{objectParameters});");
-
-                    sb.Indent--;
-                    sb.WriteLine('}');
+                    GenerateLogMethodWithLogLevelInName(sb, logLevel, genericTypesDefinition,
+                        fixedParametersDefinition, genericParametersDefinition, fixedParameters, objectParameters);
 
                     sb.WriteLine();
                 }
+                
+                GenerateLogMethodWithLogLevelParameter(sb, genericTypesDefinition, fixedParametersDefinition, 
+                    genericParametersDefinition, fixedParameters, objectParameters);
 
                 sb.WriteLine();
             }
@@ -93,6 +92,36 @@ internal class LoggerExtensionsEmitter
         sb.WriteLine('}');
 
         return sb.InnerWriter.ToString();
+    }
+
+    private static void GenerateLogMethodWithLogLevelInName(IndentedTextWriter sb, string logLevel,
+        string genericTypesDefinition, string fixedParametersDefinition, string genericParametersDefinition,
+        string fixedParameters, string objectParameters)
+    {
+        sb.WriteLine(
+            $"public static void Log{logLevel}{genericTypesDefinition}(this ILogger @logger, {fixedParametersDefinition}{genericParametersDefinition})");
+        sb.WriteLine('{');
+        sb.Indent++;
+
+        sb.WriteLine($"@logger.Log{logLevel}({fixedParameters}{objectParameters});");
+
+        sb.Indent--;
+        sb.WriteLine('}');
+    }
+
+    private static void GenerateLogMethodWithLogLevelParameter(IndentedTextWriter sb, string genericTypesDefinition,
+        string fixedParametersDefinition, string genericParametersDefinition, string fixedParameters,
+        string objectParameters)
+    {
+        sb.WriteLine(
+            $"public static void Log{genericTypesDefinition}(this ILogger @logger, {Constants.DefaultLoggingNamespace}.LogLevel @logLevel, {fixedParametersDefinition}{genericParametersDefinition})");
+        sb.WriteLine('{');
+        sb.Indent++;
+
+        sb.WriteLine($"@logger.Log(@logLevel, {fixedParameters}{objectParameters});");
+
+        sb.Indent--;
+        sb.WriteLine('}');
     }
 }
 

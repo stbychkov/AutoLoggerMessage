@@ -36,17 +36,22 @@ internal class LoggerInterceptorsEmitter
             sb.Indent--;
 
             var parameters = string.Join(", ", logCall.Parameters.Select((c, i) => $"{c.Type} {c.Name}"));
+            parameters = string.IsNullOrEmpty(parameters) ? string.Empty : $", {parameters}";
+            
             var parameterValues = string.Join(", ", logCall.Parameters.Select((c, i) => c.Name));
-
+            parameterValues = string.IsNullOrEmpty(parameterValues) ? string.Empty : $", {parameterValues}";
+            
             var methodName = IdentifierHelper.ToValidCSharpMethodName(
                 $"{Constants.LogMethodPrefix}{logCall.Namespace}{logCall.ClassName}_{logCall.Location.Line}_{logCall.Location.Character}"
             );
 
-            sb.WriteLine($"public static void {methodName}(this ILogger @logger, string @message, {parameters})");
+            var logLevelParameterDefinition = logCall.Name == "Log" ? ", LogLevel @logLevel" : string.Empty;
+
+            sb.WriteLine($"public static void {methodName}(this ILogger @logger{logLevelParameterDefinition}, string @message{parameters})");
             sb.WriteLine('{');
             sb.Indent++;
 
-            sb.WriteLine($"{Constants.GeneratorNamespace}.{Constants.LoggerClassName}.{methodName}(@logger, {parameterValues});");
+            sb.WriteLine($"{Constants.GeneratorNamespace}.{Constants.LoggerClassName}.{methodName}(@logger{parameterValues});");
 
             sb.Indent--;
             sb.WriteLine('}');

@@ -9,10 +9,9 @@ namespace AutoLoggerMessageGenerator.Filters;
 
 internal static class LogCallFilter
 {
-    private static HashSet<string> LogMethodNames =
+    private static readonly HashSet<string> LogMethodNames =
     [
-        // TODO: Support Log method
-        // nameof(LoggerExtensions.Log),
+        nameof(LoggerExtensions.Log),
         nameof(LoggerExtensions.LogTrace),
         nameof(LoggerExtensions.LogDebug),
         nameof(LoggerExtensions.LogInformation),

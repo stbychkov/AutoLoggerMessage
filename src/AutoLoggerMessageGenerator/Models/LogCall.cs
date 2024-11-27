@@ -10,6 +10,7 @@ internal readonly record struct LogCall(
     LogCallLocation Location,
     string Namespace,
     string ClassName,
+    string Name,
     string LogLevel,
     string Message,
     ImmutableArray<LogCallParameter> Parameters
@@ -19,6 +20,7 @@ internal readonly record struct LogCall(
         Location.Equals(other.Location) &&
         Namespace == other.Namespace &&
         ClassName == other.ClassName &&
+        Name == other.Name &&
         LogLevel == other.LogLevel &&
         Message == other.Message &&
         Parameters.SequenceEqual(other.Parameters);
@@ -30,6 +32,7 @@ internal readonly record struct LogCall(
             var hashCode = Location.GetHashCode();
             hashCode = (hashCode * 397) ^ Namespace.GetHashCode();
             hashCode = (hashCode * 397) ^ ClassName.GetHashCode();
+            hashCode = (hashCode * 397) ^ Name.GetHashCode();
             hashCode = (hashCode * 397) ^ LogLevel.GetHashCode();
             hashCode = (hashCode * 397) ^ Message.GetHashCode();
             hashCode = (hashCode * 397) ^ Parameters.GetHashCode();

@@ -17,7 +17,7 @@ E --> F[Step 5: Create a set of interceptors that forward requests to the correc
 
 ### Step 0: Create a set of generic logger overloads (up to 6 parameters)
 
-The first step involves generating 144 generic extension methods for `ILogger` class that will override the default logging methods ([why?](./ADR/ADR-02_Generation_of_logger_extension_methods_overloads.md)).
+The first step involves generating 168 generic extension methods for `ILogger` class that will override the default logging methods ([why?](./ADR/ADR-02_Generation_of_logger_extension_methods_overloads.md)).
 `LoggerMessage.Define` supports up to 6 parameters, so we can limit the methods only with this amount.
 
 ### Step 1: Find all Log* methods belonging to ILogger class

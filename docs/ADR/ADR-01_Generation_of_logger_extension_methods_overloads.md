@@ -25,7 +25,10 @@ By placing these overloads in a public class and generating them up front, I can
 
 ### Consequences:
 
-* **Long-term**: This approach adds additional 144 extension methods that ensure the overloads will replace standard calls everywhere thanks to parameter specificity.
+* **Long-term**:
+  * This extension methods will appear in the suggestion list for the logger instance, which might be confusing for the user.
+  However, the user might hide them by `Filter members by [EditorBrowsable] attribute` setting in Rider. It's hidden by default in Visual Studio.
+  * This approach adds additional 168 extension methods that ensure the overloads will replace standard calls everywhere thanks to parameter specificity.
 * **Risks**: 
   * Need to check if unused extension methods can be trimmed in this scenario for AOT.
   * To compile source generator, ILogger class has to be resolved, which require us to add this library as a reference, so there might be some problems with package version.

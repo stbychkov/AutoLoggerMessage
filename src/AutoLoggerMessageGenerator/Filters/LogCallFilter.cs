@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using AutoLoggerMessageGenerator.Emitters;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
@@ -23,7 +24,11 @@ internal static class LogCallFilter
     public static bool IsLoggerMethod(IMethodSymbol methodSymbol)
     {
         var containingType = methodSymbol.ContainingType;
-        return containingType != null && methodSymbol.ReceiverType.Name == "ILogger";
+        return containingType != null && 
+               methodSymbol.ReceiverType?.Name is "ILogger" &&
+               methodSymbol.ReturnsVoid && 
+               methodSymbol.ContainingType.ToDisplayString() is $"{Constants.DefaultLoggingNamespace}.{LoggerExtensionsEmitter.ClassName}" &&
+               methodSymbol.IsExtensionMethod;
     }
     
     public static bool IsLogCallInvocation(SyntaxNode node, CancellationToken cts) =>

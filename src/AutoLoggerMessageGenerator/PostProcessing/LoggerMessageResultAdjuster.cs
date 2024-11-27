@@ -1,4 +1,4 @@
-namespace AutoLoggerMessageGenerator;
+namespace AutoLoggerMessageGenerator.PostProcessing;
 
 internal static class LoggerMessageResultAdjuster
 {

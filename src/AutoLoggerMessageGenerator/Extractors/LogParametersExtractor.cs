@@ -14,14 +14,13 @@ internal class LogParametersExtractor(LogPropertiesCheck logPropertiesCheck)
     {
         var pattern = @"\{(.*?)\}";
         var matches = Regex.Matches(message, pattern);
-        var parameterNames = matches.OfType<Match>().Select(c => c.Groups[1].Value).ToArray();
+        var templateParametersNames = matches.OfType<Match>().Select(c => c.Groups[1].Value).ToArray();
 
         var methodParameters = methodSymbol.Parameters
             .Where(c => c.Name.StartsWith(LoggerExtensionsEmitter.ArgumentName))
             .ToArray();
 
-        // TODO: diagnostic
-        if (parameterNames.Length != methodParameters.Length)
+        if (templateParametersNames.Length < methodParameters.Length)
             return null;
 
         var parameters = methodParameters
@@ -29,7 +28,7 @@ internal class LogParametersExtractor(LogPropertiesCheck logPropertiesCheck)
                 Type: parameter.Type.ToDisplayString(
                     SymbolDisplayFormat.FullyQualifiedFormat.WithMiscellaneousOptions(SymbolDisplayMiscellaneousOptions
                         .IncludeNullableReferenceTypeModifier)),
-                Name: parameterNames[ix].StartsWith("@") ? parameterNames[ix] : '@' + parameterNames[ix],
+                Name: templateParametersNames[ix].StartsWith("@") ? templateParametersNames[ix] : '@' + templateParametersNames[ix],
                 HasPropertiesToLog: logPropertiesCheck.IsApplicable(parameter.Type))
             ).ToImmutableArray();
 

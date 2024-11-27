@@ -9,7 +9,7 @@ namespace AutoLoggerMessageGenerator.Emitters;
 
 internal class LoggerInterceptorsEmitter
 {
-    public static string Generate(IEnumerable<LogCall> logCalls)
+    public static string Emit(IEnumerable<LogCall> logCalls)
     {
         using var sb = new IndentedTextWriter(new StringWriter());
 
@@ -29,6 +29,7 @@ internal class LoggerInterceptorsEmitter
 
         foreach (var logCall in logCalls)
         {
+            sb.WriteLine(Constants.EditorNotBrowsableAttribute);
             sb.WriteLine($"[{Constants.InterceptorNamespace}.{Constants.InterceptorAttributeName}(");
             sb.Indent++;
             sb.WriteLine($"filePath: \"{logCall.Location.FilePath}\",");

@@ -4,10 +4,12 @@ using System.Text;
 using System.Threading;
 using AutoLoggerMessageGenerator.Caching;
 using AutoLoggerMessageGenerator.Configuration;
+using AutoLoggerMessageGenerator.Diagnostics;
 using AutoLoggerMessageGenerator.Emitters;
 using AutoLoggerMessageGenerator.Extractors;
 using AutoLoggerMessageGenerator.Filters;
 using AutoLoggerMessageGenerator.Models;
+using AutoLoggerMessageGenerator.PostProcessing;
 using AutoLoggerMessageGenerator.ReferenceAnalyzer;
 using AutoLoggerMessageGenerator.Utilities;
 using AutoLoggerMessageGenerator.VirtualLoggerMessage;
@@ -99,7 +101,7 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
         if (!string.IsNullOrEmpty(loggerMessageCode))
             context.AddSource("LoggerMessage.g.cs", SourceText.From(loggerMessageCode, Encoding.UTF8));
         
-        context.AddSource("Interceptors.g.cs", SourceText.From(LoggerInterceptorsEmitter.Generate(logCalls), Encoding.UTF8));
+        context.AddSource("Interceptors.g.cs", SourceText.From(LoggerInterceptorsEmitter.Emit(logCalls), Encoding.UTF8));
     }
     
     private static string? GenerateNewLoggerMessage(

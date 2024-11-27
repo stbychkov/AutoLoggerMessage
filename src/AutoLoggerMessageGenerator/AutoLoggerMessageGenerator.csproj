@@ -19,7 +19,7 @@
         <RepositoryUrl>https://github.com/stbychkov/AutoLoggerMessage</RepositoryUrl>
         <PackageProjectUrl>https://github.com/stbychkov/AutoLoggerMessage</PackageProjectUrl>
         <PackageIcon>Assets\icon.jpg</PackageIcon>
-        <OutputPath>$(SolutionDir)/nupkg</OutputPath>
+        <OutputPath>./nupkg</OutputPath>
         <GenerateDocumentationFile>false</GenerateDocumentationFile>
         <Authors>stbychkov</Authors>
     </PropertyGroup>
@@ -54,5 +54,9 @@
             <Pack>true</Pack>
             <PackagePath>Assets/icon.jpg</PackagePath>
         </None>
+
+        <Compile Update="Emitters\LoggerExtensions.g.cs">
+          <DependentUpon>LoggerExtensionMethodsEmitter.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
 </Project>

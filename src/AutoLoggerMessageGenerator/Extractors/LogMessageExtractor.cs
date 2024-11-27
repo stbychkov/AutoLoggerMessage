@@ -33,7 +33,6 @@ internal static class LogMessageExtractor
             }
         }
 
-        // TODO: Report diagnostics
         return null;
     }
 }

@@ -6,7 +6,7 @@ using AutoLoggerMessageGenerator.Models;
 using AutoLoggerMessageGenerator.VirtualLoggerMessage;
 using Microsoft.CodeAnalysis;
 
-namespace AutoLoggerMessageGenerator;
+namespace AutoLoggerMessageGenerator.Diagnostics;
 
 internal class DiagnosticReporter
 {

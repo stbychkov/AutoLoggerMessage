@@ -3,7 +3,7 @@ namespace AutoLoggerMessageGenerator;
 internal static class Constants
 {
     public const string DefaultLoggingNamespace = "Microsoft.Extensions.Logging";
-    public const string GeneratorNamespace = "Microsoft.Extensions.Logging.AutoLoggerMesssage";
+    public const string GeneratorNamespace = $"{DefaultLoggingNamespace}.AutoLoggerMesssage";
 
     public const string InterceptorNamespace = "System.Runtime.CompilerServices";
     public const string InterceptorAttributeName = "InterceptsLocationAttribute";

@@ -9,7 +9,7 @@ namespace AutoLoggerMessageGenerator.Import.Microsoft.Extensions.Telemetry.Logge
 // source: https://github.dev/dotnet/extensions/blob/c08e5ac737d0830ff83c1c5ae8b084e6fce2b538/src/Generators/Microsoft.Gen.Logging/Parsing/Parser.LogProperties.cs#L334-L335
 internal class LogPropertiesCheck
 {
-    private static readonly HashSet<TypeKind> _allowedTypeKinds = [TypeKind.Class, TypeKind.Struct, TypeKind.Interface];
+    private static readonly HashSet<TypeKind> AllowedTypeKinds = [TypeKind.Class, TypeKind.Struct, TypeKind.Interface];
 
     private readonly SymbolHolder? _symbolHolder;
 
@@ -18,12 +18,11 @@ internal class LogPropertiesCheck
 
     public bool IsApplicable(ITypeSymbol symType)
     {
-        // TODO: Debug why sometimes its null?
         if (_symbolHolder is null) return false;
 
         var isRegularType = symType.Kind == SymbolKind.NamedType &&
-            _allowedTypeKinds.Contains(symType.TypeKind) &&
-            !symType.IsStatic;
+                            AllowedTypeKinds.Contains(symType.TypeKind) &&
+                            !symType.IsStatic;
 
         if (symType.IsNullableOfT())
             symType = ((INamedTypeSymbol)symType).TypeArguments[0];

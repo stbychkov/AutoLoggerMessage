@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MissingRequiredTypeTitle" xml:space="preserve">
+    <value>Couldn't find a required type definition</value>
+  </data>
+  <data name="MissingRequiredTypeMessage" xml:space="preserve">
+    <value>Couldn't find a definition for required type "{0}"</value>
+  </data>
+  <data name="ShouldntReuseEventIdsTitle" xml:space="preserve">
+    <value>Each logging method should use a unique event id</value>
+  </data>
+  <data name="ShouldntReuseEventIdsMessage" xml:space="preserve">
+    <value>Multiple logging methods are using event id "{0}" in type "{1}"</value>
+  </data>
+  <data name="LoggingMethodMustReturnVoidTitle" xml:space="preserve">
+    <value>Logging methods must return void</value>
+  </data>
+  <data name="LoggingMethodMustReturnVoidMessage" xml:space="preserve">
+    <value>Logging methods must return void</value>
+  </data>
+  <data name="MissingLoggerParameterTitle" xml:space="preserve">
+    <value>A static logging method must have a parameter that implements the "Microsoft.Extensions.Logging.ILogger" interface</value>
+  </data>
+  <data name="MissingLoggerParameterMessage" xml:space="preserve">
+    <value>One of the parameters to a static logging method must implement the "Microsoft.Extensions.Logging.ILogger" interface</value>
+  </data>
+  <data name="LoggingMethodShouldBeStaticTitle" xml:space="preserve">
+    <value>Logging methods must be static</value>
+  </data>
+  <data name="LoggingMethodShouldBeStaticMessage" xml:space="preserve">
+    <value>Logging methods must be static</value>
+  </data>
+  <data name="LoggingMethodMustBePartialTitle" xml:space="preserve">
+    <value>Logging methods must be partial</value>
+  </data>
+  <data name="LoggingMethodMustBePartialMessage" xml:space="preserve">
+    <value>Logging methods must be partial</value>
+  </data>
+  <data name="LoggingMethodIsGenericTitle" xml:space="preserve">
+    <value>Logging methods can't be generic</value>
+  </data>
+  <data name="LoggingMethodIsGenericMessage" xml:space="preserve">
+    <value>Logging methods can't be generic</value>
+  </data>
+  <data name="ShouldntMentionExceptionInMessageMessage" xml:space="preserve">
+    <value>Don't include a template for parameter "{0}" in the logging message, exceptions are automatically delivered without being listed in the logging message</value>
+  </data>
+  <data name="ShouldntMentionExceptionInMessageTitle" xml:space="preserve">
+    <value>Don't include exception parameters as templates in the logging message</value>
+  </data>
+  <data name="RedundantQualifierInMessageMessage" xml:space="preserve">
+    <value>Remove redundant qualifier (Info:, Warning:, Error:, etc) from the logging message since it is implicit in the specified log level.</value>
+  </data>
+  <data name="RedundantQualifierInMessageTitle" xml:space="preserve">
+    <value>Redundant qualifier in the logging message</value>
+  </data>
+  <data name="ParameterHasNoCorrespondingTemplateMessage" xml:space="preserve">
+    <value>Parameter "{0}" is not referenced from the logging message</value>
+  </data>
+  <data name="ParameterHasNoCorrespondingTemplateTitle" xml:space="preserve">
+    <value>A parameter isn't referenced from the logging message</value>
+  </data>
+  <data name="TemplateHasNoCorrespondingParameterMessage" xml:space="preserve">
+    <value>Template "{0}" is not provided as parameter to the logging method</value>
+  </data>
+  <data name="TemplateHasNoCorrespondingParameterTitle" xml:space="preserve">
+    <value>The logging template has no corresponding method parameter</value>
+  </data>
+  <data name="LoggingMethodHasBodyTitle" xml:space="preserve">
+    <value>Logging methods can't have a body</value>
+  </data>
+  <data name="LoggingMethodHasBodyMessage" xml:space="preserve">
+    <value>Logging methods can't have a body</value>
+  </data>
+  <data name="MissingLogLevelTitle" xml:space="preserve">
+    <value>A "LogLevel" value must be supplied</value>
+  </data>
+  <data name="MissingLogLevelMessage" xml:space="preserve">
+    <value>A "LogLevel" value must be supplied in the "LoggerMessage" attribute or as a parameter to the logging method</value>
+  </data>
+  <data name="ShouldntMentionLogLevelInMessageMessage" xml:space="preserve">
+    <value>Don't include a template for parameter "{0}" in the logging message</value>
+  </data>
+  <data name="ShouldntMentionLogLevelInMessageTitle" xml:space="preserve">
+    <value>Don't include log level parameters as templates</value>
+  </data>
+  <data name="ShouldntMentionLoggerInMessageMessage" xml:space="preserve">
+    <value>Don't include a template for "{0}" in the logging message</value>
+  </data>
+  <data name="ShouldntMentionLoggerInMessageTitle" xml:space="preserve">
+    <value>Don't include logger parameters as templates</value>
+  </data>
+  <data name="MissingLoggerMemberMessage" xml:space="preserve">
+    <value>Couldn't find a field or property of type "Microsoft.Extensions.Logging.ILogger" in type "{0}"</value>
+  </data>
+  <data name="MissingLoggerMemberTitle" xml:space="preserve">
+    <value>Couldn't find a field or property of type "Microsoft.Extensions.Logging.ILogger"</value>
+  </data>
+  <data name="MultipleLoggerMembersMessage" xml:space="preserve">
+    <value>Found multiple fields or properties of type "Microsoft.Extensions.Logging.ILogger" in type "{0}"</value>
+  </data>
+  <data name="MultipleLoggerMembersTitle" xml:space="preserve">
+    <value>Multiple fields or properties of type "Microsoft.Extensions.Logging.ILogger" were found</value>
+  </data>
+  <data name="InvalidTypeToLogPropertiesMessage" xml:space="preserve">
+    <value>Can't log properties of items of type "{0}"</value>
+  </data>
+  <data name="InvalidTypeToLogPropertiesTitle" xml:space="preserve">
+    <value>Can't log properties of a parameter or property</value>
+  </data>
+  <data name="LogPropertiesInvalidUsageMessage" xml:space="preserve">
+    <value>Parameter "{0}" is annotated for property logging but it has special semantics (ILogger, LogLevel, Exception, etc.)</value>
+  </data>
+  <data name="LogPropertiesInvalidUsageTitle" xml:space="preserve">
+    <value>Method parameter can't be used to log properties</value>
+  </data>
+  <data name="LogPropertiesParameterSkippedMessage" xml:space="preserve">
+    <value>Type "{0}" used with parameter "{1}" doesn't have any public properties to log</value>
+  </data>
+  <data name="LogPropertiesParameterSkippedTitle" xml:space="preserve">
+    <value>Logging method parameter type has no public properties to log</value>
+  </data>
+  <data name="LogPropertiesCycleDetectedMessage" xml:space="preserve">
+    <value>Parameter "{0}" annotated for properties logging within logging method "{3}" has type with a cycle in its hierarchy: {1} ⇆ {2}</value>
+  </data>
+  <data name="LogPropertiesCycleDetectedTitle" xml:space="preserve">
+    <value>Logging method parameter type has cycles in its type hierarchy</value>
+  </data>
+  <data name="TagProviderMethodInaccessibleMessage" xml:space="preserve">
+    <value>Tag provider method "{0}" in type "{1}" is not accessible, increase its visibility</value>
+  </data>
+  <data name="TagProviderMethodInaccessibleTitle" xml:space="preserve">
+    <value>Tag provider method is inaccessible</value>
+  </data>
+  <data name="TagProviderMethodNotFoundMessage" xml:space="preserve">
+    <value>Could not find tag provider method "{0}" in type "{1}"</value>
+  </data>
+  <data name="TagProviderMethodNotFoundTitle" xml:space="preserve">
+    <value>Tag provider method not found</value>
+  </data>
+  <data name="TagProviderMethodInvalidSignatureTitle" xml:space="preserve">
+    <value>Tag provider method has an invalid signature</value>
+  </data>
+  <data name="LoggingMethodParameterRefKindMessage" xml:space="preserve">
+    <value>Logging method "{0}" has parameter "{1}" with either "ref" or "out" modifier</value>
+  </data>
+  <data name="LoggingMethodParameterRefKindTitle" xml:space="preserve">
+    <value>Logging method parameters can't have "ref" or "out" modifiers</value>
+  </data>
+  <data name="TagProviderWithRedactionMessage" xml:space="preserve">
+    <value>Parameter "{0}" has a custom tag provider and hence will not be redacted</value>
+  </data>
+  <data name="TagProviderWithRedactionTitle" xml:space="preserve">
+    <value>Parameters with a custom tag provider are not subject to redaciton</value>
+  </data>
+  <data name="ShouldntReuseEventNamesMessage" xml:space="preserve">
+    <value>Multiple logging methods are using event name "{0}" in type "{1}"</value>
+  </data>
+  <data name="ShouldntReuseEventNamesTitle" xml:space="preserve">
+    <value>Multiple logging methods shouldn't use the same event name</value>
+  </data>
+  <data name="LogPropertiesHiddenPropertyDetectedMessage" xml:space="preserve">
+    <value>Parameter "{0}" of logging method "{1}" has a property "{2}" within its type that hides another property from its base type</value>
+  </data>
+  <data name="LogPropertiesHiddenPropertyDetectedTitle" xml:space="preserve">
+    <value>Logging method parameter's type has a hidden property</value>
+  </data>
+  <data name="TagNameCollisionMessage" xml:space="preserve">
+    <value>Parameter "{0}" causes a tag name conflict with name "{1}" within logging method "{2}"</value>
+  </data>
+  <data name="TagNameCollisionTitle" xml:space="preserve">
+    <value>A logging method parameter causes a tag name conflicts</value>
+  </data>
+  <data name="EmptyLoggingMethodTitle" xml:space="preserve">
+    <value>Logging method doesn't log anything</value>
+  </data>
+  <data name="EmptyLoggingMethodMessage" xml:space="preserve">
+    <value>Logging method "{0}" doesn't have anything to be logged</value>
+  </data>
+  <data name="TagProviderMethodInvalidSignatureMessage" xml:space="preserve">
+    <value>Tag provider method "{0}" in type "{1}" doesn't have a signature compatible with "{2}"</value>
+  </data>
+  <data name="TemplateStartsWithAtSymbolMessage" xml:space="preserve">
+    <value>Logging method "{0}" has template(s) that start with "@": {1}</value>
+  </data>
+  <data name="TemplateStartsWithAtSymbolTitle" xml:space="preserve">
+    <value>A logging message template starts with "@"</value>
+  </data>
+  <data name="CantUseDataClassificationWithLogPropertiesOrTagProviderMessage" xml:space="preserve">
+    <value>Can't combine the [LogProperties] or [TagProvider] attributes with data classification attributes</value>
+  </data>
+  <data name="CantUseDataClassificationWithLogPropertiesOrTagProviderTitle" xml:space="preserve">
+    <value>Can't combine the [LogProperties] or [TagProvider] attributes with data classification attributes</value>
+  </data>
+  <data name="CantMixAttributesMessage" xml:space="preserve">
+    <value>Can only have one of [LogProperties], [TagProvider], and [LogPropertyIgnore]</value>
+  </data>
+  <data name="CantMixAttributesTitle" xml:space="preserve">
+    <value>Can only have one of [LogProperties], [TagProvider], and [LogPropertyIgnore]</value>
+  </data>
+  <data name="TagProviderInvalidUsageMessage" xml:space="preserve">
+    <value>Parameter "{0}" is annotated to use a tag provider but it has special semantics (ILogger, LogLevel, Exception, etc.)</value>
+  </data>
+  <data name="TagProviderInvalidUsageTitle" xml:space="preserve">
+    <value>Method parameter can't be used with a tag provider</value>
+  </data>
+  <data name="InvalidAttributeUsageMessage" xml:space="preserve">
+    <value>Attribute [{0}] can't be used in this context</value>
+  </data>
+  <data name="InvalidAttributeUsageTitle" xml:space="preserve">
+    <value>Attribute can't be used in this context</value>
+  </data>
+  <data name="RecordTypeSensitiveArgumentIsInTemplateMessage" xml:space="preserve">
+    <value>Parameter "{0}" of logging method "{1}" has a sensitive field/property in its type</value>
+  </data>
+  <data name="RecordTypeSensitiveArgumentIsInTemplateTitle" xml:space="preserve">
+    <value>The logging method parameter leaks sensitive data</value>
+  </data>
+  <data name="DefaultToStringMessage" xml:space="preserve">
+    <value>The type "{0}" doesn't implement ToString(), IConvertible, or IFormattable (did you forget to apply [LogProperties] or [TagProvider] to "{1}"?)</value>
+  </data>
+  <data name="DefaultToStringTitle" xml:space="preserve">
+    <value>A value being logged doesn't have an effective way to be converted into a string</value>
+  </data>
+  <data name="MalformedFormatStringsMessage" xml:space="preserve">
+    <value>Logging method '{0}' contains malformed format strings</value>
+  </data>
+  <data name="MalformedFormatStringsTitle" xml:space="preserve">
+    <value>Logging method contains malformed format strings</value>
+  </data>
+  <data name="PrimaryConstructorParameterLoggerHiddenTitle" xml:space="preserve">
+    <value>Primary constructor parameter of type Microsoft.Extensions.Logging.ILogger is hidden by a field</value>
+  </data>
+  <data name="PrimaryConstructorParameterLoggerHiddenMessage" xml:space="preserve">
+    <value>Class '{0}' has a primary constructor parameter of type Microsoft.Extensions.Logging.ILogger that is hidden by a field in the class or a base class, preventing its use</value>
+  </data>
+</root>

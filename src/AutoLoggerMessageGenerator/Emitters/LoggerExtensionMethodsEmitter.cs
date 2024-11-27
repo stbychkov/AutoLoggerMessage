@@ -51,15 +51,28 @@ internal class LoggerExtensionsEmitter
             {
                 for (int i = 0; i < Constants.MaxLogParameters; i++)
                 {
-                    var parameters = Enumerable.Range(1, i + 1);
-                    var genericDefinition = string.Join(", ", parameters.Select(ix => $"T{ix}"));
+                    var parameters = Enumerable.Range(0, i).ToArray();
+                    
+                    var genericTypesDefinition = string.Join(", ", parameters.Select(ix => $"T{ix}"));
+                    genericTypesDefinition = string.IsNullOrEmpty(genericTypesDefinition)
+                        ? string.Empty
+                        : $"<{genericTypesDefinition}>";
+                    
                     var genericParametersDefinition = string.Join(", ", parameters.Select(ix => $"T{ix} @{ArgumentName}{ix}"));
+                    genericParametersDefinition = string.IsNullOrEmpty(genericParametersDefinition)
+                        ? string.Empty
+                        : $", {genericParametersDefinition}";
 
-                    sb.WriteLine($"public static void Log{logLevel}<{genericDefinition}>(this ILogger @logger, {fixedParametersDefinition}, {genericParametersDefinition})");
+                    var objectParameters = string.Join(", ", parameters.Select(ix => $"@{ArgumentName}{ix}"));
+                    objectParameters = string.IsNullOrEmpty(objectParameters)
+                        ? string.Empty
+                        : $", new object?[] {{ {objectParameters} }}";
+
+                    sb.WriteLine($"public static void Log{logLevel}{genericTypesDefinition}(this ILogger @logger, {fixedParametersDefinition}{genericParametersDefinition})");
                     sb.WriteLine('{');
                     sb.Indent++;
 
-                    sb.WriteLine($"@logger.Log{logLevel}({fixedParameters}, new object?[] {{ {string.Join(", ", parameters.Select(ix => $"@{ArgumentName}{ix}"))} }});");
+                    sb.WriteLine($"@logger.Log{logLevel}({fixedParameters}{objectParameters});");
 
                     sb.Indent--;
                     sb.WriteLine('}');

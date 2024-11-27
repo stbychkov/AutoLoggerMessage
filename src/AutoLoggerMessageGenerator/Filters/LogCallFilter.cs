@@ -11,7 +11,8 @@ internal static class LogCallFilter
 {
     private static HashSet<string> LogMethodNames =
     [
-        nameof(LoggerExtensions.Log),
+        // TODO: Support Log method
+        // nameof(LoggerExtensions.Log),
         nameof(LoggerExtensions.LogTrace),
         nameof(LoggerExtensions.LogDebug),
         nameof(LoggerExtensions.LogInformation),

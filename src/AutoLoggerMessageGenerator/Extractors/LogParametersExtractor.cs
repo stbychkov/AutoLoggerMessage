@@ -2,12 +2,13 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AutoLoggerMessageGenerator.Emitters;
+using AutoLoggerMessageGenerator.Import.Microsoft.Extensions.Telemetry.LoggerMessage;
 using AutoLoggerMessageGenerator.Models;
 using Microsoft.CodeAnalysis;
 
 namespace AutoLoggerMessageGenerator.Extractors;
 
-internal class LogParametersExtractor
+internal class LogParametersExtractor(LogPropertiesCheck logPropertiesCheck)
 {
     public ImmutableArray<LogCallParameter>? Extract(string message, IMethodSymbol methodSymbol)
     {
@@ -28,7 +29,8 @@ internal class LogParametersExtractor
                 Type: parameter.Type.ToDisplayString(
                     SymbolDisplayFormat.FullyQualifiedFormat.WithMiscellaneousOptions(SymbolDisplayMiscellaneousOptions
                         .IncludeNullableReferenceTypeModifier)),
-                Name: parameterNames[ix].StartsWith("@") ? parameterNames[ix] : '@' + parameterNames[ix])
+                Name: parameterNames[ix].StartsWith("@") ? parameterNames[ix] : '@' + parameterNames[ix],
+                HasPropertiesToLog: logPropertiesCheck.IsApplicable(parameter.Type))
             ).ToImmutableArray();
 
         return parameters;

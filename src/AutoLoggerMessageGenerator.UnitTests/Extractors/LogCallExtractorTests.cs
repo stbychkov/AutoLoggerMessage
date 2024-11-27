@@ -9,9 +9,9 @@ public class LogCallExtractorTests : BaseSourceGeneratorTest
     [Fact]
     public async Task Extract_WithLogMethodInvocationCode_ShouldTransformThemIntoLogCallObject()
     {
-        var sourceCode = $"{LoggerName}.LogWarning(\"Hello world {{arg1}} {{arg2}}\", 1, true);";
+        var sourceCode = $"GenericLoggerExtensions.LogWarning({LoggerName}, \"Hello world {{arg1}} {{arg2}}\", 1, true);";
         var (compilation, syntaxTree) = CompileSourceCode(sourceCode);
-
+        
         var invocationExpression = (await syntaxTree.GetRootAsync()).DescendantNodes()
             .Where(c => c is InvocationExpressionSyntax)
             .Cast<InvocationExpressionSyntax>()

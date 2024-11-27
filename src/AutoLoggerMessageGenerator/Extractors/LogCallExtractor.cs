@@ -1,4 +1,5 @@
 using System;
+using AutoLoggerMessageGenerator.Import.Microsoft.Extensions.Telemetry.LoggerMessage;
 using AutoLoggerMessageGenerator.Mappers;
 using AutoLoggerMessageGenerator.Models;
 using Microsoft.CodeAnalysis;
@@ -24,10 +25,11 @@ internal static class LogCallExtractor
         if (message is null)
             return default;
 
-        var parameters = new LogParametersExtractor().Extract(message, methodSymbol);
+        var logPropertiesCheck = new LogPropertiesCheck(semanticModel.Compilation);
+        var parameters = new LogParametersExtractor(logPropertiesCheck).Extract(message, methodSymbol);
         if (parameters is null)
             return default;
 
-        return new LogCall(location, ns, className, logLevel, message, parameters.Value);
+        return new LogCall(Guid.NewGuid(), location, ns, className, logLevel, message, parameters.Value);
     }
 }

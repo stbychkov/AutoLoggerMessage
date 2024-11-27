@@ -7,7 +7,7 @@ I would love to chain source generators, but here is a catch: they cannot be cha
 > Run un-ordered, each generator will see the same input compilation, with no access to files created by other source generators.
 
 This means I can't just hook my generator into the existing one seamlessly.
-Also I need to have access to internal classes and some parts of the original generator that aren't exposed publicly.
+Also, I need to have access to internal classes and some parts of the original generator that aren't exposed publicly.
 So, in order to make everything work, I had to copy the generator code into my solution and leave it untouched. This way, I can take advantage of its functionality but without the risk of breaking anything when updates happen.
 
 While this approach isn't the most efficient or ideal, it allows for easier maintenance and future updates since I won't have to worry about keeping track of changes in the original source code.

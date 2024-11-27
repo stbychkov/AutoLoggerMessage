@@ -1,17 +1,18 @@
 {
+  Id: Guid_1,
   Location: {
     FilePath: ,
     Line: 12,
-    Character: 16,
+    Character: 33,
     Context: {
       Kind: SourceFile,
       SourceSpan: {
         Start: 133,
-        Length: 55
+        Length: 80
       },
       SourceTree: {
         FilePath: ,
-        Length: 198,
+        Length: 223,
         HasCompilationUnitRoot: true,
         Options: {
           LanguageVersion: CSharp12,
@@ -25,17 +26,19 @@
     }
   },
   Namespace: Logging,
-  ClassName: LoggerExtensions,
+  ClassName: GenericLoggerExtensions,
   LogLevel: Warning,
   Message: Hello world {arg1} {arg2},
   Parameters: [
     {
       Type: global::System.Int32,
-      Name: @arg1
+      Name: @arg1,
+      HasPropertiesToLog: false
     },
     {
       Type: global::System.Boolean,
-      Name: @arg2
+      Name: @arg2,
+      HasPropertiesToLog: false
     }
   ]
 }

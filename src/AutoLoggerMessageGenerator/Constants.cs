@@ -2,8 +2,14 @@ namespace AutoLoggerMessageGenerator;
 
 internal static class Constants
 {
+    public const string DefaultLoggingNamespace = "Microsoft.Extensions.Logging";
+    public const string GeneratorNamespace = "Microsoft.Extensions.Logging.AutoLoggerMesssage";
+
     public const string InterceptorNamespace = "System.Runtime.CompilerServices";
     public const string InterceptorAttributeName = "InterceptsLocationAttribute";
+
+    public const string LogMethodPrefix = "Log_";
+    public const string LoggerClassName = "AutoLoggerMessage";
     
     /// <summary>
     /// Support for an arbitrary number of logging parameters. LoggerMessage.Define supports a maximum of six.

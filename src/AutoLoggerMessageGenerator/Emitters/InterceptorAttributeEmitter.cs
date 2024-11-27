@@ -3,7 +3,7 @@ using System.IO;
 
 namespace AutoLoggerMessageGenerator.Emitters;
 
-internal class InterceptorAttributeEmitter
+internal static class InterceptorAttributeEmitter
 {
     public static string Emit()
     {

@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Immutable;
 using System.Linq;
 
 namespace AutoLoggerMessageGenerator.Models;
 
 internal readonly record struct LogCall(
+    // Need this property for backtracking diagnostic reports
+    Guid Id,
     LogCallLocation Location,
     string Namespace,
     string ClassName,

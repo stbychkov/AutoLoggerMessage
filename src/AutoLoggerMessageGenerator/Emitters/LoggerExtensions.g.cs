@@ -2,15 +2,14 @@
 #nullable enable
 
 using System;
-using Microsoft.Extensions.Logging;
 
-namespace AutoLoggerMessageGenerator.Emitters
+namespace Microsoft.Extensions.Logging
 {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("AutoLoggerMessageGenerator", "1.0.0.0")]
     [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
     [global::System.Diagnostics.DebuggerStepThrough]
     [global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-    public static class LoggerExtensions
+    public static class GenericLoggerExtensions
     {
         public static void LogTrace<T1>(this ILogger @logger, string? @message, T1 @arg1)
         {

@@ -28,7 +28,7 @@ internal class LoggerExtensionsEmitter
         sb.WriteLine(Constants.EditorNotBrowsableAttribute);
         sb.WriteLine(Constants.DebuggerStepThroughAttribute);
         sb.WriteLine(Constants.ExcludeFromCoverageAttribute);
-        sb.WriteLine("internal static class LoggerExtensions");
+        sb.WriteLine("internal static class GenericLoggerExtensions");
         sb.WriteLine('{');
         sb.Indent++;
 

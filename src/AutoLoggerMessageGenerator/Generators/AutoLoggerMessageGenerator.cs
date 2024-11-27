@@ -96,6 +96,8 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
         loggerMessageCode = LoggerMessageResultAdjuster.Adjust(loggerMessageCode);
         if (!string.IsNullOrEmpty(loggerMessageCode))
             context.AddSource("LoggerMessage.g.cs", SourceText.From(loggerMessageCode, Encoding.UTF8));
+        
+        context.AddSource("Interceptors.g.cs", SourceText.From(LoggerInterceptorsEmitter.Generate(logCalls), Encoding.UTF8));
     }
     
     private static string? GenerateNewLoggerMessage(

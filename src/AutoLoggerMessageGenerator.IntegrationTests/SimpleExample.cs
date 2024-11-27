@@ -9,6 +9,6 @@ public static class SimpleExample
 
     public static void Run()
     {
-        // Logger.LogWarning("Hello world {arg1} {arg2}!", 1, true);
+        Logger.LogWarning("Hello world {arg1} {arg2}!", 1, true);
     }
 }

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <DebugSymbols>false</DebugSymbols>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Optimize>true</Optimize>
+        <Configuration>Release</Configuration>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BenchmarkDotNet" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+        <PackageReference Include="Microsoft.Extensions.Telemetry.Abstractions" />
+        <ProjectReference Include="..\..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="BenchmarkFiles\**\*">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <Target Name="DisableAnalyzers"
+            BeforeTargets="CoreCompile">
+        <ItemGroup>
+            <Analyzer Remove="@(Analyzer)" />
+        </ItemGroup>
+    </Target>
+
+
+</Project>

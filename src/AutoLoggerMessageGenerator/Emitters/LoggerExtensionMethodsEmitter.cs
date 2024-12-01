@@ -5,8 +5,6 @@ using Microsoft.Extensions.Logging;
 
 namespace AutoLoggerMessageGenerator.Emitters;
 
-#if DEBUG
-
 /// Generates the <see cref="LoggerExtensions"/> class.
 /// Provides type-specific logging method overrides to avoid boxing.
 /// The <see cref="LoggerExtensions"/> class is pre-generated and saved in the solution
@@ -127,5 +125,3 @@ internal class LoggerExtensionsEmitter
         sb.WriteLine('}');
     }
 }
-
-#endif

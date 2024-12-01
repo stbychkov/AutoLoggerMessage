@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoggerMessageGenerator.
 		{DFA624CB-1414-4A1E-B1AD-B5D8B9BDBF86} = {DFA624CB-1414-4A1E-B1AD-B5D8B9BDBF86}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoggerMessageGenerator.Sandbox", "src\AutoLoggerMessageGenerator.Sandbox\AutoLoggerMessageGenerator.Sandbox.csproj", "{EBD13BAE-5907-4D0F-8601-83CBAC9556CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{1330C625-7850-4DF0-B35B-FF29C8B4828A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1330C625-7850-4DF0-B35B-FF29C8B4828A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1330C625-7850-4DF0-B35B-FF29C8B4828A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD13BAE-5907-4D0F-8601-83CBAC9556CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD13BAE-5907-4D0F-8601-83CBAC9556CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD13BAE-5907-4D0F-8601-83CBAC9556CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD13BAE-5907-4D0F-8601-83CBAC9556CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1330C625-7850-4DF0-B35B-FF29C8B4828A} = {F87C8D12-1787-4A2E-B9B1-ECEC6B681577}

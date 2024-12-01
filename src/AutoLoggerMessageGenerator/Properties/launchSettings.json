@@ -3,7 +3,7 @@
   "profiles": {
     "DebugRoslynSourceGenerator": {
       "commandName": "DebugRoslynComponent",
-      "targetProject": "../AutoLoggerMessageGenerator.IntegrationTests/AutoLoggerMessageGenerator.IntegrationTests.csproj"
+      "targetProject": "../AutoLoggerMessageGenerator.Sandbox/AutoLoggerMessageGenerator.Sandbox.csproj"
     }
   }
 }

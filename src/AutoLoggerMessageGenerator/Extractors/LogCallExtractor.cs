@@ -2,6 +2,7 @@ using System;
 using AutoLoggerMessageGenerator.Import.Microsoft.Extensions.Telemetry.LoggerMessage;
 using AutoLoggerMessageGenerator.Mappers;
 using AutoLoggerMessageGenerator.Models;
+using AutoLoggerMessageGenerator.Utilities;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -26,7 +27,10 @@ internal static class LogCallExtractor
             return default;
 
         var logPropertiesCheck = new LogPropertiesCheck(semanticModel.Compilation);
-        var parameters = new LogParametersExtractor(logPropertiesCheck).Extract(message, methodSymbol);
+        var parameterNameNormalizer = new ParameterNameNormalizer();
+        var parameters = new LogParametersExtractor(logPropertiesCheck, parameterNameNormalizer)
+            .Extract(message, methodSymbol);
+        
         if (parameters is null)
             return default;
 

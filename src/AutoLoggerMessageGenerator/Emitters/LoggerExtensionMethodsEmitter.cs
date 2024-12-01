@@ -1,4 +1,6 @@
+using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Logging;
@@ -14,6 +16,15 @@ internal class LoggerExtensionsEmitter
 {
     public const string ClassName = "GenericLoggerExtensions";
     public const string ArgumentName = "arg";
+    public const string EventIdArgument = "eventId";
+    public const string LogLevelArgument = "logLevel";
+    public const string ExceptionArgumentName = "exception";
+    public const string MessageArgumentName = "message";
+    
+    public static readonly HashSet<string> ReservedArgumentNames =
+    [
+        ExceptionArgumentName, EventIdArgument, MessageArgumentName
+    ]; 
 
     public static string Emit()
     {
@@ -35,12 +46,16 @@ internal class LoggerExtensionsEmitter
 
         string[] logLevels = ["Trace", "Debug", "Information", "Warning", "Error", "Critical"];
 
+        var messageParameter = ("string", $"@{MessageArgumentName}");
+        var exceptionParameter = ("Exception?", $"@{ExceptionArgumentName}");
+        var eventIdParameter = ("EventId", $"@{EventIdArgument}");
+        
         (string Type, string Name)[][] fixedParametersOverloads =
         [
-            [("string", "@message")],
-            [("Exception?", "@exception"), ("string", "@message")],
-            [("EventId", "@eventId"), ("string", "@message")],
-            [("EventId", "@eventId"), ("Exception?", "@exception"), ("string", "@message")]
+            [messageParameter],
+            [exceptionParameter, messageParameter],
+            [eventIdParameter, messageParameter],
+            [eventIdParameter, exceptionParameter, messageParameter]
         ];
 
         foreach (var fixedParametersOverload in fixedParametersOverloads)
@@ -115,11 +130,11 @@ internal class LoggerExtensionsEmitter
         string objectParameters)
     {
         sb.WriteLine(
-            $"public static void Log{genericTypesDefinition}(this ILogger @logger, {Constants.DefaultLoggingNamespace}.LogLevel @logLevel, {fixedParametersDefinition}{genericParametersDefinition})");
+            $"public static void Log{genericTypesDefinition}(this ILogger @logger, {Constants.DefaultLoggingNamespace}.LogLevel @{LogLevelArgument}, {fixedParametersDefinition}{genericParametersDefinition})");
         sb.WriteLine('{');
         sb.Indent++;
 
-        sb.WriteLine($"{Constants.DefaultLoggingNamespace}.{nameof(LoggerExtensions)}.{nameof(LoggerExtensions.Log)}(@logger, @logLevel, {fixedParameters}{objectParameters});");
+        sb.WriteLine($"{Constants.DefaultLoggingNamespace}.{nameof(LoggerExtensions)}.{nameof(LoggerExtensions.Log)}(@logger, @{LogLevelArgument}, {fixedParameters}{objectParameters});");
 
         sb.Indent--;
         sb.WriteLine('}');

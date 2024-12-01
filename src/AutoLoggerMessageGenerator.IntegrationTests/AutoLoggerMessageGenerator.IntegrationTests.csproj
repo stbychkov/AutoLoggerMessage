@@ -5,7 +5,6 @@
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsPreviewNamespaces>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,9 +21,4 @@
         <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2"/>
         <PackageReference Include="FluentAssertions" Version="6.12.2"/>
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="ComplexObject.cs" />
-    </ItemGroup>
-
 </Project>

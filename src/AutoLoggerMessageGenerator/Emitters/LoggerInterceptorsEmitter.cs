@@ -46,9 +46,7 @@ internal class LoggerInterceptorsEmitter
                 $"{Constants.LogMethodPrefix}{logCall.Namespace}{logCall.ClassName}_{logCall.Location.Line}_{logCall.Location.Character}"
             );
 
-            var logLevelParameterDefinition = logCall.Name == "Log" ? ", LogLevel @logLevel" : string.Empty;
-
-            sb.WriteLine($"public static void {methodName}(this ILogger @logger{logLevelParameterDefinition}, string @message{parameters})");
+            sb.WriteLine($"public static void {methodName}(this ILogger @logger{parameters})");
             sb.WriteLine('{');
             sb.Indent++;
 

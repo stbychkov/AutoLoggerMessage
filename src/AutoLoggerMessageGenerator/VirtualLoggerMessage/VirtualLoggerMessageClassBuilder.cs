@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging.Generators;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+using static AutoLoggerMessageGenerator.Emitters.LoggerExtensionsEmitter;
 
 namespace AutoLoggerMessageGenerator.VirtualLoggerMessage;
 
@@ -39,7 +40,10 @@ internal class VirtualLoggerMessageClassBuilder(
         var loggerParameter = Parameter(Identifier("Logger"))
             .WithType(IdentifierName($"{Constants.DefaultLoggingNamespace}.ILogger"));
 
-        var parameters = logCall.Parameters.Select(c =>
+        var parameters = logCall.Parameters
+             // Message parameter and log level are defined in the attribute
+            .Where(c => c.Name is not MessageArgumentName or LogLevelArgument)
+            .Select(c =>
         {
             var parameter = Parameter(Identifier(c.Name)).WithType(IdentifierName(c.Type));
 

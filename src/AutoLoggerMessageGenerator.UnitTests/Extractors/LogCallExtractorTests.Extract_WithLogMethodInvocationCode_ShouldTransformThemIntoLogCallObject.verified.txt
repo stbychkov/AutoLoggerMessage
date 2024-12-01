@@ -3,16 +3,16 @@
   Location: {
     FilePath: ,
     Line: 12,
-    Character: 33,
+    Character: 16,
     Context: {
       Kind: SourceFile,
       SourceSpan: {
         Start: 146,
-        Length: 84
+        Length: 59
       },
       SourceTree: {
         FilePath: ,
-        Length: 239,
+        Length: 214,
         HasCompilationUnitRoot: true,
         Options: {
           LanguageVersion: CSharp12,
@@ -25,8 +25,8 @@
       IsInMetadata: false
     }
   },
-  Namespace: Logging,
-  ClassName: GenericLoggerExtensions,
+  Namespace: Foo,
+  ClassName: Test,
   Name: LogInformation,
   LogLevel: Information,
   Message: Hello world {arg1} {arg2},

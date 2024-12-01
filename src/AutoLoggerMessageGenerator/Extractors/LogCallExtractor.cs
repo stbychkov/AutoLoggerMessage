@@ -14,8 +14,7 @@ internal static class LogCallExtractor
         InvocationExpressionSyntax invocationExpression, 
         SemanticModel semanticModel)
     {
-        var ns = methodSymbol.ContainingNamespace.Name;
-        var className = methodSymbol.ContainingType.Name;
+        var (ns, className) = LogCallCallerExtractor.Extract(invocationExpression);
         var location = LogCallLocationMapper.Map(invocationExpression);
 
         var logLevel = LogLevelExtractor.Extract(methodSymbol, invocationExpression);

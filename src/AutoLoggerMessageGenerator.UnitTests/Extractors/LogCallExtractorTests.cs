@@ -8,9 +8,9 @@ namespace AutoLoggerMessageGenerator.UnitTests.Extractors;
 public class LogCallExtractorTests : BaseSourceGeneratorTest
 {
     [Theory]
-    [InlineData($$"""GenericLoggerExtensions.LogInformation({{LoggerName}}, "Hello world {arg1} {arg2}", 1, true);""", true)]
-    [InlineData($$"""GenericLoggerExtensions.LogInformation({{LoggerName}}, null);""", false)]
-    [InlineData($$"""GenericLoggerExtensions.LogInformation({{LoggerName}}, "Hello world {arg1}", 1, true);""", false)]
+    [InlineData($$"""{{LoggerName}}.LogInformation("Hello world {arg1} {arg2}", 1, true);""", true)]
+    [InlineData($$"""{{LoggerName}}.LogInformation(null);""", false)]
+    [InlineData($$"""{{LoggerName}}.LogInformation("Hello world {arg1}", 1, true);""", false)]
     public async Task Extract_WithLogMethodInvocationCode_ShouldTransformThemIntoLogCallObject(string sourceCode, bool isValidCall)
     {
         var (compilation, syntaxTree) = CompileSourceCode(sourceCode);

@@ -11,13 +11,15 @@ public abstract class BaseSourceGeneratorTest
     protected const string Namespace = "Foo";
     protected const string ClassName = "Test";
     
-    protected static (CSharpCompilation Compilation, SyntaxTree SyntaxTree) CompileSourceCode(string body, string additionalClassMemberDeclarations = "")
+    protected static (CSharpCompilation Compilation, SyntaxTree SyntaxTree) CompileSourceCode(
+        string body, string additionalClassMemberDeclarations = "", 
+        bool useGlobalNamespace = false)
     {
         var sourceCode = $$"""
                            using System;
                            using {{Constants.DefaultLoggingNamespace}};
 
-                           namespace {{Namespace}};
+                           {{(useGlobalNamespace ? string.Empty : $"namespace {Namespace};")}}
 
                            public class {{ClassName}}(ILogger {{LoggerName}})
                            {

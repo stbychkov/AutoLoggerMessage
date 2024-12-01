@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.Logging.AutoLoggerMesssage
+namespace Microsoft.Extensions.Logging.AutoLoggerMessage
 {
     static partial class AutoLoggerMessage
     {

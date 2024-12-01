@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Microsoft.Extensions.Logging.AutoLoggerMesssage
+namespace Microsoft.Extensions.Logging.AutoLoggerMessage
 {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("AutoLoggerMessageGenerator", "1.0.0.0")]
     [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.Logging.AutoLoggerMesssage
             line: 1, character: 11)]
         public static void Log_namespace1class1_1_11(this ILogger @logger, string @message)
         {
-            Microsoft.Extensions.Logging.AutoLoggerMesssage.AutoLoggerMessage.Log_namespace1class1_1_11(@logger);
+            Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace1class1_1_11(@logger);
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -26,7 +26,7 @@ namespace Microsoft.Extensions.Logging.AutoLoggerMesssage
             line: 2, character: 22)]
         public static void Log_namespace2class2_2_22(this ILogger @logger, string @message, int intParam)
         {
-            Microsoft.Extensions.Logging.AutoLoggerMesssage.AutoLoggerMessage.Log_namespace2class2_2_22(@logger, intParam);
+            Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace2class2_2_22(@logger, intParam);
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -35,7 +35,7 @@ namespace Microsoft.Extensions.Logging.AutoLoggerMesssage
             line: 3, character: 33)]
         public static void Log_namespace3class3_3_33(this ILogger @logger, string @message, int intParam, bool boolParam, SomeClass objectParam)
         {
-            Microsoft.Extensions.Logging.AutoLoggerMesssage.AutoLoggerMessage.Log_namespace3class3_3_33(@logger, intParam, boolParam, objectParam);
+            Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace3class3_3_33(@logger, intParam, boolParam, objectParam);
         }
         
     }

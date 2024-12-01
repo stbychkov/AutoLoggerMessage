@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMesssage</InterceptorsPreviewNamespaces>
+        <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsPreviewNamespaces>
     </PropertyGroup>
 
     <ItemGroup>

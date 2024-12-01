@@ -16,7 +16,7 @@ internal static class GeneratorOptionsProvider
     public static IncrementalValueProvider<SourceGeneratorConfiguration> Provide(IncrementalGeneratorInitializationContext context) =>
         context.AnalyzerConfigOptionsProvider.Select((options, _) => new SourceGeneratorConfiguration(
             GenerateInterceptorAttribute: GetValue(options.GlobalOptions, GenerateInterceptorAttributeKey, true),
-            GenerateSkipEnabledCheck: GetValue(options.GlobalOptions, GenerateSkipEnabledCheckKey, false),
+            GenerateSkipEnabledCheck: GetValue(options.GlobalOptions, GenerateSkipEnabledCheckKey, true),
             GenerateOmitReferenceName: GetValue(options.GlobalOptions, GenerateOmitReferenceNameKey, false),
             GenerateSkipNullProperties: GetValue(options.GlobalOptions, GenerateSkipNullPropertiesKey, false),
             GenerateTransitive: GetValue(options.GlobalOptions, GenerateTransitiveKey, false)

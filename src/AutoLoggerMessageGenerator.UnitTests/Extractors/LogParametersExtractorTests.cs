@@ -20,8 +20,8 @@ public class LogParametersExtractorTests : BaseSourceGeneratorTest
 
         const string extensionDeclaration = $$"""
                                               private static void Log<T1, T2>(
-                                                  string {{MessageArgumentName}}, 
-                                                  T1 {{ArgumentName}}1, 
+                                                  string {{MessageArgumentName}},
+                                                  T1 {{ArgumentName}}1,
                                                   T2 {{ArgumentName}}2) {}
                                               """;
 
@@ -37,9 +37,9 @@ public class LogParametersExtractorTests : BaseSourceGeneratorTest
 
         result.Should().BeEquivalentTo(new LogCallParameter[]
         {
-            new("global::System.String", MessageArgumentName.TrimStart('@')),
-            new("global::System.String", "EventName"),
-            new("global::System.Int32", "Time"),
+            new("global::System.String", MessageArgumentName),
+            new("global::System.String", "@EventName"),
+            new("global::System.Int32", "@Time"),
         });
     }
 
@@ -62,12 +62,12 @@ public class LogParametersExtractorTests : BaseSourceGeneratorTest
         result!.Value.Length.Should().Be(1);
         result.Value[0].Should().BeEquivalentTo(
             new LogCallParameter(
-                "global::System.String", 
-                MessageArgumentName.TrimStart('@')
+                "global::System.String",
+                MessageArgumentName
             )
         );
     }
-    
+
     [Fact]
     public void Extract_WithUtilityParameters_ShouldExtractAllParameters()
     {
@@ -76,20 +76,20 @@ public class LogParametersExtractorTests : BaseSourceGeneratorTest
         const string extensionDeclaration = $$"""
                                               private static void Log<T1, T2>(
                                                   LogLevel {{LogLevelArgumentName}},
-                                                  EventId {{EventIdArgumentName}}, 
-                                                  Exception {{ExceptionArgumentName}}, 
-                                                  string {{MessageArgumentName}}, 
-                                                  T1 {{ArgumentName}}1, 
+                                                  EventId {{EventIdArgumentName}},
+                                                  Exception {{ExceptionArgumentName}},
+                                                  string {{MessageArgumentName}},
+                                                  T1 {{ArgumentName}}1,
                                                   T2 {{ArgumentName}}2) {}
                                               """;
 
         var (compilation, syntaxTree) = CompileSourceCode("""
                                                             Log(
                                                                 LogLevel.Information,
-                                                                new EventId(), 
-                                                                new Exception(), 
-                                                                "The {EventName} was processed in {Time}ms", 
-                                                                "OrderReceived", 
+                                                                new EventId(),
+                                                                new Exception(),
+                                                                "The {EventName} was processed in {Time}ms",
+                                                                "OrderReceived",
                                                                 40
                                                             );
                                                             """, extensionDeclaration);
@@ -101,12 +101,12 @@ public class LogParametersExtractorTests : BaseSourceGeneratorTest
 
         result.Should().BeEquivalentTo(new LogCallParameter[]
         {
-            new("global::Microsoft.Extensions.Logging.LogLevel", LogLevelArgumentName.TrimStart('@')),
-            new("global::Microsoft.Extensions.Logging.EventId", EventIdArgumentName.TrimStart('@')),
-            new("global::System.Exception", ExceptionArgumentName.TrimStart('@')),
-            new("global::System.String", MessageArgumentName.TrimStart('@')),
-            new("global::System.String", "EventName"),
-            new("global::System.Int32", "Time"),
+            new("global::Microsoft.Extensions.Logging.LogLevel", LogLevelArgumentName),
+            new("global::Microsoft.Extensions.Logging.EventId", EventIdArgumentName),
+            new("global::System.Exception", ExceptionArgumentName),
+            new("global::System.String", MessageArgumentName),
+            new("global::System.String", "@EventName"),
+            new("global::System.Int32", "@Time"),
         });
     }
 }

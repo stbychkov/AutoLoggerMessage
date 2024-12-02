@@ -1,0 +1,40 @@
+name: API Suggestion
+description: Propose a feature request
+title: "[Feature Proposal]: "
+labels: ["untriaged", "enhancement"]
+body:
+  - type: textarea
+    id: background
+    attributes:
+      label: Background and motivation
+      description: Please describe the purpose and value of the new change here.
+      placeholder: Purpose
+    validations:
+      required: true
+  - type: textarea
+    id: feature-proposal
+    attributes:
+      label: Feature Proposal
+      description: |
+        Please provide the details about the feature changes that you are proposing.
+      placeholder: API declaration (no method bodies)
+    validations:
+      required: true
+  - type: textarea
+    id: feature-usage
+    attributes:
+      label: Feature Usage
+      description: |
+        Please provide code examples that highlight how the proposed feature change are meant to be consumed.
+      placeholder: API usage
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks
+      description: |
+        Please mention any risks that to your knowledge the change proposal might entail, such as breaking changes, performance regressions, etc.
+      placeholder: Risks
+    validations:
+      required: false

@@ -9,12 +9,12 @@ using Microsoft.CodeAnalysis;
 namespace AutoLoggerMessageGenerator.Extractors;
 
 internal class LogParametersExtractor(
-    LogPropertiesCheck? logPropertiesCheck = null, 
+    LogPropertiesCheck? logPropertiesCheck = null,
     ParameterNameNormalizer? parameterNameNormalizer = null
 )
 {
     private static readonly Regex MessageArgumentsRegex = new(@"\{(.*?)\}", RegexOptions.Compiled);
-    
+
     public ImmutableArray<LogCallParameter>? Extract(string message, IMethodSymbol methodSymbol)
     {
         var matches = MessageArgumentsRegex.Matches(message);
@@ -27,25 +27,29 @@ internal class LogParametersExtractor(
 
         if (templateParametersNames.Length < methodParameters.Length)
             return null;
-        
+
         var utilityParameters = methodSymbol.Parameters
             .Where(c => Constants.ReservedArgumentNames.Contains($"@{c.Name}"))
-            .Select(parameter => CreateLogCallParameter(parameter.Type, parameter.Name, false));
+            .Select(parameter => CreateLogCallParameter(parameter.Type, parameter.Name, false, false));
 
         var messageParameters = methodParameters
             .Select((parameter, ix) => CreateLogCallParameter(
                     type: parameter.Type,
                     name: templateParametersNames[ix],
-                    hasPropertiesToLog: logPropertiesCheck?.IsApplicable(parameter.Type) ?? false
+                    hasPropertiesToLog: logPropertiesCheck?.IsApplicable(parameter.Type) ?? false,
+                    normalizeName: true
                 )
             );
 
         return utilityParameters.Concat(messageParameters).ToImmutableArray();
     }
-    
-    private LogCallParameter CreateLogCallParameter(ITypeSymbol type, string name, bool hasPropertiesToLog)
+
+    private LogCallParameter CreateLogCallParameter(ITypeSymbol type, string name, bool hasPropertiesToLog, bool normalizeName)
     {
-        name = parameterNameNormalizer?.Normalize(name) ?? name;
+        name = name.StartsWith("@") ? name : '@' + name;
+
+        if (normalizeName && parameterNameNormalizer is not null)
+            name = parameterNameNormalizer.Normalize(name);
 
         return new LogCallParameter(
             Type: type.ToDisplayString(

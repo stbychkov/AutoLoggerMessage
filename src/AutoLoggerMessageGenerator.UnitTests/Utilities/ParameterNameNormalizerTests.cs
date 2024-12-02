@@ -23,7 +23,7 @@ public class ParameterNameNormalizerTests
         result2.Should().Be($"{parameterName}2");
         result3.Should().Be($"{parameterName}3");
     }
-    
+
     [Fact]
     public void Normalize_WithNotReservedName_ShouldReturnParameterName()
     {
@@ -34,8 +34,8 @@ public class ParameterNameNormalizerTests
         var result2 = sut.Normalize(parameterName);
         var result3 = sut.Normalize(parameterName);
 
-        result1.Should().Be($"@{parameterName}");
-        result2.Should().Be($"@{parameterName}");
-        result3.Should().Be($"@{parameterName}");
+        result1.Should().Be(parameterName);
+        result2.Should().Be(parameterName);
+        result3.Should().Be(parameterName);
     }
 }

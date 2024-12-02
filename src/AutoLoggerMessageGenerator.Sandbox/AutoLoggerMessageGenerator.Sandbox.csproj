@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <OutputType>Exe</OutputType>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsPreviewNamespaces>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsPreviewNamespaces>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="11.11.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Telemetry.Abstractions" Version="9.0.0"/>
-        <ProjectReference Include="..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.csproj"
-                          OutputItemType="Analyzer"
-                          ReferenceOutputAssembly="true"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.11.0"/>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Telemetry.Abstractions" Version="9.0.0"/>
+    <ProjectReference Include="..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="true"/>
+  </ItemGroup>
 </Project>

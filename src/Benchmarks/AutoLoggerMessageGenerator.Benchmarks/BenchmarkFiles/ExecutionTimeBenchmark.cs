@@ -28,14 +28,14 @@ public partial class ExecutionTimeBenchmark
     {
         _logger.LogInformation("Hello world!");
     }
-    
+
     [Benchmark]
     [BenchmarkCategory("Without parameters")]
     public void LoggerMessageWithoutParameters()
     {
         LoggerMessageWithoutParametersImpl();
     }
-    
+
     [LoggerMessage(LogLevel.Information, Message = "Hello world!")]
     partial void LoggerMessageWithoutParametersImpl();
 
@@ -45,14 +45,14 @@ public partial class ExecutionTimeBenchmark
     {
         _logger.LogInformation("Hello world! {arg1} {arg2} {arg3} {arg4} {arg5} {arg6}", 1, 2, 3, 4, 5, 6);
     }
-    
+
     [Benchmark]
     [BenchmarkCategory("With 6 Parameters")]
     public void LoggerMessageWith6Parameters()
     {
         LoggerMessageWith6ParametersImpl(1, 2, 3, 4, 5, 6);
     }
-    
+
     [LoggerMessage(LogLevel.Information, Message = "Hello world! {arg1} {arg2} {arg3} {arg4} {arg5} {arg6}")]
     partial void LoggerMessageWith6ParametersImpl(int arg1, int arg2, int arg3, int arg4, int arg5, int arg6);
 
@@ -62,7 +62,7 @@ public partial class ExecutionTimeBenchmark
     {
         _logger.LogInformation("Hello world! {arg1} {arg2} {arg3} {arg4} {arg5} {arg6} {arg7}", 1, 2, 3, 4, 5, 6, 7);
     }
-    
+
     [Benchmark]
     [BenchmarkCategory("With 7 Parameters")]
     public void LoggerMessageWith7Parameters()
@@ -81,7 +81,7 @@ public partial class ExecutionTimeBenchmark
         _logger.LogInformation("Hello world! {arg1} {arg2} {arg3} {arg4} {arg5} {arg6}",
             _configuration, _configuration, _configuration, _configuration, _configuration, _configuration);
     }
-   
+
     [Benchmark]
     [BenchmarkCategory("With Complex Types Parameters")]
     public void LoggerMessageWithComplexParameters()
@@ -91,7 +91,7 @@ public partial class ExecutionTimeBenchmark
             _configuration, _configuration, _configuration
         );
     }
-    
+
     [LoggerMessage(LogLevel.Information, Message = "Hello world! {arg1} {arg2} {arg3} {arg4} {arg5} {arg6}")]
     partial void LoggerMessageWithComplexParametersImpl(
         ConfigurationExample arg1,

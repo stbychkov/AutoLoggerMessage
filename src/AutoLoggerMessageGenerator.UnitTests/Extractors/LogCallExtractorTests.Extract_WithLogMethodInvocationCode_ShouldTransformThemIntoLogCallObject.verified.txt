@@ -33,7 +33,7 @@
   Parameters: [
     {
       Type: global::System.String,
-      Name: @message1,
+      Name: message,
       HasPropertiesToLog: false
     },
     {

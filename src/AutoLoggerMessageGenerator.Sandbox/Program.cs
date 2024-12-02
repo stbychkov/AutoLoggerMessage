@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-var loggerFactory = LoggerFactory.Create(builder => 
+var loggerFactory = LoggerFactory.Create(builder =>
     builder.AddSimpleConsole().SetMinimumLevel(LogLevel.Trace)
 );
 var logger = loggerFactory.CreateLogger<Program>();

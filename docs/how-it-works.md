@@ -7,7 +7,7 @@ This process is designed to simplify logging and ensure that logging code doesn'
 The generator builds upon the existing `LoggerMessage` generators and adds functionality to support both old and new logging packages (`Microsoft.Extensions.Logging.Abstractions` and `Microsoft.Extensions.Telemetry.Abstractions`).
 
 ```mermaid
-flowchart LR
+flowchart TD
 A["Step 0: Create a set of generic logger overloads (up to 6 parameters)"] --> B["Step 1: Find all Log* methods belonging to ILogger class"]
 B --> C["Step 2: Generate a virtual partial class with partial LoggerMessage methods"]
 C --> D["Step 3: Use existing LoggerMessage generator to generate the rest"]

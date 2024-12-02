@@ -28,8 +28,7 @@ the [Directory.Build.props](./src/Directory.Build.props) file
 ```xml
 
 <PropertyGroup>
-    <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMesssage
-    </InterceptorsPreviewNamespaces>
+    <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsPreviewNamespaces>
 </PropertyGroup>
 ```
 

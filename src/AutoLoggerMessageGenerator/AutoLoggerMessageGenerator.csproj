@@ -1,65 +1,66 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <IsRoslynComponent>true</IsRoslynComponent>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <IsPackable>true</IsPackable>
-        <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
-        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-        <IsRoslynComponent>true</IsRoslynComponent>
-    </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>stbychkov.AutoLoggerMessage</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>stbychkov</Authors>
+    <Title>AutoLoggerMessage</Title>
+    <Description>A source generator that automatically migrates your logging calls to the LoggerMessage version</Description>
+    <PackageTags>logging;roslyn</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/stbychkov/AutoLoggerMessage</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/stbychkov/AutoLoggerMessage</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/stbychkov/AutoLoggerMessage</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.jpg</PackageIcon>
+    <OutputPath>./nupkg</OutputPath>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <PackageId>stbychkov.AutoLoggerMessageGenerator</PackageId>
-        <Title>AutoLoggerMessageGenerator</Title>
-        <Description>A source generator that automatically migrates your logging calls to the LoggerMessage version</Description>
-        <Version>1.0.0</Version>
-        <PackageTags>logging;roslyn</PackageTags>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryUrl>https://github.com/stbychkov/AutoLoggerMessage</RepositoryUrl>
-        <PackageProjectUrl>https://github.com/stbychkov/AutoLoggerMessage</PackageProjectUrl>
-        <PackageIcon>Assets\icon.jpg</PackageIcon>
-        <OutputPath>./nupkg</OutputPath>
-        <GenerateDocumentationFile>false</GenerateDocumentationFile>
-        <Authors>stbychkov</Authors>
-    </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.0"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.0"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.0"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.0"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
-    </ItemGroup>
+  <ItemGroup>
+    <None Update="AutoLoggerMessageGenerator.props" Pack="true" PackagePath="" />
+    <None Include="../../README.md" Pack="true" PackagePath="" />
+    <None Include="Assets\icon.jpg" Pack="true" PackagePath="" />
 
-    <ItemGroup>
-        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-            <_Parameter1>$(AssemblyName).UnitTests</_Parameter1>
-        </AssemblyAttribute>
-        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-            <_Parameter1>$(AssemblyName).Benchmarks</_Parameter1>
-        </AssemblyAttribute>
-    </ItemGroup>
+    <Compile Update="Import/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.Designer.cs"
+             DesignTime="True" AutoGen="True" DependentUpon="Resources.resx"/>
+    <EmbeddedResource Update="Import/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.resx"
+                      Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs"
+                      LogicalName="Microsoft.Gen.Logging.Parsing.Resources.resources"/>
+    <Compile Update="src\Emitters\LoggerExtensions.g.cs">
+      <DependentUpon>LoggerExtensionMethodsEmitter.cs</DependentUpon>
+    </Compile>
 
-    <ItemGroup>
-        <Compile Update="Import/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.Designer.cs" 
-                 DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />
-        <EmbeddedResource Update="Import/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.resx" 
-                          Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" 
-                          LogicalName="Microsoft.Gen.Logging.Parsing.Resources.resources"/>
-        <Compile Update="src\Emitters\LoggerExtensions.g.cs">
-            <DependentUpon>LoggerExtensionMethodsEmitter.cs</DependentUpon>
-        </Compile>
+    <Compile Update="Emitters/LoggerExtensions.g.cs">
+      <DependentUpon>LoggerExtensionMethodsEmitter.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
-        <None Include="Assets/icon.jpg">
-            <Pack>true</Pack>
-            <PackagePath>Assets/icon.jpg</PackagePath>
-        </None>
-
-        <Compile Update="Emitters\LoggerExtensions.g.cs">
-          <DependentUpon>LoggerExtensionMethodsEmitter.cs</DependentUpon>
-        </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).UnitTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).Benchmarks</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
 </Project>

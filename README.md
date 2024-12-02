@@ -1,5 +1,9 @@
 # AutoLoggerMessage
 
+[![NuGet](https://img.shields.io/nuget/v/stbychkov.AutoLoggerMessage)](https://www.nuget.org/packages/stbychkov.AutoLoggerMessage)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![GitHub Build](https://github.com/stbychkov/AutoLoggerMessage/actions/workflows/dotnet_build.yml/badge.svg)
+
 Welcome to **AutoLoggerMessage**, a source generator that automatically creates
 [LoggerMessage](https://youtu.be/Otm8tH0Vrp0)
 methods, enabling high-performance logging..
@@ -56,8 +60,7 @@ or in your project configuration file (specific or global)
 
 <PropertyGroup>
     ...
-    <AutoLoggerMessageGenerator_GenerateInterceptorAttribute>true
-    </AutoLoggerMessageGenerator_GenerateInterceptorAttribute>
+    <AutoLoggerMessageGenerator_GenerateInterceptorAttribute>true</AutoLoggerMessageGenerator_GenerateInterceptorAttribute>
 </PropertyGroup>
 ```
 

@@ -6,23 +6,14 @@ The source generator automatically creates `LoggerMessage` methods for high-perf
 This process is designed to simplify logging and ensure that logging code doesn't require manual maintenance or updates.
 The generator builds upon the existing `LoggerMessage` generators and adds functionality to support both old and new logging packages (`Microsoft.Extensions.Logging.Abstractions` and `Microsoft.Extensions.Telemetry.Abstractions`).
 
-```mermaid
-flowchart TD
-A["Step 0: Create a set of generic logger overloads (up to 6 parameters)"] --> B["Step 1: Find all Log* methods belonging to ILogger class"]
-B --> C["Step 2: Generate a virtual partial class with partial LoggerMessage methods"]
-C --> D["Step 3: Use existing LoggerMessage generator to generate the rest"]
-D --> E["Step 4: Post-process the result with minor modifications"]
-E --> F["Step 5: Create a set of interceptors that forward requests to the correct generated methods"]
-```
-
 ### Step 0: Create a set of generic logger overloads (up to 6 parameters)
 
-The first step involves generating 196 generic extension methods for `ILogger` class that will override the default logging methods ([why?](./ADR/ADR-01_Generation_of_logger_extension_methods_overloads.md)).
+The first step involves generating **196** generic extension methods for `ILogger` class that will override the default logging methods ([why?](./ADR/ADR-01_Generation_of_logger_extension_methods_overloads.md)).
 `LoggerMessage.Define` supports up to 6 parameters, so we can limit the methods only with this amount.
 
 ### Step 1: Find all Log* methods belonging to ILogger class
 
-The generator looks for any Log* method (like LogInformation, Log, etc.) and captures the parameters passed to these methods.
+The generator looks for any `Log+` method (like `LogInformation`, `Log`, etc.) and captures the parameters passed to these methods.
 
 ### Step 2: Generate a virtual partial class with partial LoggerMessage methods
 

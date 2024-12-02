@@ -191,4 +191,4 @@ documentation
 ## Questions?
 
 I bet you have some questions about why things are set up the way they are.
-Refer to the [ADR files](./docs/ADR) for detailed explanations of the design decisions behind this package.
+Refer to the [ADR files](https://github.com/stbychkov/AutoLoggerMessage/tree/main/docs/ADR) for detailed explanations of the design decisions behind this package.

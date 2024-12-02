@@ -8,16 +8,16 @@ The generator builds upon the existing `LoggerMessage` generators and adds funct
 
 ```mermaid
 flowchart LR
-A[Step 0: Create a set of generic logger overloads (up to 6 parameters)] --> B[Step 1: Find all Log* methods belonging to ILogger class]
-B --> C[Step 2: Generate a virtual partial class with partial LoggerMessage methods]
-C --> D[Step 3: Use existing LoggerMessage generator to generate the rest]
-D --> E[Step 4: Post-process the result with minor modifications]
-E --> F[Step 5: Create a set of interceptors that forward requests to the correct generated methods]
+A["Step 0: Create a set of generic logger overloads (up to 6 parameters)"] --> B["Step 1: Find all Log* methods belonging to ILogger class"]
+B --> C["Step 2: Generate a virtual partial class with partial LoggerMessage methods"]
+C --> D["Step 3: Use existing LoggerMessage generator to generate the rest"]
+D --> E["Step 4: Post-process the result with minor modifications"]
+E --> F["Step 5: Create a set of interceptors that forward requests to the correct generated methods"]
 ```
 
 ### Step 0: Create a set of generic logger overloads (up to 6 parameters)
 
-The first step involves generating 196 generic extension methods for `ILogger` class that will override the default logging methods ([why?](./ADR/ADR-02_Generation_of_logger_extension_methods_overloads.md)).
+The first step involves generating 196 generic extension methods for `ILogger` class that will override the default logging methods ([why?](./ADR/ADR-01_Generation_of_logger_extension_methods_overloads.md)).
 `LoggerMessage.Define` supports up to 6 parameters, so we can limit the methods only with this amount.
 
 ### Step 1: Find all Log* methods belonging to ILogger class

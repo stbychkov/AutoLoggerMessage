@@ -45,7 +45,7 @@ public class LogCallFilterTests : BaseSourceGeneratorTest
         var semanticModel = compilation.GetSemanticModel(syntaxTree);
         var filteredInvocationExpressions = invocationExpressions.OfType<InvocationExpressionSyntax>().Where(c =>
         {
-            var methodSymbol = semanticModel.GetSymbolInfo(c).Symbol as IMethodSymbol;
+            var methodSymbol = (IMethodSymbol) semanticModel.GetSymbolInfo(c).Symbol!;
             return LogCallFilter.IsLoggerMethod(methodSymbol);
         }).ToArray();
         

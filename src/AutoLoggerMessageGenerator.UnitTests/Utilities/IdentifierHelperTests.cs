@@ -20,7 +20,7 @@ public class IdentifierHelperTests
     [Theory]
     [InlineData(null)]
     [InlineData("")]
-    public void ToValidCSharpMethodName_ShouldThrow_WhenInputIsNull(string input)
+    public void ToValidCSharpMethodName_ShouldThrow_WhenInputIsNull(string? input)
     {
         var action = () => IdentifierHelper.ToValidCSharpMethodName(input);
         action.Should().ThrowExactly<ArgumentNullException>();

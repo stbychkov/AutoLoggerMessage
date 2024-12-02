@@ -9,7 +9,7 @@ namespace AutoLoggerMessageGenerator.UnitTests.VirtualLoggerMessage;
 
 public class VirtualLoggerMessageClassBuilderTests
 {
-    private LogCall _logCall = new()
+    private readonly LogCall _logCall = new()
     {
         Id = Guid.NewGuid(),
         Location = new LogCallLocation
@@ -24,11 +24,11 @@ public class VirtualLoggerMessageClassBuilderTests
         ClassName = "SomeClass",
         LogLevel = "Critical",
         Parameters = [
-            new LogCallParameter("int", "intParam", false),
-            new LogCallParameter("string", "stringParam", false),
-            new LogCallParameter("bool", "boolParam", false),
-            new LogCallParameter("SomeClass", "classParam", true),
-            new LogCallParameter("SomeStruct", "structParam", true)
+            new LogCallParameter("int", "@intParam", false),
+            new LogCallParameter("string", "@stringParam", false),
+            new LogCallParameter("bool", "@boolParam", false),
+            new LogCallParameter("SomeClass", "@classParam", true),
+            new LogCallParameter("SomeStruct", "@structParam", true)
         ]
     }; 
     
@@ -44,7 +44,7 @@ public class VirtualLoggerMessageClassBuilderTests
             _logCall with
             {
                 Id = Guid.NewGuid(),
-                Location = new LogCallLocation("path/to/another/file.cs", 3, 33, default),
+                Location = new LogCallLocation("path/to/another/file.cs", 3, 33, Location.None),
                 Message = "Goodbye, World!",
                 LogLevel = "Trace"
             }

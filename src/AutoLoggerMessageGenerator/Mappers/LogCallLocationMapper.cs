@@ -5,10 +5,12 @@ namespace AutoLoggerMessageGenerator.Mappers;
 
 internal static class LogCallLocationMapper
 {
-    public static LogCallLocation Map(InvocationExpressionSyntax invocationExpression)
+    public static LogCallLocation? Map(InvocationExpressionSyntax invocationExpression)
     {
         var memberAccessExpression = invocationExpression.Expression as MemberAccessExpressionSyntax;
-        var identifierName = memberAccessExpression?.Expression as IdentifierNameSyntax;
+        if (memberAccessExpression?.Expression is not IdentifierNameSyntax identifierName)
+            return null;
+
         var skipSymbols = identifierName.Identifier.ValueText.Length + 1; // obj accessor + dot symbol
 
         var location = invocationExpression.GetLocation();

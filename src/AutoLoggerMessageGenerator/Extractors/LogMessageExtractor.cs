@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -11,7 +10,7 @@ internal static class LogMessageExtractor
     public static string? Extract(IMethodSymbol methodSymbol, InvocationExpressionSyntax invocationExpressionSyntax,
         SemanticModel semanticModel)
     {
-        var messageParameter = methodSymbol.Parameters.Single(c => c.Name.AsSpan().TrimStart('@') is "message");
+        var messageParameter = methodSymbol.Parameters.Single(c => c.Name == Constants.MessageArgumentName.TrimStart('@'));
         var messageParameterIx = methodSymbol.Parameters.IndexOf(messageParameter);
 
         var valueExpression = invocationExpressionSyntax.ArgumentList.Arguments[messageParameterIx].Expression;

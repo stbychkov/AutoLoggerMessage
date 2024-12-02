@@ -25,16 +25,12 @@ public class LogLevelExtractorTests : BaseSourceGeneratorTest
     [InlineData("Log(LogLevel.Critical, default)", nameof(LogLevel.Critical))]
 
     [InlineData("AnyOtherMethod(default)", null)]
-    public void Extract_WithGivenMethodCall_ShouldReturnExpectedLogLevel(string methodCall, string expectedLogLevel)
+    public void Extract_WithGivenMethodCall_ShouldReturnExpectedLogLevel(string methodCall, string? expectedLogLevel)
     {
         var (compilation, syntaxTree) = CompileSourceCode($"{LoggerName}.{methodCall};");
+        var (invocationExpression, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var invocationExpression = syntaxTree.GetRoot().DescendantNodes().OfType<InvocationExpressionSyntax>().First();
-
-        var semanticModel = compilation.GetSemanticModel(syntaxTree);
-        var methodSymbol = semanticModel.GetSymbolInfo(invocationExpression).Symbol as IMethodSymbol;
-
-        var result = LogLevelExtractor.Extract(methodSymbol, invocationExpression);
+        var result = LogLevelExtractor.Extract(methodSymbol!, invocationExpression);
 
         result.Should().Be(expectedLogLevel);
     }

@@ -21,11 +21,6 @@ internal static class LogCallCallerExtractor
             if (syntaxNode is FileScopedNamespaceDeclarationSyntax fileScopedNamespaceDeclarationSyntax)
                 ns = fileScopedNamespaceDeclarationSyntax.Name.ToString();
 
-            if (syntaxNode is GlobalStatementSyntax global)
-            {
-                
-            }
-            
             syntaxNode = syntaxNode.Parent;
         }
 

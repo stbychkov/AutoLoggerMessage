@@ -1,78 +1,91 @@
-using System.Collections.Immutable;
-using AutoLoggerMessageGenerator.Emitters;
 using AutoLoggerMessageGenerator.Extractors;
-using AutoLoggerMessageGenerator.Import.Microsoft.Extensions.Telemetry.LoggerMessage;
 using AutoLoggerMessageGenerator.Models;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using static AutoLoggerMessageGenerator.Constants;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Extractors;
 
 public class LogParametersExtractorTests : BaseSourceGeneratorTest
 {
     [Fact]
-    public void Extract_WithGivenMessageAndParameters_ShouldReturnParsedParameters()
+    public void Extract_WithGivenMessageAndParameters_ShouldReturnMessageAndParsedParameters()
     {
-        var message = "The {EventName} was processed in {Time}ms";
-        var parameters = "\"OrderReceived\", 40";
+        const string message = "The {EventName} was processed in {Time}ms";
+        const string parameters = $"""
+                                   "{message}", "OrderReceived", 40
+                                   """;
 
-        var extensionDeclaration = "private static void Log<T1, T2>(string @message, T1 @arg1, T2 @arg2) {}";
+        const string extensionDeclaration = $$"""
+                                              private static void Log<T1, T2>(
+                                                  string {{MessageArgumentName}}, 
+                                                  T1 {{ArgumentName}}1, 
+                                                  T2 {{ArgumentName}}2) {}
+                                              """;
 
-        var (compilation, syntaxTree) = CompileSourceCode($"Log(\"{message}\", {parameters});", extensionDeclaration);
+        var (compilation, syntaxTree) = CompileSourceCode($"Log({parameters});", extensionDeclaration);
         var invocationExpression = syntaxTree.GetRoot().DescendantNodes().OfType<InvocationExpressionSyntax>().First();
 
         var semanticModel = compilation.GetSemanticModel(syntaxTree);
-        var methodSymbol = semanticModel.GetSymbolInfo(invocationExpression).Symbol as IMethodSymbol;
+        var methodSymbol = (IMethodSymbol) semanticModel.GetSymbolInfo(invocationExpression).Symbol!;
 
-        var sut = new LogParametersExtractor(new LogPropertiesCheck(compilation));
+        var sut = new LogParametersExtractor();
 
         var result = sut.Extract(message, methodSymbol);
 
         result.Should().BeEquivalentTo(new LogCallParameter[]
         {
-            new("global::System.String", "@EventName"),
-            new("global::System.Int32", "@Time"),
+            new("global::System.String", MessageArgumentName.TrimStart('@')),
+            new("global::System.String", "EventName"),
+            new("global::System.Int32", "Time"),
         });
     }
 
     [Fact]
-    public void Extract_WithGivenMessageAndNoParameters_ShouldReturnEmptyParameters()
+    public void Extract_WithGivenMessageAndNoParameters_ShouldReturnOnlyMessageParameter()
     {
-        var message = "Hello world!";
+        const string message = "Hello world!";
 
-        var extensionDeclaration = "private static void Log(string @message) {}";
+        const string extensionDeclaration = $"private static void Log(string {MessageArgumentName}) {{}}";
 
-        var (compilation, syntaxTree) = CompileSourceCode($"Log(\"{message}\");", extensionDeclaration);
-        var invocationExpression = syntaxTree.GetRoot().DescendantNodes().OfType<InvocationExpressionSyntax>().First();
+        var (compilation, syntaxTree) = CompileSourceCode($"""Log("{message}");""", extensionDeclaration);
+        var (_, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var semanticModel = compilation.GetSemanticModel(syntaxTree);
-        var methodSymbol = semanticModel.GetSymbolInfo(invocationExpression).Symbol as IMethodSymbol;
+        var sut = new LogParametersExtractor();
 
-        var sut = new LogParametersExtractor(new LogPropertiesCheck(compilation));
-
-        var result = sut.Extract(message, methodSymbol);
+        var result = sut.Extract(message, methodSymbol!);
 
         result.Should().NotBeNull();
-        result.Should().BeEquivalentTo(ImmutableArray<LogCallParameter>.Empty);
+        result.HasValue.Should().BeTrue();
+        result!.Value.Length.Should().Be(1);
+        result.Value[0].Should().BeEquivalentTo(
+            new LogCallParameter(
+                "global::System.String", 
+                MessageArgumentName.TrimStart('@')
+            )
+        );
     }
     
     [Fact]
     public void Extract_WithUtilityParameters_ShouldExtractAllParameters()
     {
-        var message = "The {EventName} was processed in {Time}ms";
-        var parameters = "\"OrderReceived\", 40";
+        const string message = "The {EventName} was processed in {Time}ms";
 
-        var extensionDeclaration = $$"""
-                                     private static void Log<T1, T2>(
-                                         EventId @{{LoggerExtensionsEmitter.EventIdArgument}}, 
-                                         Exception @{{LoggerExtensionsEmitter.ExceptionArgumentName}}, 
-                                         string @message, T1 @arg1, T2 @arg2) {}
-                                     """;
+        const string extensionDeclaration = $$"""
+                                              private static void Log<T1, T2>(
+                                                  LogLevel {{LogLevelArgumentName}},
+                                                  EventId {{EventIdArgumentName}}, 
+                                                  Exception {{ExceptionArgumentName}}, 
+                                                  string {{MessageArgumentName}}, 
+                                                  T1 {{ArgumentName}}1, 
+                                                  T2 {{ArgumentName}}2) {}
+                                              """;
 
         var (compilation, syntaxTree) = CompileSourceCode("""
                                                             Log(
+                                                                LogLevel.Information,
                                                                 new EventId(), 
                                                                 new Exception(), 
                                                                 "The {EventName} was processed in {Time}ms", 
@@ -80,21 +93,20 @@ public class LogParametersExtractorTests : BaseSourceGeneratorTest
                                                                 40
                                                             );
                                                             """, extensionDeclaration);
-        var invocationExpression = syntaxTree.GetRoot().DescendantNodes().OfType<InvocationExpressionSyntax>().First();
+        var (_, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var semanticModel = compilation.GetSemanticModel(syntaxTree);
-        var methodSymbol = semanticModel.GetSymbolInfo(invocationExpression).Symbol as IMethodSymbol;
+        var sut = new LogParametersExtractor();
 
-        var sut = new LogParametersExtractor(new LogPropertiesCheck(compilation));
-
-        var result = sut.Extract(message, methodSymbol);
+        var result = sut.Extract(message, methodSymbol!);
 
         result.Should().BeEquivalentTo(new LogCallParameter[]
         {
-            new("global::Microsoft.Extensions.Logging.EventId", $"@{LoggerExtensionsEmitter.EventIdArgument}"),
-            new("global::System.Exception", $"@{LoggerExtensionsEmitter.ExceptionArgumentName}"),
-            new("global::System.String", "@EventName"),
-            new("global::System.Int32", "@Time"),
+            new("global::Microsoft.Extensions.Logging.LogLevel", LogLevelArgumentName.TrimStart('@')),
+            new("global::Microsoft.Extensions.Logging.EventId", EventIdArgumentName.TrimStart('@')),
+            new("global::System.Exception", ExceptionArgumentName.TrimStart('@')),
+            new("global::System.String", MessageArgumentName.TrimStart('@')),
+            new("global::System.String", "EventName"),
+            new("global::System.Int32", "Time"),
         });
     }
 }

@@ -40,7 +40,7 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
                 static (ctx, cts) => GetLogCalls(ctx, cts)
             )
             .Where(static t => t.HasValue)
-            .Select(static (t, _) => t.Value)
+            .Select(static (t, _) => t!.Value)
             .Collect()
             .WithTrackingName("Searching for log calls");
 
@@ -99,7 +99,7 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
 
         loggerMessageCode = LoggerMessageResultAdjuster.Adjust(loggerMessageCode);
         if (!string.IsNullOrEmpty(loggerMessageCode))
-            context.AddSource("LoggerMessage.g.cs", SourceText.From(loggerMessageCode, Encoding.UTF8));
+            context.AddSource("LoggerMessage.g.cs", SourceText.From(loggerMessageCode!, Encoding.UTF8));
         
         context.AddSource("Interceptors.g.cs", SourceText.From(LoggerInterceptorsEmitter.Emit(logCalls), Encoding.UTF8));
     }

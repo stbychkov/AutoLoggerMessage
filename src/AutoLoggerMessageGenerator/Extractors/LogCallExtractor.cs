@@ -16,6 +16,8 @@ internal static class LogCallExtractor
     {
         var (ns, className) = LogCallCallerExtractor.Extract(invocationExpression);
         var location = LogCallLocationMapper.Map(invocationExpression);
+        if (location is null)
+            return default;
 
         var logLevel = LogLevelExtractor.Extract(methodSymbol, invocationExpression);
         if (logLevel is null)
@@ -33,6 +35,6 @@ internal static class LogCallExtractor
         if (parameters is null)
             return default;
 
-        return new LogCall(Guid.NewGuid(), location, ns, className, methodSymbol.Name, logLevel, message, parameters.Value);
+        return new LogCall(Guid.NewGuid(), location.Value, ns, className, methodSymbol.Name, logLevel, message, parameters.Value);
     }
 }

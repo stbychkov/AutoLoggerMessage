@@ -9,7 +9,7 @@ internal static class LogLevelExtractor
 {
     public static string? Extract(IMethodSymbol? methodSymbol, InvocationExpressionSyntax? invocationExpression) =>
         methodSymbol is null || invocationExpression is null
-            ? default
+            ? null
             : ExtractLogLevelFromMethodName(methodSymbol) ?? ExtractLogLevelFromMethodArgument(invocationExpression);
 
     private static string? ExtractLogLevelFromMethodName(IMethodSymbol methodSymbol)

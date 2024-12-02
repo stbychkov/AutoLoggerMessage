@@ -25,8 +25,9 @@ internal class DiagnosticReporter
         var messageArgs = typeof(Diagnostic).GetProperty("Arguments", BindingFlags.NonPublic | BindingFlags.Instance)
             ?.GetValue(diagnostic) as object[];
 
-        var sourceText = diagnostic.Location.SourceTree.GetText(_context.CancellationToken);
-        var location = LogCallLocationMap.TryMapBack(sourceText, diagnostic.Location, out var logCallId) &&
+        var sourceText = diagnostic.Location.SourceTree?.GetText(_context.CancellationToken);
+        var location = sourceText is not null &&
+                       LogCallLocationMap.TryMapBack(sourceText, diagnostic.Location, out var logCallId) &&
                        _logCallsIndex.TryGetValue(logCallId, out var logCall)
                        ? logCall.Location.Context
                        : Location.None;

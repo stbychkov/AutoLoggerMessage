@@ -1,9 +1,8 @@
-using System;
 using System.CodeDom.Compiler;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using static AutoLoggerMessageGenerator.Constants;
 
 namespace AutoLoggerMessageGenerator.Emitters;
 
@@ -12,43 +11,33 @@ namespace AutoLoggerMessageGenerator.Emitters;
 /// The <see cref="LoggerExtensions"/> class is pre-generated and saved in the solution
 /// to prevent excessive code duplication when multiple projects use the same library
 /// To run this emitter you need to run LoggerExtensionEmitterTests and take it from the snapshot/>
-internal class LoggerExtensionsEmitter
+internal static class LoggerExtensionsEmitter
 {
     public const string ClassName = "GenericLoggerExtensions";
-    public const string ArgumentName = "arg";
-    public const string EventIdArgument = "eventId";
-    public const string LogLevelArgument = "logLevel";
-    public const string ExceptionArgumentName = "exception";
-    public const string MessageArgumentName = "message";
-    
-    public static readonly HashSet<string> ReservedArgumentNames =
-    [
-        ExceptionArgumentName, EventIdArgument, MessageArgumentName
-    ]; 
 
     public static string Emit()
     {
         using var sb = new IndentedTextWriter(new StringWriter());
 
-        sb.WriteLine(Constants.GeneratedFileHeader);
+        sb.WriteLine(GeneratedFileHeader);
 
-        sb.WriteLine($"namespace {Constants.DefaultLoggingNamespace}");
+        sb.WriteLine($"namespace {DefaultLoggingNamespace}");
         sb.WriteLine('{');
         sb.Indent++;
 
         sb.WriteLine(Constants.GeneratedCodeAttribute);
-        sb.WriteLine(Constants.EditorNotBrowsableAttribute);
-        sb.WriteLine(Constants.DebuggerStepThroughAttribute);
-        sb.WriteLine(Constants.ExcludeFromCoverageAttribute);
+        sb.WriteLine(EditorNotBrowsableAttribute);
+        sb.WriteLine(DebuggerStepThroughAttribute);
+        sb.WriteLine(ExcludeFromCoverageAttribute);
         sb.WriteLine($"public static class {ClassName}");
         sb.WriteLine('{');
         sb.Indent++;
 
         string[] logLevels = ["Trace", "Debug", "Information", "Warning", "Error", "Critical"];
 
-        var messageParameter = ("string", $"@{MessageArgumentName}");
-        var exceptionParameter = ("Exception?", $"@{ExceptionArgumentName}");
-        var eventIdParameter = ("EventId", $"@{EventIdArgument}");
+        var messageParameter = ("string", MessageArgumentName);
+        var exceptionParameter = ("Exception?", ExceptionArgumentName);
+        var eventIdParameter = ("EventId", EventIdArgumentName);
         
         (string Type, string Name)[][] fixedParametersOverloads =
         [
@@ -64,7 +53,7 @@ internal class LoggerExtensionsEmitter
                 string.Join(", ", fixedParametersOverload.Select(o => $"{o.Type} {o.Name}"));
             var fixedParameters = string.Join(", ", fixedParametersOverload.Select(o => o.Name));
 
-            for (int i = 0; i <= Constants.MaxLogParameters; i++)
+            for (int i = 0; i <= MaxLogParameters; i++)
             {
                 var parameters = Enumerable.Range(0, i).ToArray();
 
@@ -74,12 +63,12 @@ internal class LoggerExtensionsEmitter
                     : $"<{genericTypesDefinition}>";
 
                 var genericParametersDefinition =
-                    string.Join(", ", parameters.Select(ix => $"T{ix} @{ArgumentName}{ix}"));
+                    string.Join(", ", parameters.Select(ix => $"T{ix} {ArgumentName}{ix}"));
                 genericParametersDefinition = string.IsNullOrEmpty(genericParametersDefinition)
                     ? string.Empty
                     : $", {genericParametersDefinition}";
 
-                var objectParameters = string.Join(", ", parameters.Select(ix => $"@{ArgumentName}{ix}"));
+                var objectParameters = string.Join(", ", parameters.Select(ix => $"{ArgumentName}{ix}"));
                 objectParameters = string.IsNullOrEmpty(objectParameters)
                     ? string.Empty
                     : $", new object?[] {{ {objectParameters} }}";
@@ -115,11 +104,11 @@ internal class LoggerExtensionsEmitter
         string fixedParameters, string objectParameters)
     {
         sb.WriteLine(
-            $"public static void Log{logLevel}{genericTypesDefinition}(this ILogger @logger, {fixedParametersDefinition}{genericParametersDefinition})");
+            $"public static void Log{logLevel}{genericTypesDefinition}(this ILogger {LoggerArgumentName}, {fixedParametersDefinition}{genericParametersDefinition})");
         sb.WriteLine('{');
         sb.Indent++;
 
-        sb.WriteLine($"{Constants.DefaultLoggingNamespace}.{nameof(LoggerExtensions)}.Log{logLevel}(@logger, {fixedParameters}{objectParameters});");
+        sb.WriteLine($"{DefaultLoggingNamespace}.{nameof(LoggerExtensions)}.Log{logLevel}({LoggerArgumentName}, {fixedParameters}{objectParameters});");
 
         sb.Indent--;
         sb.WriteLine('}');
@@ -130,11 +119,11 @@ internal class LoggerExtensionsEmitter
         string objectParameters)
     {
         sb.WriteLine(
-            $"public static void Log{genericTypesDefinition}(this ILogger @logger, {Constants.DefaultLoggingNamespace}.LogLevel @{LogLevelArgument}, {fixedParametersDefinition}{genericParametersDefinition})");
+            $"public static void Log{genericTypesDefinition}(this ILogger {LoggerArgumentName}, {DefaultLoggingNamespace}.LogLevel {LogLevelArgumentName}, {fixedParametersDefinition}{genericParametersDefinition})");
         sb.WriteLine('{');
         sb.Indent++;
 
-        sb.WriteLine($"{Constants.DefaultLoggingNamespace}.{nameof(LoggerExtensions)}.{nameof(LoggerExtensions.Log)}(@logger, @{LogLevelArgument}, {fixedParameters}{objectParameters});");
+        sb.WriteLine($"{DefaultLoggingNamespace}.{nameof(LoggerExtensions)}.{nameof(LoggerExtensions.Log)}({LoggerArgumentName}, {LogLevelArgumentName}, {fixedParameters}{objectParameters});");
 
         sb.Indent--;
         sb.WriteLine('}');

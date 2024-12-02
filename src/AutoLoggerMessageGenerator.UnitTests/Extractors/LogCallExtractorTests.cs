@@ -14,15 +14,9 @@ public class LogCallExtractorTests : BaseSourceGeneratorTest
     public async Task Extract_WithLogMethodInvocationCode_ShouldTransformThemIntoLogCallObject(string sourceCode, bool isValidCall)
     {
         var (compilation, syntaxTree) = CompileSourceCode(sourceCode);
+        var (invocationExpression, methodSymbol, semanticModel) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var invocationExpression = (await syntaxTree.GetRootAsync()).DescendantNodes()
-            .OfType<InvocationExpressionSyntax>()
-            .Single();
-
-        var semanticModel = compilation.GetSemanticModel(syntaxTree);
-        var methodSymbol = semanticModel.GetSymbolInfo(invocationExpression).Symbol as IMethodSymbol;
-
-        var logCall = LogCallExtractor.Extract(methodSymbol, invocationExpression, semanticModel);
+        var logCall = LogCallExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
 
         if (isValidCall)
         {

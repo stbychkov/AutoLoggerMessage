@@ -13,9 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Benchmarks", "Benchmarks", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoggerMessageGenerator.Benchmarks", "src\Benchmarks\AutoLoggerMessageGenerator.Benchmarks\AutoLoggerMessageGenerator.Benchmarks.csproj", "{1330C625-7850-4DF0-B35B-FF29C8B4828A}"
 	ProjectSection(ProjectDependencies) = postProject
-		{D65842A2-28C0-4ECF-B9C9-BF12264DFFAC} = {D65842A2-28C0-4ECF-B9C9-BF12264DFFAC}
-		{7445D7E2-D6F2-415A-882B-F0DE5868CAAF} = {7445D7E2-D6F2-415A-882B-F0DE5868CAAF}
-		{DFA624CB-1414-4A1E-B1AD-B5D8B9BDBF86} = {DFA624CB-1414-4A1E-B1AD-B5D8B9BDBF86}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLoggerMessageGenerator.Sandbox", "src\AutoLoggerMessageGenerator.Sandbox\AutoLoggerMessageGenerator.Sandbox.csproj", "{EBD13BAE-5907-4D0F-8601-83CBAC9556CF}"

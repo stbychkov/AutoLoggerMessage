@@ -2,6 +2,7 @@ using System.Diagnostics;
 using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AutoLoggerMessageGenerator.UnitTests;
 
@@ -54,12 +55,27 @@ public abstract class BaseSourceGeneratorTest
         var compilationErrors = diagnostics.Where(c => c.Severity == DiagnosticSeverity.Error).ToArray();
 
         if (compilationErrors.Any())
-        {
             Debugger.Launch();
-        }
 
         compilationErrors.Should().BeEmpty();
 
         return (compilation, syntaxTree);
+    }
+
+    protected static (InvocationExpressionSyntax, IMethodSymbol?, SemanticModel?) FindLoggerMethodInvocation(
+        Compilation? compilation, SyntaxTree syntaxTree)
+    {
+        var invocationExpression = syntaxTree.GetRoot().DescendantNodes().OfType<InvocationExpressionSyntax>().First();
+
+        IMethodSymbol? methodSymbol = null;
+        SemanticModel? semanticModel = null;
+
+        if (compilation is not null)
+        {
+            semanticModel = compilation.GetSemanticModel(syntaxTree);
+            methodSymbol = (IMethodSymbol) semanticModel.GetSymbolInfo(invocationExpression).Symbol!;
+        }
+
+        return (invocationExpression, methodSymbol, semanticModel);
     }
 }

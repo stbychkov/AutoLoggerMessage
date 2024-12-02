@@ -1,15 +1,16 @@
-using AutoLoggerMessageGenerator.Emitters;
 using AutoLoggerMessageGenerator.Utilities;
 using FluentAssertions;
+
+using static AutoLoggerMessageGenerator.Constants;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Utilities;
 
 public class ParameterNameNormalizerTests
 {
     [Theory]
-    [InlineData(LoggerExtensionsEmitter.MessageArgumentName)]
-    [InlineData(LoggerExtensionsEmitter.EventIdArgument)]
-    [InlineData(LoggerExtensionsEmitter.ExceptionArgumentName)]
+    [InlineData(MessageArgumentName)]
+    [InlineData(EventIdArgumentName)]
+    [InlineData(ExceptionArgumentName)]
     public void Normalize_WithReservedName_ShouldReturnNormalizedName(string parameterName)
     {
         var sut = new ParameterNameNormalizer();
@@ -33,8 +34,8 @@ public class ParameterNameNormalizerTests
         var result2 = sut.Normalize(parameterName);
         var result3 = sut.Normalize(parameterName);
 
-        result1.Should().Be(parameterName);
-        result2.Should().Be(parameterName);
-        result3.Should().Be(parameterName);
+        result1.Should().Be($"@{parameterName}");
+        result2.Should().Be($"@{parameterName}");
+        result3.Should().Be($"@{parameterName}");
     }
 }

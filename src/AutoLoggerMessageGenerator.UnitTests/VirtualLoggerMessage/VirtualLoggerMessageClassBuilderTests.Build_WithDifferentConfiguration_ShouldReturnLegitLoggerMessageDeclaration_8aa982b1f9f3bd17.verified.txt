@@ -4,9 +4,9 @@ namespace Microsoft.Extensions.Logging.AutoLoggerMessage
     {
         // <LogCallMappingLocation>: Guid_1
         [Microsoft.Extensions.Logging.LoggerMessageAttribute(Level = Microsoft.Extensions.Logging.LogLevel.Critical, Message = "Hello, World!", SkipEnabledCheck = false)]
-        internal static partial void Log_SomeNamespaceSomeClass_2_22(Microsoft.Extensions.Logging.ILogger Logger, int intParam, string stringParam, bool boolParam, [Microsoft.Extensions.Logging.LogPropertiesAttribute(OmitReferenceName = false, SkipNullProperties = false)] SomeClass classParam, [Microsoft.Extensions.Logging.LogPropertiesAttribute(OmitReferenceName = false, SkipNullProperties = false)] SomeStruct structParam);
+        internal static partial void Log_SomeNamespaceSomeClass_2_22(Microsoft.Extensions.Logging.ILogger Logger, int @intParam, string @stringParam, bool @boolParam, [Microsoft.Extensions.Logging.LogPropertiesAttribute(OmitReferenceName = false, SkipNullProperties = false)] SomeClass @classParam, [Microsoft.Extensions.Logging.LogPropertiesAttribute(OmitReferenceName = false, SkipNullProperties = false)] SomeStruct @structParam);
         // <LogCallMappingLocation>: Guid_2
         [Microsoft.Extensions.Logging.LoggerMessageAttribute(Level = Microsoft.Extensions.Logging.LogLevel.Trace, Message = "Goodbye, World!", SkipEnabledCheck = false)]
-        internal static partial void Log_SomeNamespaceSomeClass_3_33(Microsoft.Extensions.Logging.ILogger Logger, int intParam, string stringParam, bool boolParam, [Microsoft.Extensions.Logging.LogPropertiesAttribute(OmitReferenceName = false, SkipNullProperties = false)] SomeClass classParam, [Microsoft.Extensions.Logging.LogPropertiesAttribute(OmitReferenceName = false, SkipNullProperties = false)] SomeStruct structParam);
+        internal static partial void Log_SomeNamespaceSomeClass_3_33(Microsoft.Extensions.Logging.ILogger Logger, int @intParam, string @stringParam, bool @boolParam, [Microsoft.Extensions.Logging.LogPropertiesAttribute(OmitReferenceName = false, SkipNullProperties = false)] SomeClass @classParam, [Microsoft.Extensions.Logging.LogPropertiesAttribute(OmitReferenceName = false, SkipNullProperties = false)] SomeStruct @structParam);
     }
 }

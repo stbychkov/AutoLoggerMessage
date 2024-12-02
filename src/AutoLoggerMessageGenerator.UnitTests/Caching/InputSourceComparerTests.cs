@@ -78,17 +78,14 @@ public class InputSourceComparerTests
         ImmutableArray<Reference>? references = default, 
         ImmutableArray<LogCall>? logCalls = default)
     {
-        if (compilation == default)
-            compilation = CSharpCompilation.Create(default);
-
-        if (configuration == default)
-            configuration = new SourceGeneratorConfiguration(true, true, true, true, true);
-
-        if (references == default)
-            references = [new Reference("some lib", new Version("1.2.3"))];
-
-        if (logCalls == default)
-            logCalls = [new LogCall(Guid.NewGuid(), new LogCallLocation("some file", 1, 2, default), "namespace", "class", "name", "information", "message", [])];
+        compilation ??= CSharpCompilation.Create(default);
+        configuration ??= new SourceGeneratorConfiguration(true, true, true, true, true);
+        references ??= [new Reference("some lib", new Version("1.2.3"))];
+        logCalls ??=
+        [
+            new LogCall(Guid.NewGuid(), new LogCallLocation("some file", 1, 2, Location.None), "namespace", "class", "name",
+                "information", "message", [])
+        ];
 
         return new InputSource(compilation, (configuration.Value, (references.Value, logCalls.Value)));
     }

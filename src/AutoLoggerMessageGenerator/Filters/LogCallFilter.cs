@@ -20,19 +20,19 @@ internal static class LogCallFilter
         nameof(LoggerExtensions.LogError),
         nameof(LoggerExtensions.LogCritical),
     ];
-    
+
     public static bool IsLoggerMethod(IMethodSymbol methodSymbol)
     {
         var containingType = methodSymbol.ContainingType;
-        return containingType != null && 
+        return containingType != null &&
                methodSymbol.ReceiverType?.Name is "ILogger" &&
-               methodSymbol.ReturnsVoid && 
+               methodSymbol.ReturnsVoid &&
                methodSymbol.ContainingType.ToDisplayString() is $"{Constants.DefaultLoggingNamespace}.{ClassName}" &&
                methodSymbol.IsExtensionMethod;
     }
-    
+
     public static bool IsLogCallInvocation(SyntaxNode node, CancellationToken cts) =>
-        !node.SyntaxTree.FilePath.EndsWith("g.cs") &&
+        !node.SyntaxTree.FilePath.EndsWith(".g.cs") &&
         node is InvocationExpressionSyntax { ArgumentList.Arguments.Count: > 0 } invocationExpression &&
         !cts.IsCancellationRequested &&
         invocationExpression.Expression.DescendantNodes()

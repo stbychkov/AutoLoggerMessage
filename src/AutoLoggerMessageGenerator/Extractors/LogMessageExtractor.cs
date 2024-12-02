@@ -14,7 +14,22 @@ internal static class LogMessageExtractor
         var messageParameterIx = methodSymbol.Parameters.IndexOf(messageParameter);
 
         var valueExpression = invocationExpressionSyntax.ArgumentList.Arguments[messageParameterIx].Expression;
+        return ResolveValueExpression(valueExpression, semanticModel);
+    }
 
+    private static string? ResolveBinaryExpressions(BinaryExpressionSyntax binaryExpressionSyntax, SemanticModel semanticModel)
+    {
+        var leftBinaryExpressionValue = ResolveValueExpression(binaryExpressionSyntax.Left, semanticModel);
+        if (leftBinaryExpressionValue is null) return null;
+
+        var rightBinaryExpressionValue  = ResolveValueExpression(binaryExpressionSyntax.Right, semanticModel);
+        if (rightBinaryExpressionValue is null) return null;
+
+        return string.Concat(leftBinaryExpressionValue, rightBinaryExpressionValue);
+    }
+
+    private static string? ResolveValueExpression(ExpressionSyntax valueExpression, SemanticModel semanticModel)
+    {
         if (valueExpression is LiteralExpressionSyntax literalExpression)
             return literalExpression.Token.Value?.ToString();
 
@@ -31,6 +46,9 @@ internal static class LogMessageExtractor
                     return localSymbol.ConstantValue?.ToString();
             }
         }
+
+        if (valueExpression is BinaryExpressionSyntax binaryExpressionSyntax)
+            return ResolveBinaryExpressions(binaryExpressionSyntax, semanticModel);
 
         return null;
     }

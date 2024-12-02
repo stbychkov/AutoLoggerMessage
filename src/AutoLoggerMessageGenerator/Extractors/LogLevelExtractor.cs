@@ -20,8 +20,11 @@ internal static class LogLevelExtractor
 
     private static string ExtractLogLevelFromMethodArgument(InvocationExpressionSyntax invocationExpression)
     {
-        var logLevelArgument = invocationExpression.ArgumentList.Arguments.Single(c =>
+        var logLevelArgument = invocationExpression.ArgumentList.Arguments.SingleOrDefault(c =>
             c.Expression is MemberAccessExpressionSyntax { Expression: IdentifierNameSyntax { Identifier.ValueText: "LogLevel" } });
+
+        if (logLevelArgument is null)
+            return null;
 
         return ((MemberAccessExpressionSyntax) logLevelArgument.Expression).Name.GetText().ToString();
     }

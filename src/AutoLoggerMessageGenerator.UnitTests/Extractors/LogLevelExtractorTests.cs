@@ -34,4 +34,20 @@ public class LogLevelExtractorTests : BaseSourceGeneratorTest
 
         result.Should().Be(expectedLogLevel);
     }
+
+    [Fact]
+    public void Extract_WithNotConstantLogLevel_ShouldReturnNull()
+    {
+        var sourceCode = """
+                         var logLevel = DateTime.Now.Ticks % 2 == 0 ? LogLevel.Warning : LogLevel.Error;
+                         Log(logLevel, default);
+                         """;
+        var (compilation, syntaxTree) = CompileSourceCode(sourceCode);
+        var (invocationExpression, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
+
+        var result = LogLevelExtractor.Extract(methodSymbol!, invocationExpression);
+
+        result.Should().Be(null);
+    }
+
 }

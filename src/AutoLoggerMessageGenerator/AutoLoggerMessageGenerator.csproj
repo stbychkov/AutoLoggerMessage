@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <PackageId>stbychkov.AutoLoggerMessage</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>stbychkov</Authors>
     <Title>AutoLoggerMessage</Title>
     <Description>A source generator that automatically migrates your logging calls to the LoggerMessage version</Description>

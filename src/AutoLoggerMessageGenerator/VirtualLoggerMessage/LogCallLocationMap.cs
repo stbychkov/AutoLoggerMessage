@@ -14,6 +14,8 @@ internal static class LogCallLocationMap
 
     public static bool TryMapBack(SourceText syntaxTree, Location currentLocation, out Guid logCallId)
     {
+        logCallId = default;
+
         var subText = syntaxTree.GetSubText(new TextSpan(0, currentLocation.SourceSpan.Start - 1));
 
         for (var lineIndex = subText.Lines.Count - 1; lineIndex >= 0; lineIndex--)

@@ -6,7 +6,7 @@ methods, enabling high-performance logging..
 
 ## Demo
 
-![Demo](./docs/demo.gif)
+![Demo](https://raw.githubusercontent.com/stbychkov/AutoLoggerMessage/94f1425f9eaed51d05db734f2694483902773211/docs/demo.gif)
 
 ## Getting started
 
@@ -149,10 +149,6 @@ Something to address in the next release, as the usage of six or more parameters
 | auto-telemetry-gen | 683.07 ns |    1 |     144 B |
 
 > Results are about the same.
-
-</details>
-
-<details>
 
 </details>
 

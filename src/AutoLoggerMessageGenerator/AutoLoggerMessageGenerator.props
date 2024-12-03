@@ -1,9 +1,9 @@
 <Project>
   <ItemGroup>
-    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator.GenerateInterceptorAttribute" />
-    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator.GenerateSkipEnabledCheck" />
-    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator.GenerateOmitReferenceName" />
-    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator.GenerateSkipNullProperties" />
-    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator.GenerateTransitive" />
+    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator_GenerateInterceptorAttribute" />
+    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator_GenerateSkipEnabledCheck" />
+    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator_GenerateOmitReferenceName" />
+    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator_GenerateSkipNullProperties" />
+    <CompilerVisibleProperty Include="AutoLoggerMessageGenerator_GenerateTransitive" />
   </ItemGroup>
 </Project>

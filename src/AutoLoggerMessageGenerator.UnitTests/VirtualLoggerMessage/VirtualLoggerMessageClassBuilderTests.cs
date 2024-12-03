@@ -58,6 +58,26 @@ public class VirtualLoggerMessageClassBuilderTests
             .ScrubInlineGuids();
     }
 
+    [Fact]
+    public async Task Build_WithEscapeSequences_ShouldBuildAsItIs()
+    {
+        var sut = new VirtualLoggerMessageClassBuilder(default);
+
+        var result = sut.Build([
+            _logCall with
+            {
+                Id = Guid.NewGuid(),
+                Location = new LogCallLocation("path/to/another/file.cs", 3, 33, Location.None),
+                Message = "All characters should be passed as a string literal expression: \n\r\t",
+                LogLevel = "Trace"
+            }
+        ]);
+
+        var syntaxTree = (await result.SyntaxTree.GetRootAsync()).NormalizeWhitespace().ToFullString();
+
+        await Verify(syntaxTree).ScrubInlineGuids();
+    }
+
     public static TheoryData<object, bool> TestConfigurations =
         new()
         {

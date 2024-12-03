@@ -81,7 +81,9 @@ internal class VirtualLoggerMessageClassBuilder(
                             ParseExpression(
                                 $"Level = {Constants.DefaultLoggingNamespace}.LogLevel.{logCall.LogLevel}")),
                         AttributeArgument(
-                            ParseExpression($"Message = \"{logCall.Message}\"")),
+                            AssignmentExpression(SyntaxKind.SimpleAssignmentExpression,
+                                IdentifierName("Message"),
+                                LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(logCall.Message)))),
                         AttributeArgument(
                             ParseExpression(
                                 $"SkipEnabledCheck = {configuration.GenerateSkipEnabledCheck.ToLowerBooleanString()}"))

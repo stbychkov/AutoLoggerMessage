@@ -19,6 +19,10 @@ internal partial class LogCallParametersExtractor(LogPropertiesCheck? logPropert
             .Select(TransformParameterName)
             .ToArray();
 
+        // TODO: Report a diagnostic message in the separate analyzer that some parameter names are "invalid"
+        if (!templateParametersNames.All(IdentifierHelper.IsValidCSharpParameterName))
+            return null;
+
         var argumentParameterPrefix = ParameterName.TrimStart('@');
         var methodParameters = methodSymbol.Parameters
             .Where(c => c.Name.StartsWith(argumentParameterPrefix))

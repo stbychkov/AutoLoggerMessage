@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace AutoLoggerMessageGenerator.Utilities;
 
-internal static class IdentifierHelper
+internal static partial class IdentifierHelper
 {
     public static string ToValidCSharpMethodName(string? input)
     {
@@ -16,4 +16,10 @@ internal static class IdentifierHelper
 
         return sanitizedInput;
     }
+
+    public static bool IsValidCSharpParameterName(string name) =>
+        !string.IsNullOrEmpty(name) && IsValidCSharpParameterNameRegex().IsMatch(name);
+
+    [GeneratedRegex(@"^@?[a-zA-Z_][a-zA-Z0-9_]*$")]
+    private static partial Regex IsValidCSharpParameterNameRegex();
 }

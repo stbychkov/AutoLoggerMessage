@@ -21,15 +21,14 @@ internal static class LogCallFilter
         nameof(LoggerExtensions.LogCritical),
     ];
 
-    public static bool IsLoggerMethod(IMethodSymbol methodSymbol)
-    {
-        var containingType = methodSymbol.ContainingType;
-        return containingType != null &&
-               methodSymbol.ReceiverType?.Name is "ILogger" &&
-               methodSymbol.ReturnsVoid &&
-               methodSymbol.ContainingType.ToDisplayString() is $"{Constants.DefaultLoggingNamespace}.{ClassName}" &&
-               methodSymbol.IsExtensionMethod;
-    }
+    public static bool IsLoggerMethod(IMethodSymbol methodSymbol) =>
+        methodSymbol is { ContainingType: not null, ReceiverType.Name: "ILogger", ReturnsVoid: true } &&
+        methodSymbol.ContainingType.ToDisplayString() is $"{Constants.DefaultLoggingNamespace}.{ClassName}" &&
+        methodSymbol.IsExtensionMethod &&
+        methodSymbol.Parameters.All(c =>
+            c.Type.IsAnonymousType is not true && c.Type.TypeKind is not TypeKind.TypeParameter &&
+            RecursivelyCheckTypeAccessibility(c.Type)
+        );
 
     public static bool IsLogCallInvocation(SyntaxNode node, CancellationToken cts) =>
         !node.SyntaxTree.FilePath.EndsWith(".g.cs") &&
@@ -37,4 +36,8 @@ internal static class LogCallFilter
         !cts.IsCancellationRequested &&
         invocationExpression.Expression.DescendantNodes()
             .Any(c => c is IdentifierNameSyntax identifierNameSyntax && LogMethodNames.Contains(identifierNameSyntax.Identifier.Text));
+
+    private static bool RecursivelyCheckTypeAccessibility(ITypeSymbol typeSymbol) =>
+        typeSymbol.DeclaredAccessibility is Accessibility.Friend or Accessibility.Public or Accessibility.Internal &&
+        (typeSymbol.ContainingType is null || RecursivelyCheckTypeAccessibility(typeSymbol.ContainingType));
 }

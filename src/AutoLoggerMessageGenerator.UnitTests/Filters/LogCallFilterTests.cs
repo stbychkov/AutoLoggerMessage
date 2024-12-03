@@ -17,16 +17,16 @@ public class LogCallFilterTests : BaseSourceGeneratorTest
                                         public void LogInformation(string message, DateTime arg1) {}
                                         public void LogInformation2(string message, DateTime arg1) {}
                                      }
-                                     
+
                                      public void LogInformation(string message, DateTime arg1) {}
                                      public void LogSomething(string message, DateTime arg1) {}
                                      public void AnotherMethod(string message, DateTime arg1) {}
-                                     
+
                                      """;
         var sourceCode = $$"""
                          const string message = "Event received at: {EventTime}";
                          var eventTime = DateTime.Now;
- 
+
                          {{LoggerName}}.LogInformation(message, eventTime);
 
                          AnotherMethod(message, eventTime);
@@ -48,8 +48,39 @@ public class LogCallFilterTests : BaseSourceGeneratorTest
             var methodSymbol = (IMethodSymbol) semanticModel.GetSymbolInfo(c).Symbol!;
             return LogCallFilter.IsLoggerMethod(methodSymbol);
         }).ToArray();
-        
+
         invocationExpressions.Length.Should().Be(2);
         filteredInvocationExpressions.Length.Should().Be(1);
+    }
+
+
+    [Fact]
+    public void Filter_WithInaccessibleClassAsParameter_ShouldExcludeLogCall()
+    {
+        const string additionalDeclarations = """
+                                              public class A
+                                              {
+                                                  private class B
+                                                  {
+                                                      public class C
+                                                      {
+                                                          public class D {}
+                                                      }
+                                                  }
+                                              }
+                                              """;
+
+        const string sourceCode = $$"""
+                                  var parameter = new A.B.C.D();
+                                  {{LoggerName}}.LogInformation("B class is private, so {this} argument is inaccessible as well", parameter);
+                                  """;
+        var (compilation, syntaxTree) = CompileSourceCode(sourceCode, additionalDeclarations);
+        var (invocationExpressionSyntax, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
+
+        var isLogCallInvocation = LogCallFilter.IsLogCallInvocation(invocationExpressionSyntax, CancellationToken.None);
+        var isLogCallMethod = LogCallFilter.IsLoggerMethod(methodSymbol);
+
+        isLogCallInvocation.Should().BeTrue();
+        isLogCallMethod.Should().BeFalse();
     }
 }

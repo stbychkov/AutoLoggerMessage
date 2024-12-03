@@ -40,10 +40,10 @@ internal class VirtualLoggerMessageClassBuilder(
             .WithType(IdentifierName($"{Constants.DefaultLoggingNamespace}.ILogger"));
 
         var parameters = logCall.Parameters
-            .Where(c => !Constants.LoggerMessageAttributeArguments.Contains(c.Name))
+            .Where(c => !Constants.LoggerMessageAttributeParameterTypes.Contains(c.Type))
             .Select(c =>
         {
-            var parameter = Parameter(Identifier(c.Name)).WithType(IdentifierName(c.Type));
+            var parameter = Parameter(Identifier(c.Name)).WithType(IdentifierName(c.NativeType));
 
             if (useTelemetryExtensions && c.HasPropertiesToLog)
                 parameter = parameter.AddAttributeLists(GenerateLogPropertiesAttribute());

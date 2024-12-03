@@ -2,7 +2,8 @@ namespace AutoLoggerMessageGenerator.Models;
 
 internal record struct LogCallParameter
 (
-    string Type,
+    string NativeType,
     string Name,
+    LogCallParameterType Type,
     bool HasPropertiesToLog = false
 );

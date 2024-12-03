@@ -24,23 +24,23 @@ public class VirtualLoggerMessageClassBuilderTests
         ClassName = "SomeClass",
         LogLevel = "Critical",
         Parameters = [
-            new LogCallParameter("int", "@intParam", false),
-            new LogCallParameter("string", "@stringParam", false),
-            new LogCallParameter("bool", "@boolParam", false),
-            new LogCallParameter("SomeClass", "@classParam", true),
-            new LogCallParameter("SomeStruct", "@structParam", true)
+            new LogCallParameter("int", "@intParam", LogCallParameterType.Others),
+            new LogCallParameter("string", "@stringParam", LogCallParameterType.Others),
+            new LogCallParameter("bool", "@boolParam", LogCallParameterType.Others),
+            new LogCallParameter("SomeClass", "@classParam", LogCallParameterType.Others, true),
+            new LogCallParameter("SomeStruct", "@structParam", LogCallParameterType.Others, true)
         ]
-    }; 
-    
+    };
+
     [Theory]
     [MemberData(nameof(TestConfigurations))]
     internal async Task Build_WithDifferentConfiguration_ShouldReturnLegitLoggerMessageDeclaration(
         SourceGeneratorConfiguration configuration, bool useTelemetryExtensions)
     {
         var sut = new VirtualLoggerMessageClassBuilder(configuration, useTelemetryExtensions);
-        
+
         var result = sut.Build([
-            _logCall, 
+            _logCall,
             _logCall with
             {
                 Id = Guid.NewGuid(),

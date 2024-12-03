@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AutoLoggerMessageGenerator.Models;
 
 namespace AutoLoggerMessageGenerator;
 
@@ -12,25 +13,25 @@ internal static class Constants
 
     public const string LogMethodPrefix = "Log_";
     public const string LoggerClassName = "AutoLoggerMessage";
-    
-    public const string ArgumentName = "@arg";
-    public const string LoggerArgumentName = "@logger";
-    public const string EventIdArgumentName = "@eventId";
-    public const string LogLevelArgumentName = "@logLevel";
-    public const string ExceptionArgumentName = "@exception";
-    public const string MessageArgumentName = "@message";
-    
-    public static readonly HashSet<string> ReservedArgumentNames =
+
+    public const string ParameterName = "@arg";
+    public const string LoggerParameterName = "@logger";
+    public const string EventIdParameterName = "@eventId";
+    public const string LogLevelParameterName = "@logLevel";
+    public const string ExceptionParameterName = "@exception";
+    public const string MessageParameterName = "@message";
+
+    public static readonly HashSet<string> ReservedParameterNames =
     [
-        LoggerArgumentName, LogLevelArgumentName,
-        ExceptionArgumentName, EventIdArgumentName,
-        MessageArgumentName
+        LoggerParameterName, LogLevelParameterName,
+        ExceptionParameterName, EventIdParameterName,
+        MessageParameterName
     ];
 
     // List of parameters that will be moved to LoggerMessage attribute arguments
-    public static readonly HashSet<string> LoggerMessageAttributeArguments =
-        [LogLevelArgumentName, MessageArgumentName];
-    
+    public static readonly HashSet<LogCallParameterType> LoggerMessageAttributeParameterTypes =
+        [LogCallParameterType.LogLevel, LogCallParameterType.Message];
+
     /// <summary>
     /// Support for an arbitrary number of logging parameters. LoggerMessage.Define supports a maximum of six.
     /// Must be synced with LoggerMessageGenerator.Emitter;

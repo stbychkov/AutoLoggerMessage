@@ -10,7 +10,7 @@ internal static class LogMessageExtractor
     public static string? Extract(IMethodSymbol methodSymbol, InvocationExpressionSyntax invocationExpressionSyntax,
         SemanticModel semanticModel)
     {
-        var messageParameter = methodSymbol.Parameters.Single(c => c.Name == Constants.MessageArgumentName.TrimStart('@'));
+        var messageParameter = methodSymbol.Parameters.Single(c => c.Name == Constants.MessageParameterName.TrimStart('@'));
         var messageParameterIx = methodSymbol.Parameters.IndexOf(messageParameter);
 
         var valueExpression = invocationExpressionSyntax.ArgumentList.Arguments[messageParameterIx].Expression;

@@ -32,18 +32,20 @@
   Message: Hello world {arg1} {arg2},
   Parameters: [
     {
-      Type: global::System.String,
+      NativeType: global::System.String,
       Name: @message,
       HasPropertiesToLog: false
     },
     {
-      Type: global::System.Int32,
+      NativeType: global::System.Int32,
       Name: @arg1,
+      Type: Others,
       HasPropertiesToLog: false
     },
     {
-      Type: global::System.Boolean,
+      NativeType: global::System.Boolean,
       Name: @arg2,
+      Type: Others,
       HasPropertiesToLog: false
     }
   ]

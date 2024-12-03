@@ -36,23 +36,23 @@ internal class LoggerInterceptorsEmitter
             sb.WriteLine($"line: {logCall.Location.Line}, character: {logCall.Location.Character})]");
             sb.Indent--;
 
-            var parameters = string.Join(", ", logCall.Parameters.Select((c, i) => $"{c.Type} {c.Name}"));
+            var parameters = string.Join(", ", logCall.Parameters.Select((c, i) => $"{c.NativeType} {c.Name}"));
             parameters = string.IsNullOrEmpty(parameters) ? string.Empty : $", {parameters}";
-            
+
             var parameterValues = string.Join(", ", logCall.Parameters
-                .Where(c => !Constants.LoggerMessageAttributeArguments.Contains(c.Name))
+                .Where(c => !Constants.LoggerMessageAttributeParameterTypes.Contains(c.Type))
                 .Select((c, i) => c.Name));
             parameterValues = string.IsNullOrEmpty(parameterValues) ? string.Empty : $", {parameterValues}";
-            
+
             var methodName = IdentifierHelper.ToValidCSharpMethodName(
                 $"{Constants.LogMethodPrefix}{logCall.Namespace}{logCall.ClassName}_{logCall.Location.Line}_{logCall.Location.Character}"
             );
 
-            sb.WriteLine($"public static void {methodName}(this ILogger {Constants.LoggerArgumentName}{parameters})");
+            sb.WriteLine($"public static void {methodName}(this ILogger {Constants.LoggerParameterName}{parameters})");
             sb.WriteLine('{');
             sb.Indent++;
 
-            sb.WriteLine($"{Constants.GeneratorNamespace}.{Constants.LoggerClassName}.{methodName}({Constants.LoggerArgumentName}{parameterValues});");
+            sb.WriteLine($"{Constants.GeneratorNamespace}.{Constants.LoggerClassName}.{methodName}({Constants.LoggerParameterName}{parameterValues});");
 
             sb.Indent--;
             sb.WriteLine('}');

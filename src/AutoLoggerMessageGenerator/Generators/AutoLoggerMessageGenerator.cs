@@ -29,12 +29,12 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
         DebugHelper.Debug();
 
         var configuration = GeneratorOptionsProvider.Provide(context);
-        
+
         var modulesProvider = context.GetMetadataReferencesProvider()
             .SelectMany(static (reference, _) => reference.GetModules())
             .Collect()
             .WithTrackingName("Scanning project references");
-        
+
         var logCallsProvider = context.SyntaxProvider.CreateSyntaxProvider(
                 LogCallFilter.IsLogCallInvocation,
                 static (ctx, cts) => GetLogCalls(ctx, cts)
@@ -56,25 +56,27 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
                 ctx.AddSource("InterceptorAttribute.g.cs", SourceText.From(InterceptorAttributeEmitter.Emit(), Encoding.UTF8));
         });
     }
-    
+
     private static LogCall? GetLogCalls(GeneratorSyntaxContext context, CancellationToken cts)
     {
         var semanticModel = context.SemanticModel;
         var invocationExpression = (InvocationExpressionSyntax)context.Node;
         var symbolInfo = semanticModel.GetSymbolInfo(invocationExpression);
 
-        if (symbolInfo.Symbol is not IMethodSymbol methodSymbol || 
-            !LogCallFilter.IsLoggerMethod(methodSymbol) || 
+        if (symbolInfo.Symbol is not IMethodSymbol methodSymbol ||
+            !LogCallFilter.IsLoggerMethod(methodSymbol) ||
             cts.IsCancellationRequested)
             return default;
 
         return LogCallExtractor.Extract(methodSymbol, invocationExpression, semanticModel);
     }
-    
+
     private static void GenerateCode(SourceProductionContext context, Compilation compilation,
-        SourceGeneratorConfiguration configuration, ImmutableArray<Reference> modules, 
+        SourceGeneratorConfiguration configuration, ImmutableArray<Reference> modules,
         ImmutableArray<LogCall> logCalls)
     {
+        if (logCalls.IsDefaultOrEmpty) return;
+
         var telemetryAbstractions = "Microsoft.Extensions.Telemetry.Abstractions.dll";
         var useTelemetryExtensions = modules.Any(c => c.Name == telemetryAbstractions);
 
@@ -84,7 +86,7 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
         var virtualClassDeclaration = new VirtualLoggerMessageClassBuilder(configuration, useTelemetryExtensions)
             .Build(logCalls);
         compilation = VirtualMembersInjector.InjectMembers(compilation, virtualClassDeclaration);
-        
+
         var classDeclarations = compilation.SyntaxTrees.Last()
             .GetRoot()
             .DescendantNodes()
@@ -100,10 +102,10 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
         loggerMessageCode = LoggerMessageResultAdjuster.Adjust(loggerMessageCode);
         if (!string.IsNullOrEmpty(loggerMessageCode))
             context.AddSource("LoggerMessage.g.cs", SourceText.From(loggerMessageCode!, Encoding.UTF8));
-        
+
         context.AddSource("Interceptors.g.cs", SourceText.From(LoggerInterceptorsEmitter.Emit(logCalls), Encoding.UTF8));
     }
-    
+
     private static string? GenerateNewLoggerMessage(
         DiagnosticReporter diagnosticReporter, Compilation compilation,
         ImmutableHashSet<ClassDeclarationSyntax> classDeclarationSyntaxes, CancellationToken cts)

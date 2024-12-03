@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AutoLoggerMessageGenerator.Extractors;
 
-internal static class LogMessageExtractor
+internal static class LogCallMessageExtractor
 {
     public static string? Extract(IMethodSymbol methodSymbol, InvocationExpressionSyntax invocationExpressionSyntax,
         SemanticModel semanticModel)

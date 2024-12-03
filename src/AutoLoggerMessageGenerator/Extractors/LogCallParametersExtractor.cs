@@ -1,6 +1,5 @@
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text.RegularExpressions;
 using AutoLoggerMessageGenerator.Import.Microsoft.Extensions.Telemetry.LoggerMessage;
 using AutoLoggerMessageGenerator.Models;
 using AutoLoggerMessageGenerator.Utilities;
@@ -10,16 +9,14 @@ using static AutoLoggerMessageGenerator.Constants;
 
 namespace AutoLoggerMessageGenerator.Extractors;
 
-internal partial class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck = null)
+internal class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck = null)
 {
     public ImmutableArray<LogCallParameter>? Extract(string message, IMethodSymbol methodSymbol)
     {
-        var matches = MessageArgumentRegex().Matches(message);
-        var templateParametersNames = matches.Select(c => c.Groups[1].Value)
-            .Select(TransformParameterName)
+        var templateParametersNames = LogCallMessageParameterNamesExtractor.Extract(message)
+            .Select(IdentifierHelper.AddAtPrefixIfNotExists)
             .ToArray();
 
-        // TODO: Report a diagnostic message in the separate analyzer that some parameter names are "invalid"
         if (!templateParametersNames.All(IdentifierHelper.IsValidCSharpParameterName))
             return null;
 
@@ -74,7 +71,4 @@ internal partial class LogCallParametersExtractor(LogPropertiesCheck? logPropert
 
     private static string TransformParameterName(string parameterName) =>
         parameterName.StartsWith('@') ? parameterName : '@' + parameterName;
-
-    [GeneratedRegex(@"\{(.*?)\}", RegexOptions.Compiled)]
-    private static partial Regex MessageArgumentRegex();
 }

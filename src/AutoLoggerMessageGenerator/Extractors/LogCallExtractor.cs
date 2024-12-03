@@ -22,7 +22,7 @@ internal static class LogCallExtractor
         if (logLevel is null)
             return default;
 
-        var message = LogMessageExtractor.Extract(methodSymbol, invocationExpression, semanticModel);
+        var message = LogCallMessageExtractor.Extract(methodSymbol, invocationExpression, semanticModel);
         if (message is null)
             return default;
 

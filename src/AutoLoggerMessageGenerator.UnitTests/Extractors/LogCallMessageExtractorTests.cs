@@ -3,7 +3,7 @@ using FluentAssertions;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Extractors;
 
-public class LogMessageExtractorTests : BaseSourceGeneratorTest
+public class LogCallMessageExtractorTests : BaseSourceGeneratorTest
 {
     [Theory]
     [InlineData("Hello world {1}, {2}!")]
@@ -13,7 +13,7 @@ public class LogMessageExtractorTests : BaseSourceGeneratorTest
         var (compilation, syntaxTree) = CompileSourceCode($"""{LoggerName}.LogInformation("{expectedMessage}");""");
         var (invocationExpression, methodSymbol, semanticModel) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var result = LogMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
+        var result = LogCallMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
 
         result.Should().Be(expectedMessage);
     }
@@ -28,7 +28,7 @@ public class LogMessageExtractorTests : BaseSourceGeneratorTest
         );
         var (invocationExpression, methodSymbol, semanticModel) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var result = LogMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
+        var result = LogCallMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
 
         result.Should().Be(expectedMessage);
     }
@@ -44,7 +44,7 @@ public class LogMessageExtractorTests : BaseSourceGeneratorTest
         );
         var (invocationExpression, methodSymbol, semanticModel) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var result = LogMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
+        var result = LogCallMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
 
         result.Should().Be(expectedMessage);
     }
@@ -55,7 +55,7 @@ public class LogMessageExtractorTests : BaseSourceGeneratorTest
         var (compilation, syntaxTree) = CompileSourceCode($"{LoggerName}.LogInformation(null);");
         var (invocationExpression, methodSymbol, semanticModel) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var result = LogMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
+        var result = LogCallMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
 
         result.Should().Be(null);
     }
@@ -74,7 +74,7 @@ public class LogMessageExtractorTests : BaseSourceGeneratorTest
         var (compilation, syntaxTree) = CompileSourceCode(sourceCode);
         var (invocationExpression, methodSymbol, semanticModel) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var result = LogMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
+        var result = LogCallMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
 
         result.Should().Be("Hello world! 42");
     }
@@ -93,7 +93,7 @@ public class LogMessageExtractorTests : BaseSourceGeneratorTest
         var (compilation, syntaxTree) = CompileSourceCode(sourceCode);
         var (invocationExpression, methodSymbol, semanticModel) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
-        var result = LogMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
+        var result = LogCallMessageExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
 
         result.Should().Be(null);
     }

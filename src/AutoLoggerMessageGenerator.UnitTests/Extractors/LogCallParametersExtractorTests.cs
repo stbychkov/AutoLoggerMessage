@@ -72,7 +72,7 @@ public class LogCallParametersExtractorTests : BaseSourceGeneratorTest
     [Fact]
     public void Extract_WithUtilityParameters_ShouldExtractAllParameters()
     {
-        const string message = "The {message} was processed in {Time}ms";
+        const string message = "The {EventName} was processed in {Time}ms";
 
         string extensionDeclaration = $$"""
                                         private static void Log<T1, T2>(

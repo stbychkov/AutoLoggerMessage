@@ -34,6 +34,7 @@
     {
       NativeType: global::System.String,
       Name: @message,
+      Type: Message,
       HasPropertiesToLog: false
     },
     {

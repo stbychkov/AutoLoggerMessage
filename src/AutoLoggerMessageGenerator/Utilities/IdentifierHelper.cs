@@ -17,9 +17,14 @@ internal static partial class IdentifierHelper
         return sanitizedInput;
     }
 
+    public static string AddAtPrefixIfNotExists(string parameterName) =>
+        parameterName.StartsWith('@') ? parameterName : '@' + parameterName;
+
     public static bool IsValidCSharpParameterName(string name) =>
         !string.IsNullOrEmpty(name) && IsValidCSharpParameterNameRegex().IsMatch(name);
 
-    [GeneratedRegex(@"^@?[a-zA-Z_][a-zA-Z0-9_]*$")]
+    public const string ValidCSharpParameterNameRegex = @"^@?[a-zA-Z_][a-zA-Z0-9_]*$";
+
+    [GeneratedRegex(ValidCSharpParameterNameRegex)]
     private static partial Regex IsValidCSharpParameterNameRegex();
 }

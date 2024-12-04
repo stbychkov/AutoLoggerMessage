@@ -164,6 +164,31 @@ Something to address in the next release, as the usage of six or more parameters
   so if you pass more than that, the default `Logger.Log(*, params object[] args)` will be executed.
 * As this solution is based on interceptors, only .NET 8+ is supported
 
+## Is something wrong?
+
+If something is not working as expected, you can fall back on the default implementation of ILogger extensions.
+To do this, call the extensions directly, for example:
+
+```csharp
+logger.LogInformation("Some message"); // instead of this
+LoggerExtensions.LogInformation(logger, "Some message"); // use this
+```
+
+In such case, the source generator will bypass the log call, ensuring you get the expected behavior.
+
+If you require functionality from the `LoggerMessage` source generator that is not supported by this library,
+you can manually create your own source-generated version. Simply define your own partial class and partial method, annotated with the [LoggerMessage] attribute.
+
+```csharp
+logger.LogInformation("Some message"); // instead of this
+
+[LoggerMessage(LogLevel = LogLevel.Information, Message = "Some message")]
+public partial void LogSomeMessage(); // use this
+```
+
+But for both scenarios, it’s recommended to report the issue, as it shouldn't happen under normal circumstances.
+Your feedback can help improve the library and address potential shortcomings. Thank you!
+
 ## Motivation
 
 Source-generated logging is increasingly recognized as a modern and efficient approach.

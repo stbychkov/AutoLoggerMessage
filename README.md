@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![GitHub Build](https://github.com/stbychkov/AutoLoggerMessage/actions/workflows/dotnet_build.yml/badge.svg)
 
-Welcome to **AutoLoggerMessage**, a source generator that automatically creates [LoggerMessage](https://youtu.be/Otm8tH0Vrp0) methods, enabling high-performance logging..
+Welcome to **AutoLoggerMessage**, a source generator that automatically creates [LoggerMessage](https://youtu.be/Otm8tH0Vrp0) methods, enabling high-performance logging.
 
 ## Demo
 
@@ -141,7 +141,7 @@ Something to address in the next release, as the usage of six or more parameters
 </details>
 
 <details>
-    <summary>Logging complex objects with `[LogProperties]` enabled</summary>
+    <summary>Logging complex objects with [LogProperties] enabled</summary>
 
 | Configuration      |      Mean | Rank | Allocated |
 |--------------------|----------:|-----:|----------:|

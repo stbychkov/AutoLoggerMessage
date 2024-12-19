@@ -1,7 +1,6 @@
 using System.Collections.Immutable;
 using AutoLoggerMessageGenerator.Emitters;
 using AutoLoggerMessageGenerator.Models;
-using Microsoft.CodeAnalysis;
 using static AutoLoggerMessageGenerator.Constants;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Emitters;
@@ -15,7 +14,7 @@ public class LoggerInterceptorsEmitterTests
         [
             new LogCall(
                 Id: Guid.NewGuid(),
-                Location: new LogCallLocation("file", 1, 11, Location.None),
+                Location: MockLogCallLocationBuilder.Build("file", 1, 11),
                 Namespace: "namespace1",
                 ClassName: "class1",
                 Name: "name1",
@@ -25,7 +24,7 @@ public class LoggerInterceptorsEmitterTests
             ),
             new LogCall(
                 Id: Guid.NewGuid(),
-                Location: new LogCallLocation("file2", 2, 22, Location.None),
+                Location: MockLogCallLocationBuilder.Build("file2", 2, 22),
                 Namespace: "namespace2",
                 ClassName: "class2",
                 Name: "name2",
@@ -38,7 +37,7 @@ public class LoggerInterceptorsEmitterTests
             ),
             new LogCall(
                 Id: Guid.NewGuid(),
-                Location: new LogCallLocation("file3", 3, 33, Location.None),
+                Location: MockLogCallLocationBuilder.Build("file3", 3, 33),
                 Namespace: "namespace3",
                 ClassName: "class3",
                 Name: "name3",

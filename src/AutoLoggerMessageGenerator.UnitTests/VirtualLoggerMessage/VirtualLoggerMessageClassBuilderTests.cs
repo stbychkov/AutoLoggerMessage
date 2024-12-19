@@ -44,7 +44,7 @@ public class VirtualLoggerMessageClassBuilderTests
             _logCall with
             {
                 Id = Guid.NewGuid(),
-                Location = new LogCallLocation("path/to/another/file.cs", 3, 33, Location.None),
+                Location = MockLogCallLocationBuilder.Build("path/to/another/file.cs", 3, 33),
                 Message = "Goodbye, World!",
                 LogLevel = "Trace"
             }
@@ -67,7 +67,7 @@ public class VirtualLoggerMessageClassBuilderTests
             _logCall with
             {
                 Id = Guid.NewGuid(),
-                Location = new LogCallLocation("path/to/another/file.cs", 3, 33, Location.None),
+                Location = MockLogCallLocationBuilder.Build("path/to/another/file.cs", 3, 33),
                 Message = "All characters should be passed as a string literal expression: \n\r\t",
                 LogLevel = "Trace"
             }

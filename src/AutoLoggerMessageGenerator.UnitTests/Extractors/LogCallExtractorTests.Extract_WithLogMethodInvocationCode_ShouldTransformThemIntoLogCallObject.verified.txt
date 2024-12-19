@@ -4,6 +4,7 @@
     FilePath: ,
     Line: 12,
     Character: 16,
+    InterceptableLocationSyntax: [global::System.Runtime.CompilerServices.InterceptsLocationAttribute(1, "bg8SAsBDKqh7V1TqOZu8tZkAAAA=")],
     Context: {
       Kind: SourceFile,
       SourceSpan: {
@@ -15,7 +16,7 @@
         Length: 214,
         HasCompilationUnitRoot: true,
         Options: {
-          LanguageVersion: CSharp12,
+          LanguageVersion: CSharp13,
           Language: C#,
           DocumentationMode: Parse,
           Errors: null

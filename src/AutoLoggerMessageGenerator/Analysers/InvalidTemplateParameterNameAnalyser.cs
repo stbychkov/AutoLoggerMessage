@@ -17,11 +17,11 @@ public class InvalidTemplateParameterNameAnalyser : DiagnosticAnalyzer
     private static readonly DiagnosticDescriptor Rule = new(
         id: "ALM001",
         title: "Invalid template parameter name",
-        messageFormat: $"Template parameters ({{0}}) have invalid names ({IdentifierHelper.ValidCSharpParameterNameRegex}).",
+        messageFormat: $"Template parameters ({{0}}) have invalid names ({IdentifierHelper.ValidCSharpParameterNameRegex})",
         category: "Naming",
         defaultSeverity: DiagnosticSeverity.Warning,
         isEnabledByDefault: true,
-        description: $"Template parameters in log messages must have valid names"
+        description: "Template parameters in log messages must have valid names."
     );
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
@@ -35,7 +35,7 @@ public class InvalidTemplateParameterNameAnalyser : DiagnosticAnalyzer
         context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.InvocationExpression);
     }
 
-    private void AnalyzeNode(SyntaxNodeAnalysisContext context)
+    private static void AnalyzeNode(SyntaxNodeAnalysisContext context)
     {
         var invocationExpression = (InvocationExpressionSyntax)context.Node;
 

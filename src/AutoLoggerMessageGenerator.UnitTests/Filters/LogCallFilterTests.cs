@@ -78,7 +78,7 @@ public class LogCallFilterTests : BaseSourceGeneratorTest
         var (invocationExpressionSyntax, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
         var isLogCallInvocation = LogCallFilter.IsLogCallInvocation(invocationExpressionSyntax, CancellationToken.None);
-        var isLogCallMethod = LogCallFilter.IsLoggerMethod(methodSymbol);
+        var isLogCallMethod = LogCallFilter.IsLoggerMethod(methodSymbol!);
 
         isLogCallInvocation.Should().BeTrue();
         isLogCallMethod.Should().BeFalse();

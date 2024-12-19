@@ -75,7 +75,7 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
         SourceGeneratorConfiguration configuration, ImmutableArray<Reference> modules,
         ImmutableArray<LogCall> logCalls)
     {
-        if (logCalls.IsDefaultOrEmpty) return;
+        if (logCalls.IsDefaultOrEmpty || context.CancellationToken.IsCancellationRequested) return;
 
         var telemetryAbstractions = "Microsoft.Extensions.Telemetry.Abstractions.dll";
         var useTelemetryExtensions = modules.Any(c => c.Name == telemetryAbstractions);
@@ -98,6 +98,8 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
         var loggerMessageCode = useTelemetryExtensions
             ? GenerateNewLoggerMessage(diagnosticReporter, compilation, classDeclarations, context.CancellationToken)
             : GenerateOldLoggerMessage(diagnosticReporter, compilation, classDeclarations, context.CancellationToken);
+
+        if (context.CancellationToken.IsCancellationRequested) return;
 
         loggerMessageCode = LoggerMessageResultAdjuster.Adjust(loggerMessageCode);
         if (!string.IsNullOrEmpty(loggerMessageCode))

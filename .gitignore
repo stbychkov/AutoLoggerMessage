@@ -71,3 +71,6 @@ orleans.codegen.cs
 .idea/
 *.sln.iml
 BenchmarkDotNet.Artifacts/
+
+# Test snapshots
+**/*.received.*

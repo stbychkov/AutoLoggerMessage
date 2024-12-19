@@ -30,11 +30,7 @@ internal static class LoggerInterceptorsEmitter
         foreach (var logCall in logCalls)
         {
             sb.WriteLine(Constants.EditorNotBrowsableAttribute);
-            sb.WriteLine($"[{Constants.InterceptorNamespace}.{Constants.InterceptorAttributeName}(");
-            sb.Indent++;
-            sb.WriteLine($"filePath: @\"{logCall.Location.FilePath}\",");
-            sb.WriteLine($"line: {logCall.Location.Line}, character: {logCall.Location.Character})]");
-            sb.Indent--;
+            sb.WriteLine(logCall.Location.InterceptableLocationSyntax);
 
             var parameters = string.Join(", ", logCall.Parameters.Select((c, i) => $"{c.NativeType} {c.Name}"));
             parameters = string.IsNullOrEmpty(parameters) ? string.Empty : $", {parameters}";
@@ -65,6 +61,6 @@ internal static class LoggerInterceptorsEmitter
         sb.Indent--;
         sb.WriteLine('}');
 
-        return sb.InnerWriter.ToString();
+        return sb.InnerWriter.ToString()!;
     }
 }

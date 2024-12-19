@@ -22,7 +22,7 @@ internal static class InterceptorAttributeEmitter
         sb.WriteLine('{');
         sb.Indent++;
 
-        sb.WriteLine($"public {Constants.InterceptorAttributeName}(string filePath, int line, int character) {{}}");
+        sb.WriteLine($"public {Constants.InterceptorAttributeName}(int version, string data) {{}}");
 
         sb.Indent--;
         sb.WriteLine('}');
@@ -30,6 +30,6 @@ internal static class InterceptorAttributeEmitter
         sb.Indent--;
         sb.WriteLine('}');
 
-        return sb.InnerWriter.ToString();
+        return sb.InnerWriter.ToString()!;
     }
 }

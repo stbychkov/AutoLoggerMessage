@@ -12,27 +12,21 @@ namespace Microsoft.Extensions.Logging.AutoLoggerMessage
     internal static class LoggerInterceptors
     {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-        [System.Runtime.CompilerServices.InterceptsLocationAttribute(
-            filePath: @"file",
-            line: 1, character: 11)]
+        [FakeInterceptableLocation(-1, "ZmlsZSgxLDExKQ==")]
         public static void Log_namespace1class1_1_11(this ILogger @logger, string @message)
         {
             Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace1class1_1_11(@logger);
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-        [System.Runtime.CompilerServices.InterceptsLocationAttribute(
-            filePath: @"file2",
-            line: 2, character: 22)]
+        [FakeInterceptableLocation(-1, "ZmlsZTIoMiwyMik=")]
         public static void Log_namespace2class2_2_22(this ILogger @logger, string @message, int @intParam)
         {
             Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace2class2_2_22(@logger, @intParam);
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-        [System.Runtime.CompilerServices.InterceptsLocationAttribute(
-            filePath: @"file3",
-            line: 3, character: 33)]
+        [FakeInterceptableLocation(-1, "ZmlsZTMoMywzMyk=")]
         public static void Log_namespace3class3_3_33(this ILogger @logger, string @message, int @intParam, bool @boolParam, SomeClass @objectParam)
         {
             Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace3class3_3_33(@logger, @intParam, @boolParam, @objectParam);

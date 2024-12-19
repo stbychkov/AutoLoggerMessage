@@ -7,7 +7,7 @@ using AutoLoggerMessageGenerator.Utilities;
 
 namespace AutoLoggerMessageGenerator.Emitters;
 
-internal class LoggerInterceptorsEmitter
+internal static class LoggerInterceptorsEmitter
 {
     public static string Emit(IEnumerable<LogCall> logCalls)
     {
@@ -32,7 +32,7 @@ internal class LoggerInterceptorsEmitter
             sb.WriteLine(Constants.EditorNotBrowsableAttribute);
             sb.WriteLine($"[{Constants.InterceptorNamespace}.{Constants.InterceptorAttributeName}(");
             sb.Indent++;
-            sb.WriteLine($"filePath: \"{logCall.Location.FilePath}\",");
+            sb.WriteLine($"filePath: @\"{logCall.Location.FilePath}\",");
             sb.WriteLine($"line: {logCall.Location.Line}, character: {logCall.Location.Character})]");
             sb.Indent--;
 

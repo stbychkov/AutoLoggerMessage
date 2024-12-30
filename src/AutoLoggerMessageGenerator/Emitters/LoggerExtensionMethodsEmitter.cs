@@ -38,7 +38,7 @@ internal static class LoggerExtensionsEmitter
         var messageParameter = ("string", MessageArgumentName: MessageParameterName);
         var exceptionParameter = ("Exception?", ExceptionArgumentName: ExceptionParameterName);
         var eventIdParameter = ("EventId", EventIdArgumentName: EventIdParameterName);
-        
+
         (string Type, string Name)[][] fixedParametersOverloads =
         [
             [messageParameter],
@@ -72,7 +72,7 @@ internal static class LoggerExtensionsEmitter
                 objectParameters = string.IsNullOrEmpty(objectParameters)
                     ? string.Empty
                     : $", new object?[] {{ {objectParameters} }}";
-                
+
                 foreach (var logLevel in logLevels)
                 {
                     GenerateLogMethodWithLogLevelInName(sb, logLevel, genericTypesDefinition,
@@ -80,8 +80,8 @@ internal static class LoggerExtensionsEmitter
 
                     sb.WriteLine();
                 }
-                
-                GenerateLogMethodWithLogLevelParameter(sb, genericTypesDefinition, fixedParametersDefinition, 
+
+                GenerateLogMethodWithLogLevelParameter(sb, genericTypesDefinition, fixedParametersDefinition,
                     genericParametersDefinition, fixedParameters, objectParameters);
 
                 sb.WriteLine();
@@ -96,7 +96,7 @@ internal static class LoggerExtensionsEmitter
         sb.Indent--;
         sb.WriteLine('}');
 
-        return sb.InnerWriter.ToString();
+        return sb.InnerWriter.ToString()!;
     }
 
     private static void GenerateLogMethodWithLogLevelInName(IndentedTextWriter sb, string logLevel,

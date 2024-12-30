@@ -6,7 +6,7 @@ namespace AutoLoggerMessageGenerator.UnitTests;
 
 internal static class MockLogCallLocationBuilder
 {
-    public static LogCallLocation Build(string filePath, int line, int character)
+    internal static LogCallLocation Build(string filePath, int line, int character)
     {
         ArgumentException.ThrowIfNullOrEmpty(filePath);
 

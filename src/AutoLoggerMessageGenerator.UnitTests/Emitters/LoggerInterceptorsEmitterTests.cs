@@ -5,9 +5,9 @@ using static AutoLoggerMessageGenerator.Constants;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Emitters;
 
-public class LoggerInterceptorsEmitterTests
+internal class LoggerInterceptorsEmitterTests
 {
-    [Fact]
+    [Test]
     public async Task Emit_ShouldGenerateValidLoggingExtensionsAttribute()
     {
         ImmutableArray<LogCall> logCalls =

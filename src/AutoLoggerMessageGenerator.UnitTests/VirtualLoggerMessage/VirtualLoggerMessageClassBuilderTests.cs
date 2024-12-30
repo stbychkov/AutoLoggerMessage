@@ -3,11 +3,9 @@ using AutoLoggerMessageGenerator.Models;
 using AutoLoggerMessageGenerator.VirtualLoggerMessage;
 using Microsoft.CodeAnalysis;
 
-#pragma warning disable xUnit1039
-
 namespace AutoLoggerMessageGenerator.UnitTests.VirtualLoggerMessage;
 
-public class VirtualLoggerMessageClassBuilderTests
+internal class VirtualLoggerMessageClassBuilderTests
 {
     private readonly LogCall _logCall = new()
     {
@@ -32,9 +30,9 @@ public class VirtualLoggerMessageClassBuilderTests
         ]
     };
 
-    [Theory]
-    [MemberData(nameof(TestConfigurations))]
-    internal async Task Build_WithDifferentConfiguration_ShouldReturnLegitLoggerMessageDeclaration(
+    [Test]
+    [MethodDataSource(nameof(TestConfigurations))]
+    public async Task Build_WithDifferentConfiguration_ShouldReturnLegitLoggerMessageDeclaration(
         SourceGeneratorConfiguration configuration, bool useTelemetryExtensions)
     {
         var sut = new VirtualLoggerMessageClassBuilder(configuration, useTelemetryExtensions);
@@ -58,7 +56,7 @@ public class VirtualLoggerMessageClassBuilderTests
             .ScrubInlineGuids();
     }
 
-    [Fact]
+    [Test]
     public async Task Build_WithEscapeSequences_ShouldBuildAsItIs()
     {
         var sut = new VirtualLoggerMessageClassBuilder(default);
@@ -78,12 +76,11 @@ public class VirtualLoggerMessageClassBuilderTests
         await Verify(syntaxTree).ScrubInlineGuids();
     }
 
-    public static TheoryData<object, bool> TestConfigurations =
-        new()
-        {
-            { new SourceGeneratorConfiguration(default, true, true, true, true), true },
-            { new SourceGeneratorConfiguration(default, true, true, true, true), false },
-            { new SourceGeneratorConfiguration(default, false, false, false, false), true },
-            { new SourceGeneratorConfiguration(default, false, false, false, false), false },
-        };
+    public static IEnumerable<Func<(SourceGeneratorConfiguration, bool)>> TestConfigurations() =>
+    [
+        () => (new SourceGeneratorConfiguration(default, true, true, true, true), true),
+        () => (new SourceGeneratorConfiguration(default, true, true, true, true), false),
+        () => (new SourceGeneratorConfiguration(default, false, false, false, false), true),
+        () => (new SourceGeneratorConfiguration(default, false, false, false, false), false),
+    ];
 }

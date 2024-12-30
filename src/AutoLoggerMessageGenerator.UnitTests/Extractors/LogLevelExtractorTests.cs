@@ -1,53 +1,48 @@
 using AutoLoggerMessageGenerator.Extractors;
-using FluentAssertions;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Extractors;
 
-public class LogLevelExtractorTests : BaseSourceGeneratorTest
+internal class LogLevelExtractorTests : BaseSourceGeneratorTest
 {
-    [Theory]
-    [InlineData("LogTrace(default)", nameof(LogLevel.Trace))]
-    [InlineData("LogDebug(default)", nameof(LogLevel.Debug))]
-    [InlineData("LogInformation(default)", nameof(LogLevel.Information))]
-    [InlineData("LogWarning(default)", nameof(LogLevel.Warning))]
-    [InlineData("LogError(default)", nameof(LogLevel.Error))]
-    [InlineData("LogCritical(default)", nameof(LogLevel.Critical))]
+    [Test]
+    [Arguments("LogTrace(default)", nameof(LogLevel.Trace))]
+    [Arguments("LogDebug(default)", nameof(LogLevel.Debug))]
+    [Arguments("LogInformation(default)", nameof(LogLevel.Information))]
+    [Arguments("LogWarning(default)", nameof(LogLevel.Warning))]
+    [Arguments("LogError(default)", nameof(LogLevel.Error))]
+    [Arguments("LogCritical(default)", nameof(LogLevel.Critical))]
 
-    [InlineData("Log(LogLevel.Trace, default)", nameof(LogLevel.Trace))]
-    [InlineData("Log(LogLevel.Debug, default)", nameof(LogLevel.Debug))]
-    [InlineData("Log(LogLevel.Information, default)", nameof(LogLevel.Information))]
-    [InlineData("Log(LogLevel.Warning, default)", nameof(LogLevel.Warning))]
-    [InlineData("Log(LogLevel.Error, default)", nameof(LogLevel.Error))]
-    [InlineData("Log(LogLevel.Critical, default)", nameof(LogLevel.Critical))]
+    [Arguments("Log(LogLevel.Trace, default)", nameof(LogLevel.Trace))]
+    [Arguments("Log(LogLevel.Debug, default)", nameof(LogLevel.Debug))]
+    [Arguments("Log(LogLevel.Information, default)", nameof(LogLevel.Information))]
+    [Arguments("Log(LogLevel.Warning, default)", nameof(LogLevel.Warning))]
+    [Arguments("Log(LogLevel.Error, default)", nameof(LogLevel.Error))]
+    [Arguments("Log(LogLevel.Critical, default)", nameof(LogLevel.Critical))]
 
-    [InlineData("AnyOtherMethod(default)", null)]
-    public void Extract_WithGivenMethodCall_ShouldReturnExpectedLogLevel(string methodCall, string? expectedLogLevel)
+    [Arguments("AnyOtherMethod(default)", null)]
+    public async Task Extract_WithGivenMethodCall_ShouldReturnExpectedLogLevel(string methodCall, string? expectedLogLevel)
     {
-        var (compilation, syntaxTree) = CompileSourceCode($"{LoggerName}.{methodCall};");
+        var (compilation, syntaxTree) = await CompileSourceCode($"{LoggerName}.{methodCall};");
         var (invocationExpression, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
         var result = LogLevelExtractor.Extract(methodSymbol!, invocationExpression);
 
-        result.Should().Be(expectedLogLevel);
+        await Assert.That(result).IsEqualTo(expectedLogLevel);
     }
 
-    [Fact]
-    public void Extract_WithNotConstantLogLevel_ShouldReturnNull()
+    [Test]
+    public async Task Extract_WithNotConstantLogLevel_ShouldReturnNull()
     {
         var sourceCode = """
                          var logLevel = DateTime.Now.Ticks % 2 == 0 ? LogLevel.Warning : LogLevel.Error;
                          Log(logLevel, default);
                          """;
-        var (compilation, syntaxTree) = CompileSourceCode(sourceCode);
+        var (compilation, syntaxTree) = await CompileSourceCode(sourceCode);
         var (invocationExpression, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
         var result = LogLevelExtractor.Extract(methodSymbol!, invocationExpression);
 
-        result.Should().Be(null);
+        await Assert.That(result).IsEqualTo(null);
     }
-
 }

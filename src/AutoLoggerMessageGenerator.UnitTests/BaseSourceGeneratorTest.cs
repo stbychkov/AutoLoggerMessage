@@ -1,19 +1,18 @@
 using System.Diagnostics;
-using FluentAssertions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AutoLoggerMessageGenerator.UnitTests;
 
-public abstract class BaseSourceGeneratorTest
+internal abstract class BaseSourceGeneratorTest
 {
-    protected const string LoggerName = "logger";
-    protected const string Namespace = "Foo";
-    protected const string ClassName = "Test";
-    
-    protected static (CSharpCompilation Compilation, SyntaxTree SyntaxTree) CompileSourceCode(
-        string body, string additionalClassMemberDeclarations = "", 
+    public const string LoggerName = "logger";
+    public const string Namespace = "Foo";
+    public const string ClassName = "Test";
+
+    protected static async Task<(CSharpCompilation Compilation, SyntaxTree SyntaxTree)> CompileSourceCode(
+        string body, string additionalClassMemberDeclarations = "",
         bool useGlobalNamespace = false)
     {
         var sourceCode = $$"""
@@ -25,7 +24,7 @@ public abstract class BaseSourceGeneratorTest
                            public class {{ClassName}}(ILogger {{LoggerName}})
                            {
                                {{additionalClassMemberDeclarations}}
-                           
+
                                public void Main()
                                {
                                    {{body}}
@@ -43,9 +42,9 @@ public abstract class BaseSourceGeneratorTest
 
         var loggerAssemblyLocation = Path.Join(AppContext.BaseDirectory, "Microsoft.Extensions.Logging.Abstractions.dll");
         references.Add(MetadataReference.CreateFromFile(loggerAssemblyLocation));
-        
+
         var compilation = CSharpCompilation.Create("SourceGeneratorTests",
-            new[] { syntaxTree },
+            [syntaxTree],
             references,
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
@@ -57,7 +56,7 @@ public abstract class BaseSourceGeneratorTest
         if (compilationErrors.Any())
             Debugger.Launch();
 
-        compilationErrors.Should().BeEmpty();
+        await Assert.That(compilationErrors).IsEmpty();
 
         return (compilation, syntaxTree);
     }

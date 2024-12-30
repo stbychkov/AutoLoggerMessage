@@ -2,9 +2,9 @@ using AutoLoggerMessageGenerator.Emitters;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Emitters;
 
-public class LoggerExtensionsEmitterTests
+internal class LoggerExtensionsEmitterTests
 {
-    [Fact]
+    [Test]
     public async Task Emit_ShouldGenerateValidLoggingExtensionsAttribute()
     {
         var sourceCode = LoggerExtensionsEmitter.Emit();

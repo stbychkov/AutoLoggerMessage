@@ -1,4 +1,4 @@
-{
+﻿{
   Id: Guid_1,
   Location: {
     FilePath: ,
@@ -16,7 +16,7 @@
         Length: 214,
         HasCompilationUnitRoot: true,
         Options: {
-          LanguageVersion: CSharp13,
+          LanguageVersion: CSharp12,
           Language: C#,
           DocumentationMode: Parse,
           Errors: null

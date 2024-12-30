@@ -1,46 +1,44 @@
 using AutoLoggerMessageGenerator.Extractors;
-using FluentAssertions;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Extractors;
 
-public class LogCallCallerExtractorTests : BaseSourceGeneratorTest
+internal class LogCallCallerExtractorTests : BaseSourceGeneratorTest
 {
-    [Theory]
-    [InlineData(false, Namespace, ClassName)]
-    [InlineData(true, "", ClassName)]
-    public void Extract_WithLogCallAndGivenNamespace_ShouldReturnExpectedNamespaceAndClassName(
+    [Test]
+    [Arguments(false, Namespace, ClassName)]
+    [Arguments(true, "", ClassName)]
+    public async Task Extract_WithLogCallAndGivenNamespace_ShouldReturnExpectedNamespaceAndClassName(
         bool useGlobalNamespace, string expectedNamespace, string expectedClassName)
     {
         var message = $$"""{{LoggerName}}.LogInformation("Hello world");""";
-        var (_, syntaxTree) = CompileSourceCode(message, useGlobalNamespace: useGlobalNamespace);
+        var (_, syntaxTree) = await CompileSourceCode(message, useGlobalNamespace: useGlobalNamespace);
         var (invocationExpression, _, _) = FindLoggerMethodInvocation(null, syntaxTree);
 
         var (ns, className) = LogCallCallerExtractor.Extract(invocationExpression);
 
-        ns.Should().Be(expectedNamespace);
-        className.Should().Be(expectedClassName);
+        await Assert.That(ns).IsEqualTo(expectedNamespace);
+        await Assert.That(className).IsEqualTo(expectedClassName);
     }
-    
-    [Fact]
-    public void Extract_WithNestedClasses_ShouldReturnOuterClassName()
+
+    [Test]
+    public async Task Extract_WithNestedClasses_ShouldReturnOuterClassName()
     {
         const string additionalDeclaration = """
                                              class Outer
                                              {
-                                                 class Inner 
+                                                 class Inner
                                                  {
                                                      private ILogger logger;
                                                      public void Log() => logger.LogInformation("Hello world");
                                                  }
                                              }
                                              """;
-        var (_, syntaxTree) = CompileSourceCode(string.Empty, additionalDeclaration);
+        var (_, syntaxTree) = await CompileSourceCode(string.Empty, additionalDeclaration);
         var (invocationExpression, _, _) = FindLoggerMethodInvocation(null, syntaxTree);
 
         var (ns, className) = LogCallCallerExtractor.Extract(invocationExpression);
 
-        ns.Should().Be(Namespace);
-        className.Should().Be(ClassName);
+        await Assert.That(ns).IsEqualTo(Namespace);
+        await Assert.That(className).IsEqualTo(ClassName);
     }
 }

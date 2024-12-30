@@ -58,7 +58,7 @@ public class InvalidTemplateParameterNameAnalyser : DiagnosticAnalyzer
         if (!templateParameterNames.Any())
             return;
 
-        var location = LogCallLocationMapper.Map(invocationExpression);
+        var location = LogCallLocationMapper.Map(semanticModel, invocationExpression);
         if (location is null)
             return;
 

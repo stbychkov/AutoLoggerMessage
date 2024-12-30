@@ -14,7 +14,8 @@ internal static class LogCallExtractor
         SemanticModel semanticModel)
     {
         var (ns, className) = LogCallCallerExtractor.Extract(invocationExpression);
-        var location = LogCallLocationMapper.Map(invocationExpression);
+
+        var location = LogCallLocationMapper.Map(semanticModel, invocationExpression);
         if (location is null)
             return default;
 

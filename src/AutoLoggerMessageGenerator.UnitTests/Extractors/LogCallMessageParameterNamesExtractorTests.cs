@@ -17,7 +17,7 @@ public class LogCallMessageParameterNamesExtractorTests
     [InlineData("Duplicate {param} and {param} again", new[] { "param", "param" })]
     [InlineData("", new string[0])]
     [InlineData(null, new string[0])]
-    public void Extract_WithGivenMessage_ShouldReturnGivenMessageParameterNames(string message, params string[] expectedMessageParameters)
+    public void Extract_WithGivenMessage_ShouldReturnGivenMessageParameterNames(string? message, params string[] expectedMessageParameters)
     {
         var result = LogCallMessageParameterNamesExtractor.Extract(message);
         result.Should().BeEquivalentTo(expectedMessageParameters);

@@ -38,7 +38,7 @@ public class IdentifierHelperTests
     [InlineData("i🔥nvalid", false)]
     [InlineData("", false)]
     [InlineData(null, false)]
-    public void IsValidCSharpParameterName_WithGivenParameterName_ShouldReturnTheGivenResult(string parameterName,
+    public void IsValidCSharpParameterName_WithGivenParameterName_ShouldReturnTheGivenResult(string? parameterName,
         bool isValid)
     {
         var result = IdentifierHelper.IsValidCSharpParameterName(parameterName);

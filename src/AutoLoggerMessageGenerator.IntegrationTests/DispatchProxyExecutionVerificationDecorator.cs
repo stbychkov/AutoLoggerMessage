@@ -8,20 +8,17 @@ public class DispatchProxyExecutionVerificationDecorator<T> : DispatchProxy
 
     private Func<string, bool>? MethodFilter { get; set; }
 
-
     private readonly List<string> _executionsFromGenerator = [];
     private readonly List<string> _executionsWithoutGenerator = [];
-    
+
     public IReadOnlyList<string> ExecutionsFromGenerator => _executionsFromGenerator.AsReadOnly();
     public IReadOnlyList<string> ExecutionsWithoutGenerator => _executionsWithoutGenerator.AsReadOnly();
-    
+
     public static DispatchProxyExecutionVerificationDecorator<T> Decorate(T target, Func<string, bool>? methodFilter = default)
     {
-        var proxy = Create<T, DispatchProxyExecutionVerificationDecorator<T>>() as DispatchProxyExecutionVerificationDecorator<T>;
-        
-        if (proxy is null)
+        if (Create<T, DispatchProxyExecutionVerificationDecorator<T>>() is not DispatchProxyExecutionVerificationDecorator<T> proxy)
             throw new InvalidOperationException($"Unable to create DispatchProxyExecutionVerificationDecorator for {typeof(T).FullName}");
-        
+
         proxy.Target = target;
         proxy.MethodFilter = methodFilter;
         return proxy;
@@ -31,7 +28,7 @@ public class DispatchProxyExecutionVerificationDecorator<T> : DispatchProxy
     {
         if (MethodFilter == default || (targetMethod?.Name is not null && MethodFilter(targetMethod.Name)))
             CaptureExecutionCall();
-        
+
         return targetMethod?.Invoke(Target, args);
     }
 
@@ -40,7 +37,7 @@ public class DispatchProxyExecutionVerificationDecorator<T> : DispatchProxy
         var stackTrace = Environment.StackTrace;
         var callFromGenerator = stackTrace.Contains("LoggerMessage.g.cs");
 
-        var executionList = callFromGenerator ? _executionsFromGenerator : _executionsWithoutGenerator; 
+        var executionList = callFromGenerator ? _executionsFromGenerator : _executionsWithoutGenerator;
         executionList.Add(stackTrace);
     }
 }

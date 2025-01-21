@@ -11,7 +11,6 @@ using AutoLoggerMessageGenerator.Filters;
 using AutoLoggerMessageGenerator.Models;
 using AutoLoggerMessageGenerator.PostProcessing;
 using AutoLoggerMessageGenerator.ReferenceAnalyzer;
-using AutoLoggerMessageGenerator.Utilities;
 using AutoLoggerMessageGenerator.VirtualLoggerMessage;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -26,8 +25,6 @@ public class AutoLoggerMessageGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        DebugHelper.Debug();
-
         var configuration = GeneratorOptionsProvider.Provide(context);
 
         var modulesProvider = context.GetMetadataReferencesProvider()

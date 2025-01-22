@@ -1,10 +1,22 @@
-# AutoLoggerMessage
+<p align="center">
+    <a>
+        <picture>
+          <img src="https://raw.githubusercontent.com/stbychkov/AutoLoggerMessage/refs/heads/main/src/AutoLoggerMessageGenerator/Assets/icon.jpg" height="128">
+        </picture>
+        <h1 align="center">AutoLoggerMessage</h1>
+    </a>
+</p>
 
-[![NuGet](https://img.shields.io/nuget/v/stbychkov.AutoLoggerMessage)](https://www.nuget.org/packages/stbychkov.AutoLoggerMessage)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-![GitHub Build](https://github.com/stbychkov/AutoLoggerMessage/actions/workflows/dotnet_build.yml/badge.svg)
+<p align="center">
+  <a href="https://www.nuget.org/packages/stbychkov.AutoLoggerMessage/"><img src="https://img.shields.io/nuget/v/stbychkov.AutoLoggerMessage" alt="NuGet"></a>
+  <img src="https://github.com/stbychkov/AutoLoggerMessage/actions/workflows/dotnet_build.yml/badge.svg" alt="Build">
+  <a href="https://github.com/stbychkov/AutoLoggerMessage/blob/main/LICENSE"><img src="https://img.shields.io/github/license/stbychkov/AutoLoggerMessage" alt="License"></a>
+  <a href="https://www.nuget.org/packages/stbychkov.AutoLoggerMessage/"><img src="https://img.shields.io/nuget/dt/stbychkov.AutoLoggerMessage" alt="Nuget"></a>
+  <a href="https://github.com/stbychkov/stbychkov.AutoLoggerMessage/pulls"><img src="https://img.shields.io/badge/PR-Welcome-blue" alt="PR"></a>
+</p>
 
-Welcome to **AutoLoggerMessage**, a source generator that automatically creates [LoggerMessage](https://youtu.be/Otm8tH0Vrp0) methods, enabling high-performance logging.
+
+Welcome to `AutoLoggerMessage`, a source generator that automatically creates [LoggerMessage](https://youtu.be/Otm8tH0Vrp0) methods, enabling high-performance logging.
 
 ## Demo
 
@@ -36,7 +48,7 @@ Check [this](https://github.com/stbychkov/AutoLoggerMessage/wiki/Configuration) 
 
 ## Benchmarks
 
-You can achieve performance boosts of up to 90% according to my benchmarks just by including this source generator in your project. 
+You can achieve performance boosts of up to 90% according to my benchmarks just by including this source generator in your project.
 
 | Configuration          | Mean      | Ratio | Allocated |
 |------------------------|-----------|-------|-----------|
@@ -57,6 +69,7 @@ Take a look at [benchmark](https://github.com/stbychkov/AutoLoggerMessage/wiki/B
   parameters ([src](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggermessage.define))
   so if you pass more than that, the default `Logger.Log(*, params object[] args)` will be executed.
 * As this solution is based on interceptors, only .NET 8+ is supported
+* Hash-based interceptors are incompatible with .NET SDK versions earlier than 8.0.8, most likely due to differences in the compiler version. To resolve this issue, please update your SDK to version [8.0.8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later.
 
 ## Is something wrong?
 
@@ -93,7 +106,7 @@ logging messages can feel disconnected from the code where they are actually use
 
 This library handles most of the heavy lifting for you, so you can spend your time doing more important things!
 
-But I hope this is a temporary solution — maybe one day, something similar will be added to the core library. 
+But I hope this is a temporary solution — maybe one day, something similar will be added to the core library.
 Check [this](https://github.com/dotnet/runtime/discussions/110364) discussion for updates.
 
 ## How It Works

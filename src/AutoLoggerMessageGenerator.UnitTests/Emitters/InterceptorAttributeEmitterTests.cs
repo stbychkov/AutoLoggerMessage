@@ -1,4 +1,5 @@
 using AutoLoggerMessageGenerator.Emitters;
+using AutoLoggerMessageGenerator.UnitTests.Scrubbers;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Emitters;
 
@@ -8,7 +9,6 @@ internal class InterceptorAttributeEmitterTests
     public async Task Emit_ShouldGenerateValidInterceptorAttribute()
     {
         var sourceCode = InterceptorAttributeEmitter.Emit();
-
-        await Verify(sourceCode);
+        await Verify(sourceCode).AddCodeGeneratedAttributeScrubber();
     }
 }

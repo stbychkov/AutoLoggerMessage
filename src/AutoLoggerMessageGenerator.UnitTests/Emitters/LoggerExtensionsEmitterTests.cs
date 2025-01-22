@@ -1,4 +1,5 @@
 using AutoLoggerMessageGenerator.Emitters;
+using AutoLoggerMessageGenerator.UnitTests.Scrubbers;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Emitters;
 
@@ -8,6 +9,6 @@ internal class LoggerExtensionsEmitterTests
     public async Task Emit_ShouldGenerateValidLoggingExtensionsAttribute()
     {
         var sourceCode = LoggerExtensionsEmitter.Emit();
-        await Verify(sourceCode);
+        await Verify(sourceCode).AddCodeGeneratedAttributeScrubber();
     }
 }

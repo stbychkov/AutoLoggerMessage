@@ -7,11 +7,11 @@
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <IsRoslynComponent>true</IsRoslynComponent>
     <NoWarn>RSEXPERIMENTAL002;RS2008</NoWarn>
+    <Version>1.0.8</Version>
   </PropertyGroup>
 
   <PropertyGroup>
     <PackageId>stbychkov.AutoLoggerMessage</PackageId>
-    <PackageVersion>1.0.8</PackageVersion>
     <Authors>stbychkov</Authors>
     <Title>AutoLoggerMessage</Title>
     <Description>A source generator that automatically migrates your logging calls to the LoggerMessage version</Description>

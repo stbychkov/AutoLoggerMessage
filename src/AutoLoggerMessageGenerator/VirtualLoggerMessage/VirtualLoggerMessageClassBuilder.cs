@@ -1,5 +1,4 @@
 using System.Collections.Immutable;
-using System.Linq;
 using AutoLoggerMessageGenerator.Configuration;
 using AutoLoggerMessageGenerator.Models;
 using AutoLoggerMessageGenerator.Utilities;

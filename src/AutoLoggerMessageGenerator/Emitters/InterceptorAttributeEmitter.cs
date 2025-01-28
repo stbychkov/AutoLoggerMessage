@@ -1,5 +1,4 @@
 using System.CodeDom.Compiler;
-using System.IO;
 
 namespace AutoLoggerMessageGenerator.Emitters;
 

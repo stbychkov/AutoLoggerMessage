@@ -1,4 +1,3 @@
-using System;
 using AutoLoggerMessageGenerator.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;

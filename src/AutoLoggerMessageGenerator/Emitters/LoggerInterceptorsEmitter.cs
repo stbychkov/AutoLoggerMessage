@@ -1,7 +1,4 @@
 using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using AutoLoggerMessageGenerator.Models;
 using AutoLoggerMessageGenerator.Utilities;
 

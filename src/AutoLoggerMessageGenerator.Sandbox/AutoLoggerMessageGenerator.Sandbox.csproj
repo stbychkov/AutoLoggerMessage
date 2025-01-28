@@ -3,7 +3,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsPreviewNamespaces>
   </PropertyGroup>
 
   <ItemGroup>

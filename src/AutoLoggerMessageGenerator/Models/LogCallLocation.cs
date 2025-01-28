@@ -19,6 +19,13 @@ internal readonly record struct LogCallLocation(
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(FilePath, Line, Character, InterceptableLocationSyntax);
+        unchecked
+        {
+            var hashCode = FilePath.GetHashCode();
+            hashCode = (hashCode * 397) ^ Line;
+            hashCode = (hashCode * 397) ^ Character;
+            hashCode = (hashCode * 397) ^ InterceptableLocationSyntax.GetHashCode();
+            return hashCode;
+        }
     }
 }

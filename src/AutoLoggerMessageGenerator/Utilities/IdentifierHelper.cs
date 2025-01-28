@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace AutoLoggerMessageGenerator.Utilities;
 
-internal static partial class IdentifierHelper
+internal static class IdentifierHelper
 {
     public static string ToValidCSharpMethodName(string? input)
     {
@@ -18,13 +18,12 @@ internal static partial class IdentifierHelper
     }
 
     public static string AddAtPrefixIfNotExists(string parameterName) =>
-        parameterName.StartsWith('@') ? parameterName : '@' + parameterName;
+        parameterName.StartsWith("@") ? parameterName : '@' + parameterName;
 
     public static bool IsValidCSharpParameterName(string? name) =>
-        !string.IsNullOrEmpty(name) && IsValidCSharpParameterNameRegex().IsMatch(name);
+        !string.IsNullOrEmpty(name) && IsValidCSharpParameterNameRegex.IsMatch(name);
 
     public const string ValidCSharpParameterNameRegex = @"^@?[a-zA-Z_][a-zA-Z0-9_]*$";
 
-    [GeneratedRegex(ValidCSharpParameterNameRegex)]
-    private static partial Regex IsValidCSharpParameterNameRegex();
+    private static Regex IsValidCSharpParameterNameRegex => new(ValidCSharpParameterNameRegex, RegexOptions.Compiled);
 }

@@ -8,6 +8,7 @@
     <IsRoslynComponent>true</IsRoslynComponent>
     <NoWarn>RSEXPERIMENTAL002;RS2008</NoWarn>
     <Version>1.0.8</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup>

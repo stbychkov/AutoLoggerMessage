@@ -1,0 +1,8 @@
+<Project InitialTargets="stbychkov_AutoLoggerMessage_Interceptors">
+  <Target Name="stbychkov_AutoLoggerMessage_Interceptors">
+    <PropertyGroup>
+      <InterceptorsNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsNamespaces>
+      <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsPreviewNamespaces>
+    </PropertyGroup>
+  </Target>
+</Project>

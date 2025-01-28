@@ -24,24 +24,10 @@ Welcome to `AutoLoggerMessage`, a source generator that automatically creates [L
 
 ## Getting started
 
-Just follow these two simple steps:
-
-#### 1. Install the Package from [NuGet](https://www.nuget.org/packages/stbychkov.AutoLoggerMessage)
+#### Install the Package from [NuGet](https://www.nuget.org/packages/stbychkov.AutoLoggerMessage)
 
 ```shell
 dotnet add package stbychkov.AutoLoggerMessage
-```
-
-#### 2. Enable interceptors
-
-Interceptors can be enabled either for a specific project or globally by defining them in
-the [Directory.Build.props](./src/Directory.Build.props) file
-
-```xml
-
-<PropertyGroup>
-    <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsPreviewNamespaces>
-</PropertyGroup>
 ```
 
 Check [this](https://github.com/stbychkov/AutoLoggerMessage/wiki/Configuration) page for configuration options that can tweak the source generation process.

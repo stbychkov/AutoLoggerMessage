@@ -33,8 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="AutoLoggerMessageGenerator.props" Pack="true" PackagePath="build/stbychkov.AutoLoggerMessage.props" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
+    <None Include="AutoLoggerMessageGenerator.props" Pack="true" PackagePath="build/stbychkov.AutoLoggerMessage.props" />
+    <None Include="AutoLoggerMessageGenerator.targets" Pack="true" PackagePath="build/stbychkov.AutoLoggerMessage.targets" />
 
     <None Include="../../README.md" Pack="true" PackagePath="" />
     <None Include="Assets\icon.jpg" Pack="true" PackagePath="" />

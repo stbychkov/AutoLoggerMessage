@@ -1,5 +1,3 @@
-using System.Linq;
-
 namespace AutoLoggerMessageGenerator.Utilities;
 
 internal static class ReservedParameterNameResolver

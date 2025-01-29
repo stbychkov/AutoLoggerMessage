@@ -1,4 +1,3 @@
-using System;
 using AutoLoggerMessageGenerator.Import.Microsoft.Extensions.Telemetry.LoggerMessage;
 using AutoLoggerMessageGenerator.Mappers;
 using AutoLoggerMessageGenerator.Models;

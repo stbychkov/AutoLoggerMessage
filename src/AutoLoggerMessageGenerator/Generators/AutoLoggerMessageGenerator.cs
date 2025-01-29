@@ -1,7 +1,5 @@
 using System.Collections.Immutable;
-using System.Linq;
 using System.Text;
-using System.Threading;
 using AutoLoggerMessageGenerator.Caching;
 using AutoLoggerMessageGenerator.Configuration;
 using AutoLoggerMessageGenerator.Diagnostics;

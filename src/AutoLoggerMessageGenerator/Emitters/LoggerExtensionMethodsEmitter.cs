@@ -1,6 +1,4 @@
 using System.CodeDom.Compiler;
-using System.IO;
-using System.Linq;
 using Microsoft.Extensions.Logging;
 using static AutoLoggerMessageGenerator.Constants;
 

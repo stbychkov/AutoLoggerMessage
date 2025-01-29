@@ -69,5 +69,5 @@ internal class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck
             HasPropertiesToLog: hasPropertiesToLog);
 
     private static string TransformParameterName(string parameterName) =>
-        parameterName.StartsWith('@') ? parameterName : '@' + parameterName;
+        parameterName.StartsWith("@") ? parameterName : '@' + parameterName;
 }

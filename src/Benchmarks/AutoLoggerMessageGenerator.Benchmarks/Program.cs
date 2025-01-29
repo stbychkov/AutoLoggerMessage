@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using AutoLoggerMessageGenerator.Benchmarks;
 
 ProjectConfiguration[] projectConfigurations =

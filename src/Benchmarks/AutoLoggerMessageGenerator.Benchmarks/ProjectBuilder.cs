@@ -1,7 +1,4 @@
-using System;
 using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace AutoLoggerMessageGenerator.Benchmarks;
 
@@ -12,7 +9,7 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
         var baseDirectory = AppContext.BaseDirectory;
 
         var workingDirectory = Path.Join(baseDirectory, projectConfiguration.Name);
-        
+
         CreateWorkingDirectory(workingDirectory);
         await GenerateEntryPoint(workingDirectory);
         CopyBenchmarkFiles(workingDirectory);
@@ -28,7 +25,7 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
             ExecutablePath = Path.Join(workingDirectory, outputFolder, $"{projectConfiguration.Name}.dll"),
         };
     }
-    
+
     private static void CreateWorkingDirectory(string workingDirectory)
     {
         if (Directory.Exists(workingDirectory))
@@ -36,7 +33,7 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
 
         Directory.CreateDirectory(workingDirectory);
     }
-    
+
     private static Task GenerateEntryPoint(string workingDirectory)
     {
         const string mainEntryPoint = """
@@ -48,14 +45,14 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
 
         return File.WriteAllTextAsync(Path.Join(workingDirectory, "Program.cs"), mainEntryPoint);
     }
-    
+
     private static void CopyBenchmarkFiles(string workingDirectory)
     {
         var benchmarkFiles = $"{AppContext.BaseDirectory}/BenchmarkFiles";
         foreach (string newPath in Directory.GetFiles(benchmarkFiles, "*.*",SearchOption.AllDirectories))
             File.Copy(newPath, newPath.Replace(benchmarkFiles, workingDirectory), true);
     }
-    
+
     private async Task<(string OutputFolder, string projFilePath)> GenerateProjectFile(string projectName, string workingDirectory)
     {
         var telemetryConstant = projectConfiguration.References.Contains(PackagesProvider.MicrosoftExtensionsTelemetryPackage)
@@ -63,10 +60,10 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
             : string.Empty;
 
         var targetFramework = TargetFrameworkMonikerDetector.Detect();
-        
+
         string outputFolder = Path.Join("bin", "output");
         const string interceptorNamespace = Constants.GeneratorNamespace;
-        
+
         string projFileContent = $"""
                                   <Project Sdk="Microsoft.NET.Sdk">
                                     <PropertyGroup>
@@ -79,7 +76,7 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
                                       <RootNamespace>{projectName}</RootNamespace>
                                       <DefineConstants>$(DefineConstants);{telemetryConstant}</DefineConstants>
                                     </PropertyGroup>
-                                    
+
                                     <PropertyGroup>
                                          <PlatformTarget>AnyCPU</PlatformTarget>
                                          <DebugType>pdbonly</DebugType>
@@ -89,7 +86,7 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
                                          <Configuration>Release</Configuration>
                                          <IsPackable>false</IsPackable>
                                      </PropertyGroup>
-                                    
+
                                     <ItemGroup>
                                       {string.Join(Environment.NewLine, projectConfiguration.References)}
                                     </ItemGroup>
@@ -104,7 +101,7 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
 
     internal class BuildResult
     {
-        public string ProjectDirectory { get; init; }
-        public string ExecutablePath { get; init; }
+        public required string ProjectDirectory { get; init; }
+        public required string ExecutablePath { get; init; }
     }
 }

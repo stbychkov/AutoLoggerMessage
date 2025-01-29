@@ -1,17 +1,14 @@
-using System;
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace AutoLoggerMessageGenerator.Benchmarks;
 
 internal class CommandRunner(ProcessPriorityClass priorityClass)
 {
-    public async Task RunAsync(string command, string args = null, CancellationToken cancellationToken = default)
+    public async Task RunAsync(string command, string? args = null, CancellationToken cancellationToken = default)
     {
         var process = new Process();
 
-        process.StartInfo = new ProcessStartInfo(command, args)
+        process.StartInfo = new ProcessStartInfo(command, args ?? string.Empty)
         {
             UseShellExecute = false,
             CreateNoWindow = true,

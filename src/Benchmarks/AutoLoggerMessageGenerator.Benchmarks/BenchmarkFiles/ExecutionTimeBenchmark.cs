@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 public partial class ExecutionTimeBenchmark
 {
     private ILogger _logger = null!;
-    private ConfigurationExample _configuration;
+    private ConfigurationExample _configuration = null!;
 
     [GlobalSetup]
     public void Setup()
@@ -126,5 +126,5 @@ public partial class ExecutionTimeBenchmark
 
 #endif
 
-    public record ConfigurationExample(int Id, string Name, ConfigurationExample NestedConfiguration);
+    public record ConfigurationExample(int Id, string Name, ConfigurationExample? NestedConfiguration);
 }

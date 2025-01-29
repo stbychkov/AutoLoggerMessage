@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Exporters;
@@ -12,7 +7,7 @@ using BenchmarkDotNet.Running;
 
 namespace AutoLoggerMessageGenerator.Benchmarks;
 
-internal class MultiBenchmarkRunner(ProjectConfiguration[] projectConfigurations, string[] args = null)
+internal class MultiBenchmarkRunner(ProjectConfiguration[] projectConfigurations, string[]? args = null)
 {
     private static readonly ManualConfig RunConfiguration = ManualConfig.CreateMinimumViable()
         .WithOptions(ConfigOptions.JoinSummary)
@@ -20,7 +15,7 @@ internal class MultiBenchmarkRunner(ProjectConfiguration[] projectConfigurations
         .AddColumn(new ProjectConfigurationColumn())
         .WithOrderer(new DefaultOrderer(SummaryOrderPolicy.Declared))
         .AddExporter(MarkdownExporter.GitHub);
-    
+
     public async Task Run()
     {
         var buildResults = await BuildProjects();
@@ -30,7 +25,7 @@ internal class MultiBenchmarkRunner(ProjectConfiguration[] projectConfigurations
 
         CleanupGeneratedProjects(buildResults);
     }
-   
+
     private async Task<LinkedList<ProjectBuilder.BuildResult>> BuildProjects()
     {
         if (!projectConfigurations.Any())
@@ -45,7 +40,7 @@ internal class MultiBenchmarkRunner(ProjectConfiguration[] projectConfigurations
 
         return buildResults;
     }
-    
+
     private static TypeInfo[] FindAllBenchmarks(LinkedList<ProjectBuilder.BuildResult> buildResults)
     {
         var types = buildResults.Select(b => Assembly.LoadFrom(b.ExecutablePath))
@@ -54,7 +49,7 @@ internal class MultiBenchmarkRunner(ProjectConfiguration[] projectConfigurations
             .ToArray();
         return types;
     }
-    
+
     private static void CleanupGeneratedProjects(LinkedList<ProjectBuilder.BuildResult> buildResults)
     {
         foreach (var buildResult in buildResults)

@@ -1,4 +1,3 @@
-using System;
 using System.Reflection;
 using System.Runtime.Versioning;
 
@@ -11,6 +10,9 @@ public static class TargetFrameworkMonikerDetector
         var frameworkName = Assembly.GetEntryAssembly()?
             .GetCustomAttribute<TargetFrameworkAttribute>()?
             .FrameworkName;
+
+        if (string.IsNullOrEmpty(frameworkName))
+            throw new InvalidOperationException("Failed to detect target framework moniker");
 
         return frameworkName switch
         {
@@ -31,8 +33,10 @@ public static class TargetFrameworkMonikerDetector
             ".NETCoreApp,Version=v7.0" => "net7.0",
             ".NETCoreApp,Version=v8.0" => "net8.0",
             ".NETCoreApp,Version=v9.0" => "net9.0",
-            _ when frameworkName.StartsWith(".NETFramework") => frameworkName.Replace(".NETFramework,Version=v", string.Empty).Replace(".", string.Empty),
-            _ when frameworkName.StartsWith(".NETCoreApp") => frameworkName.Replace(".NETCoreApp,Version=v", string.Empty),
+            _ when frameworkName.StartsWith(".NETFramework") =>
+                frameworkName.Replace(".NETFramework,Version=v", string.Empty).Replace(".", string.Empty),
+            _ when frameworkName.StartsWith(".NETCoreApp") =>
+                frameworkName.Replace(".NETCoreApp,Version=v", string.Empty),
             _ => throw new NotSupportedException($"Unsupported framework: {frameworkName}")
         };
     }

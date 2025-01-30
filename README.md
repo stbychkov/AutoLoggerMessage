@@ -1,26 +1,18 @@
-<p align="center">
-    <a>
-        <picture>
-          <img src="https://raw.githubusercontent.com/stbychkov/AutoLoggerMessage/refs/heads/main/src/AutoLoggerMessageGenerator/Assets/icon.jpg" height="128">
-        </picture>
-        <h1 align="center">AutoLoggerMessage</h1>
-    </a>
-</p>
+# AutoLoggerMessage
 
-<p align="center">
-  <a href="https://www.nuget.org/packages/stbychkov.AutoLoggerMessage/"><img src="https://img.shields.io/nuget/v/stbychkov.AutoLoggerMessage" alt="NuGet"></a>
-  <img src="https://github.com/stbychkov/AutoLoggerMessage/actions/workflows/dotnet_build.yml/badge.svg" alt="Build">
-  <a href="https://github.com/stbychkov/AutoLoggerMessage/blob/main/LICENSE"><img src="https://img.shields.io/github/license/stbychkov/AutoLoggerMessage" alt="License"></a>
-  <a href="https://www.nuget.org/packages/stbychkov.AutoLoggerMessage/"><img src="https://img.shields.io/nuget/dt/stbychkov.AutoLoggerMessage" alt="Nuget"></a>
-  <a href="https://github.com/stbychkov/stbychkov.AutoLoggerMessage/pulls"><img src="https://img.shields.io/badge/PR-Welcome-blue" alt="PR"></a>
-</p>
+[![NuGet](https://img.shields.io/nuget/v/stbychkov.AutoLoggerMessage)](https://www.nuget.org/packages/stbychkov.AutoLoggerMessage/)
+![Build](https://github.com/stbychkov/AutoLoggerMessage/actions/workflows/dotnet_build.yml/badge.svg)
+[![License](https://img.shields.io/github/license/stbychkov/AutoLoggerMessage)](https://github.com/stbychkov/AutoLoggerMessage/blob/main/LICENSE)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/stbychkov.AutoLoggerMessage)](https://www.nuget.org/packages/stbychkov.AutoLoggerMessage/)
+[![PRs Welcome](https://img.shields.io/badge/PR-Welcome-blue)](https://github.com/stbychkov/stbychkov.AutoLoggerMessage/pulls)
 
+---
 
-Welcome to `AutoLoggerMessage`, a source generator that automatically creates [LoggerMessage](https://youtu.be/Otm8tH0Vrp0) methods, enabling high-performance logging.
+Welcome to **`AutoLoggerMessage`**, a source generator that automatically creates [`LoggerMessage`](https://youtu.be/Otm8tH0Vrp0) methods, enabling high-performance logging.
 
 ## Demo
 
-![Demo](https://raw.githubusercontent.com/stbychkov/AutoLoggerMessage/94f1425f9eaed51d05db734f2694483902773211/docs/demo.gif)
+[![Demo](https://img.youtube.com/vi/2MTbv6WtwjM/0.jpg)](https://youtu.be/2MTbv6WtwjM?si=lGVfp3Sz8h2B1b-U)
 
 ## Getting started
 

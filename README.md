@@ -8,7 +8,7 @@
 
 ---
 
-Welcome to **`AutoLoggerMessage`**, a source generator that automatically creates [`LoggerMessage`](https://youtu.be/Otm8tH0Vrp0) methods, enabling high-performance logging.
+Welcome to `AutoLoggerMessage`, a source generator that automatically creates [`LoggerMessage`](https://youtu.be/Otm8tH0Vrp0) methods, enabling high-performance logging.
 
 ## Demo
 

@@ -27,6 +27,10 @@ internal class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck
         if (templateParametersNames.Length < methodParameters.Length)
             return null;
 
+        // https://github.com/dotnet/extensions/blob/ca2fe808b3d6c55817467f46ca58657456b4a928/docs/list-of-diagnostics.md?plain=1#L66C4-L66C13
+        if (methodParameters.Any(IsGenericParameter))
+            return null;
+
         var uniqueNameSuffix = ReservedParameterNameResolver.GenerateUniqueIdentifierSuffix(templateParametersNames);
 
         var utilityParameters = methodSymbol.Parameters
@@ -70,4 +74,7 @@ internal class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck
 
     private static string TransformParameterName(string parameterName) =>
         parameterName.StartsWith("@") ? parameterName : '@' + parameterName;
+
+    private static bool IsGenericParameter(IParameterSymbol parameterSymbol) =>
+        parameterSymbol.Type is INamedTypeSymbol { IsGenericType: true } or ITypeParameterSymbol;
 }

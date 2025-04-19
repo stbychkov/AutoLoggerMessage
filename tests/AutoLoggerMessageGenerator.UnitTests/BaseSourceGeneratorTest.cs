@@ -32,7 +32,7 @@ internal abstract class BaseSourceGeneratorTest
                            }
                            """;
 
-        var syntaxTree = CSharpSyntaxTree.ParseText(sourceCode);
+        var syntaxTree = CSharpSyntaxTree.ParseText(sourceCode, path: "path/testFile.cs");
 
         var references = AppDomain.CurrentDomain.GetAssemblies()
             .Where(assembly => !assembly.IsDynamic)
@@ -40,8 +40,13 @@ internal abstract class BaseSourceGeneratorTest
             .Cast<MetadataReference>()
             .ToList();
 
-        var loggerAssemblyLocation = Path.Join(AppContext.BaseDirectory, "Microsoft.Extensions.Logging.Abstractions.dll");
-        references.Add(MetadataReference.CreateFromFile(loggerAssemblyLocation));
+        var loggerAssemblyLocation = MetadataReference.CreateFromFile(
+            Path.Join(AppContext.BaseDirectory, "Microsoft.Extensions.Logging.Abstractions.dll")
+        );
+        var buildOutputAssembly = MetadataReference.CreateFromFile(
+            Path.Join(AppContext.BaseDirectory, "AutoLoggerMessageGenerator.BuildOutput.dll")
+        );
+        references.AddRange([loggerAssemblyLocation, buildOutputAssembly]);
 
         var compilation = CSharpCompilation.Create("SourceGeneratorTests",
             [syntaxTree],

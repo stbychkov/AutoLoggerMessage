@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RoslynApiVersion>4.11.0</RoslynApiVersion>
+    <IsPackable>true</IsPackable>
+    <RootNamespace>AutoLoggerMessageGenerator</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="AutoLoggerMessageGenerator.Build.targets" />
+
+  <ItemGroup>
+    <ProjectReference Include="AutoLoggerMessageGenerator.Roslyn4_11.csproj" PrivateAssets="All" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="AutoLoggerMessageGenerator.Roslyn4_8.csproj" PrivateAssets="All" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="**\*.cs" />
+    <None Include="$(OutputPath)\..\..\AutoLoggerMessageGenerator.Roslyn4_8\$(ArtifactsPivots)\$(AssemblyName).dll"
+          Pack="true" PackagePath="analyzers/dotnet/roslyn4.8/cs" Visible="false" />
+    <None Include="$(OutputPath)\..\..\AutoLoggerMessageGenerator.Roslyn4_11\$(ArtifactsPivots)\$(AssemblyName).dll"
+          Pack="true" PackagePath="analyzers/dotnet/roslyn4.11/cs" Visible="false" />
+    <None Include="$(OutputPath)\AutoLoggerMessageGenerator.BuildOutput.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="AutoLoggerMessageGenerator.props" Pack="true" PackagePath="build/stbychkov.AutoLoggerMessage.props"/>
+    <None Include="AutoLoggerMessageGenerator.targets" Pack="true" PackagePath="build/stbychkov.AutoLoggerMessage.targets"/>
+
+    <None Include="../../README.md" Pack="true" PackagePath="" />
+    <None Include="Assets\icon.jpg" Pack="true" PackagePath="" />
+  </ItemGroup>
+</Project>

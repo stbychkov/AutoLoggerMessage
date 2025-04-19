@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RoslynApiVersion>4.11.0</RoslynApiVersion>
+    <DefineConstants>$(DefineConstants);HASH_BASED_INTERCEPTORS</DefineConstants>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <Import Project="AutoLoggerMessageGenerator.Build.targets" />
+</Project>

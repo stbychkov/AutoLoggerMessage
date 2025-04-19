@@ -47,7 +47,6 @@ Take a look at [benchmark](https://github.com/stbychkov/AutoLoggerMessage/wiki/B
   parameters ([src](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggermessage.define))
   so if you pass more than that, the default `Logger.Log(*, params object[] args)` will be executed.
 * As this solution is based on interceptors, only .NET 8+ is supported
-* Hash-based interceptors are incompatible with .NET SDK versions earlier than 8.0.8, most likely due to differences in the compiler version. To resolve this issue, please update your SDK to version [8.0.8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later.
 * Generic arguments [are not supported](https://github.com/dotnet/extensions/blob/ca2fe808b3d6c55817467f46ca58657456b4a928/docs/list-of-diagnostics.md?plain=1#L66C4-L66C13). If you pass a generic argument to the log function, the default `Logger.Log(*, params object[] args)` will be executed.
 
 ## Is something wrong?

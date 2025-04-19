@@ -1,0 +1,54 @@
+{
+  Id: Guid_1,
+  Location: {
+    FilePath: path/testFile.cs,
+    Line: 12,
+    Character: 16,
+    InterceptableLocationSyntax: [global::System.Runtime.CompilerServices.InterceptsLocationAttribute(1, "bg8SAsBDKqh7V1TqOZu8tZkAAAB0ZXN0RmlsZS5jcw==")],
+    Context: {
+      Kind: SourceFile,
+      SourceSpan: {
+        Start: 146,
+        Length: 59
+      },
+      SourceTree: {
+        FilePath: path/testFile.cs,
+        Length: 214,
+        HasCompilationUnitRoot: true,
+        Options: {
+          LanguageVersion: CSharp12,
+          Language: C#,
+          DocumentationMode: Parse,
+          Errors: null
+        }
+      },
+      IsInSource: true,
+      IsInMetadata: false
+    }
+  },
+  Namespace: Foo,
+  ClassName: Test,
+  Name: LogInformation,
+  LogLevel: Information,
+  Message: Hello world {arg1} {arg2},
+  Parameters: [
+    {
+      NativeType: global::System.String,
+      Name: @message,
+      Type: Message,
+      HasPropertiesToLog: false
+    },
+    {
+      NativeType: global::System.Int32,
+      Name: @arg1,
+      Type: Others,
+      HasPropertiesToLog: false
+    },
+    {
+      NativeType: global::System.Boolean,
+      Name: @arg2,
+      Type: Others,
+      HasPropertiesToLog: false
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 using AutoLoggerMessageGenerator.Extractors;
+using AutoLoggerMessageGenerator.UnitTests.Utilities;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Extractors;
 
@@ -17,7 +18,8 @@ internal class LogCallExtractorTests : BaseSourceGeneratorTest
 
         if (isValidCall)
         {
-            await Verify(logCall);
+            var configuration = InterceptorConfigurationUtilities.GetInterceptorConfiguration();
+            await Verify(logCall).UseTextForParameters(configuration);
         }
         else
         {

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RoslynApiVersion>4.8.0</RoslynApiVersion>
+    <DefineConstants>$(DefineConstants);PATH_BASED_INTERCEPTORS</DefineConstants>
+  </PropertyGroup>
+
+  <Import Project="AutoLoggerMessageGenerator.UnitTests.Build.targets"/>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn4_8.csproj"
+                      ReferenceOutputAssembly="true"/>
+  </ItemGroup>
+</Project>

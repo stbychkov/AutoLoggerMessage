@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <!--  The shared dependencies configuration for all child processes -->
+  <ItemGroup>
+    <PackageVersion Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
+    <PackageVersion Include="Microsoft.Extensions.Telemetry.Abstractions" Version="9.4.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="9.0.4" />
+  </ItemGroup>
+</Project>

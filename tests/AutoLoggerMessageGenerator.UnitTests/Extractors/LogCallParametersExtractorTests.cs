@@ -24,14 +24,11 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
                                          """;
 
          var (compilation, syntaxTree) = await CompileSourceCode($"Log({parameters});", extensionDeclaration);
-         var invocationExpression = syntaxTree.GetRoot().DescendantNodes().OfType<InvocationExpressionSyntax>().First();
-
-         var semanticModel = compilation.GetSemanticModel(syntaxTree);
-         var methodSymbol = (IMethodSymbol)semanticModel.GetSymbolInfo(invocationExpression).Symbol!;
+         var (_, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
 
          var sut = new LogCallParametersExtractor();
 
-         var result = sut.Extract(message, methodSymbol);
+         var result = sut.Extract(message, methodSymbol!);
 
          await Assert.That(result).IsEquivalentTo(new LogCallParameter[]
          {
@@ -144,4 +141,29 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
              new("global::System.Int32", "@time", LogCallParameterType.Others),
          });
      }
+
+     [Test]
+     [Arguments("T")]
+     [Arguments("List<T>")]
+     public async Task Extract_WithGenericParameters_ShouldSkipExtractingParameters(string genericType)
+     {
+         var message = "{GenericParameter}";
+         var (compilation, syntaxTree) = await CompileSourceCode(string.Empty,
+    $$"""
+                private static void Log<T>(string {{MessageParameterName}}, T {{ParameterName}}) {}
+
+                public void Foo<T>({{genericType}} arg)
+                {
+                    Log<{{genericType}}>("{{message}}", arg);
+                }
+            """);
+         var (_, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
+
+         var sut = new LogCallParametersExtractor();
+
+         var result = sut.Extract(message, methodSymbol!);
+
+         await Assert.That(result).IsNull();
+     }
 }
+

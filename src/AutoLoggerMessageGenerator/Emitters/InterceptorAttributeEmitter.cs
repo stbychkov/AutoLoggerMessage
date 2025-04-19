@@ -21,7 +21,11 @@ internal static class InterceptorAttributeEmitter
         sb.WriteLine('{');
         sb.Indent++;
 
-        sb.WriteLine($"public {Constants.InterceptorAttributeName}(int version, string data) {{}}");
+        #if PATH_BASED_INTERCEPTORS
+            sb.WriteLine($"public {Constants.InterceptorAttributeName}(string filePath, int line, int character) {{}}");
+        #elif HASH_BASED_INTERCEPTORS
+            sb.WriteLine($"public {Constants.InterceptorAttributeName}(int version, string data) {{}}");
+        #endif
 
         sb.Indent--;
         sb.WriteLine('}');

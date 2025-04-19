@@ -1,12 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <IsPackable>true</IsPackable>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <IsRoslynComponent>true</IsRoslynComponent>
     <NoWarn>RSEXPERIMENTAL002;RS2008</NoWarn>
     <Version>1.0.9</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <AssemblyName>AutoLoggerMessageGenerator</AssemblyName>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -22,32 +23,25 @@
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.jpg</PackageIcon>
-    <OutputPath>./nupkg</OutputPath>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" PrivateAssets="all"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(RoslynApiVersion)" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
-    <None Include="AutoLoggerMessageGenerator.props" Pack="true" PackagePath="build/stbychkov.AutoLoggerMessage.props" />
-    <None Include="AutoLoggerMessageGenerator.targets" Pack="true" PackagePath="build/stbychkov.AutoLoggerMessage.targets" />
+    <ProjectReference Include="..\AutoLoggerMessageGenerator.BuildOutput\AutoLoggerMessageGenerator.BuildOutput.csproj"
+                      PrivateAssets="All" />
+  </ItemGroup>
 
-    <None Include="../../README.md" Pack="true" PackagePath="" />
-    <None Include="Assets\icon.jpg" Pack="true" PackagePath="" />
-
+  <ItemGroup>
     <Compile Update="Import/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.Designer.cs"
              DesignTime="True" AutoGen="True" DependentUpon="Resources.resx"/>
     <EmbeddedResource Update="Import/Microsoft.Extensions.Telemetry.LoggerMessage/Parsing/Resources.resx"
                       Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs"
                       LogicalName="Microsoft.Gen.Logging.Parsing.Resources.resources"/>
-    <Compile Update="src\Emitters\LoggerExtensions.g.cs">
-      <DependentUpon>LoggerExtensionMethodsEmitter.cs</DependentUpon>
-    </Compile>
-
     <Compile Update="Emitters/LoggerExtensions.g.cs">
       <DependentUpon>LoggerExtensionMethodsEmitter.cs</DependentUpon>
     </Compile>
@@ -55,7 +49,10 @@
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>$(AssemblyName).UnitTests</_Parameter1>
+      <_Parameter1>$(AssemblyName).UnitTests.Roslyn4_8</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).UnitTests.Roslyn4_11</_Parameter1>
     </AssemblyAttribute>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>$(AssemblyName).Benchmarks</_Parameter1>

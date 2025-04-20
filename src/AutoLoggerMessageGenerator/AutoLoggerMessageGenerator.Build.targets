@@ -4,7 +4,7 @@
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <IsRoslynComponent>true</IsRoslynComponent>
     <NoWarn>RSEXPERIMENTAL002;RS2008</NoWarn>
-    <Version>1.0.9</Version>
+    <Version>1.0.10</Version>
     <DevelopmentDependency>true</DevelopmentDependency>
     <AssemblyName>AutoLoggerMessageGenerator</AssemblyName>
     <IncludeBuildOutput>false</IncludeBuildOutput>

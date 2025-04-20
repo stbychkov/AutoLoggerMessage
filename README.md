@@ -12,7 +12,9 @@ Welcome to `AutoLoggerMessage`, a source generator that automatically creates [`
 
 ## Demo
 
-[![Demo](https://img.youtube.com/vi/2MTbv6WtwjM/0.jpg)](https://youtu.be/2MTbv6WtwjM?si=lGVfp3Sz8h2B1b-U)
+Click the image below to watch the demo video:
+
+[![Demo](https://raw.githubusercontent.com/stbychkov/AutoLoggerMessage/c4ffa42eab74b75bac814a2beca374893f845a2f/src/AutoLoggerMessageGenerator/Assets/icon.jpg)](https://youtu.be/2MTbv6WtwjM?si=lGVfp3Sz8h2B1b-U)
 
 ## Getting started
 

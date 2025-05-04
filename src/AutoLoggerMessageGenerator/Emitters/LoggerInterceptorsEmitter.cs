@@ -25,7 +25,6 @@ internal static class LoggerInterceptorsEmitter
 
         foreach (var logCall in logCalls)
         {
-            sb.WriteLine(Constants.EditorNotBrowsableAttribute);
             sb.WriteLine(logCall.Location.InterceptableLocationSyntax);
 
             var parameters = string.Join(", ", logCall.Parameters.Select((c, i) => $"{c.NativeType} {c.Name}"));

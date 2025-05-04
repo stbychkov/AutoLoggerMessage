@@ -9,23 +9,20 @@ namespace Microsoft.Extensions.Logging.AutoLoggerMessage
     [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     [System.Diagnostics.DebuggerStepThrough]
-    internal static class BeginScopeInterceptors
+    internal static class LoggerScopeInterceptors
     {
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [FakeInterceptableLocation(-1, "ZmlsZSgxLDExKQ==")]
         public static IDisposable? LogScope_namespace1class1_1_11(this ILogger @logger, string @message)
         {
             return Microsoft.Extensions.Logging.AutoLoggerMessage.LoggerScopes.LogScope_namespace1class1_1_11(@logger);
         }
         
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [FakeInterceptableLocation(-1, "ZmlsZTIoMiwyMik=")]
         public static IDisposable? LogScope_namespace2class2_2_22(this ILogger @logger, string @message, int @intParam)
         {
             return Microsoft.Extensions.Logging.AutoLoggerMessage.LoggerScopes.LogScope_namespace2class2_2_22(@logger, @intParam);
         }
         
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [FakeInterceptableLocation(-1, "ZmlsZTMoMywzMyk=")]
         public static IDisposable? LogScope_namespace3class3_3_33(this ILogger @logger, string @message, int @intParam, bool @boolParam, SomeClass @objectParam)
         {

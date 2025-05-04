@@ -19,13 +19,12 @@ internal static class LoggerScopeInterceptorsEmitter
         sb.WriteLine(Constants.EditorNotBrowsableAttribute);
         sb.WriteLine(Constants.ExcludeFromCoverageAttribute);
         sb.WriteLine(Constants.DebuggerStepThroughAttribute);
-        sb.WriteLine("internal static class BeginScopeInterceptors");
+        sb.WriteLine("internal static class LoggerScopeInterceptors");
         sb.WriteLine('{');
         sb.Indent++;
 
         foreach (var loggerScope in loggerScopes)
         {
-            sb.WriteLine(Constants.EditorNotBrowsableAttribute);
             sb.WriteLine(loggerScope.Location.InterceptableLocationSyntax);
 
             var parameters = string.Join(", ", loggerScope.Parameters.Select((c, i) => $"{c.NativeType} {c.Name}"));

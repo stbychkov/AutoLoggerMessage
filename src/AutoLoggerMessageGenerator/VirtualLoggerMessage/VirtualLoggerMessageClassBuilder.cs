@@ -1,7 +1,6 @@
 using System.Collections.Immutable;
 using AutoLoggerMessageGenerator.Configuration;
 using AutoLoggerMessageGenerator.Models;
-using AutoLoggerMessageGenerator.Utilities;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -17,7 +16,7 @@ internal class VirtualLoggerMessageClassBuilder(
     private const string LoggerMessageAttributeName = LoggerMessageGenerator.Parser.LoggerMessageAttribute;
     private const string LogPropertiesAttribute = "Microsoft.Extensions.Logging.LogPropertiesAttribute";
 
-    public MemberDeclarationSyntax Build(ImmutableArray<LogCall> logCalls)
+    public MemberDeclarationSyntax Build(ImmutableArray<LogMessageCall> logCalls)
     {
         var methods = logCalls.Select(GenerateMethod).OfType<MemberDeclarationSyntax>().ToArray();
 
@@ -31,14 +30,14 @@ internal class VirtualLoggerMessageClassBuilder(
         return namespaceDeclaration;
     }
 
-    private MethodDeclarationSyntax GenerateMethod(LogCall logCall)
+    private MethodDeclarationSyntax GenerateMethod(LogMessageCall logMessageCall)
     {
-        var attributeList = GenerateLoggerMessageAttribute(logCall);
+        var attributeList = GenerateLoggerMessageAttribute(logMessageCall);
 
         var loggerParameter = Parameter(Identifier("Logger"))
             .WithType(IdentifierName($"{Constants.DefaultLoggingNamespace}.ILogger"));
 
-        var parameters = logCall.Parameters
+        var parameters = logMessageCall.Parameters
             .Where(c => !Constants.LoggerMessageAttributeParameterTypes.Contains(c.Type))
             .Select(c =>
         {
@@ -50,11 +49,8 @@ internal class VirtualLoggerMessageClassBuilder(
             return parameter;
         }).ToArray();
 
-        var methodName = IdentifierHelper.ToValidCSharpMethodName(
-            $"{Constants.LogMethodPrefix}{logCall.Namespace}{logCall.ClassName}_{logCall.Location.Line}_{logCall.Location.Character}");
-
-        var logCallMappingLocation = ParseLeadingTrivia(LogCallLocationMap.CreateMapping(logCall));
-        var methodDeclaration = MethodDeclaration(PredefinedType(Token(SyntaxKind.VoidKeyword)), methodName)
+        var logCallMappingLocation = ParseLeadingTrivia(LogMessageCallLocationMap.CreateMapping(logMessageCall));
+        var methodDeclaration = MethodDeclaration(PredefinedType(Token(SyntaxKind.VoidKeyword)), logMessageCall.GeneratedMethodName)
             .AddModifiers(
                 Token(SyntaxKind.InternalKeyword),
                 Token(SyntaxKind.StaticKeyword),
@@ -69,7 +65,7 @@ internal class VirtualLoggerMessageClassBuilder(
         return methodDeclaration;
     }
 
-    private AttributeListSyntax GenerateLoggerMessageAttribute(LogCall logCall)
+    private AttributeListSyntax GenerateLoggerMessageAttribute(LogMessageCall logMessageCall)
     {
         var attribute = Attribute(ParseName(LoggerMessageAttributeName))
             .WithArgumentList(
@@ -78,11 +74,11 @@ internal class VirtualLoggerMessageClassBuilder(
                     {
                         AttributeArgument(
                             ParseExpression(
-                                $"Level = {Constants.DefaultLoggingNamespace}.LogLevel.{logCall.LogLevel}")),
+                                $"Level = {Constants.DefaultLoggingNamespace}.LogLevel.{logMessageCall.LogLevel}")),
                         AttributeArgument(
                             AssignmentExpression(SyntaxKind.SimpleAssignmentExpression,
                                 IdentifierName("Message"),
-                                LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(logCall.Message)))),
+                                LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(logMessageCall.Message)))),
                         AttributeArgument(
                             ParseExpression(
                                 $"SkipEnabledCheck = {configuration.GenerateSkipEnabledCheck.ToLowerBooleanString()}"))

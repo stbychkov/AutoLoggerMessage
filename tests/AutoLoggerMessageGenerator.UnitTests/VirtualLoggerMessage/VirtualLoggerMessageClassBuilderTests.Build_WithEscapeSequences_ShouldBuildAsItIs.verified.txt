@@ -2,7 +2,7 @@
 {
     static partial class AutoLoggerMessage
     {
-        // <LogCallMappingLocation>: Guid_1
+        // <LogMessageCallMappingLocation>: Guid_1
         [Microsoft.Extensions.Logging.LoggerMessageAttribute(Level = Microsoft.Extensions.Logging.LogLevel.Trace, Message = "All characters should be passed as a string literal expression: \n\r\t", SkipEnabledCheck = false)]
         internal static partial void Log_SomeNamespaceSomeClass_3_33(Microsoft.Extensions.Logging.ILogger Logger, int @intParam, string @stringParam, bool @boolParam, SomeClass @classParam, SomeStruct @structParam);
     }

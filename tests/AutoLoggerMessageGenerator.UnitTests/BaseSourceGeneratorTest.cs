@@ -66,7 +66,7 @@ internal abstract class BaseSourceGeneratorTest
         return (compilation, syntaxTree);
     }
 
-    protected static (InvocationExpressionSyntax, IMethodSymbol?, SemanticModel?) FindLoggerMethodInvocation(
+    protected static (InvocationExpressionSyntax, IMethodSymbol?, SemanticModel?) FindMethodInvocation(
         Compilation? compilation, SyntaxTree syntaxTree)
     {
         var invocationExpression = syntaxTree.GetRoot().DescendantNodes().OfType<InvocationExpressionSyntax>().First();

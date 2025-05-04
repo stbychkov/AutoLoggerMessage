@@ -8,7 +8,16 @@ using Microsoft.CodeAnalysis.CSharp;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Caching;
 
-using InputSource = (Compilation Compilation, (SourceGeneratorConfiguration Configuration, (ImmutableArray<Reference> References, ImmutableArray<LogCall> LogCalls) Others) Others);
+using InputSource = (
+    Compilation Compilation,
+    (
+        SourceGeneratorConfiguration Configuration,
+        (
+            ImmutableArray<Reference> References,
+            ImmutableArray<LogMessageCall> LogCalls
+        ) Others
+    ) Others
+);
 
 internal class InputSourceComparerTests
 {
@@ -21,7 +30,7 @@ internal class InputSourceComparerTests
         var inputSource1  = CreateInputSource(compilation: compilation1);
         var inputSource2 = CreateInputSource(compilation: compilation2);
 
-        var sut = new InputSourceComparer();
+        var sut = new LogCallInputSourceComparer();
         var result = sut.Equals(inputSource1, inputSource2);
 
         await Assert.That(result).IsTrue();
@@ -30,13 +39,13 @@ internal class InputSourceComparerTests
     [Test]
     public async Task Equals_WithDifferentConfiguration_ShouldReturnFalse()
     {
-        var configuration1 = new SourceGeneratorConfiguration(true, true, true, true, true);
-        var configuration2 = new SourceGeneratorConfiguration(false, false, false, false, false);
+        var configuration1 = new SourceGeneratorConfiguration(true, true, true, true, true, true);
+        var configuration2 = new SourceGeneratorConfiguration(false, false, false, false, false, false);
 
         var inputSource1 = CreateInputSource(configuration: configuration1);
         var inputSource2 = CreateInputSource(configuration: configuration2);
 
-        var sut = new InputSourceComparer();
+        var sut = new LogCallInputSourceComparer();
         var result = sut.Equals(inputSource1, inputSource2);
 
         await Assert.That(result).IsFalse();
@@ -55,7 +64,7 @@ internal class InputSourceComparerTests
         var inputSource1  = CreateInputSource(references: references1);
         var inputSource2 = CreateInputSource(references: references2);
 
-        var sut = new InputSourceComparer();
+        var sut = new LogCallInputSourceComparer();
         var result = sut.Equals(inputSource1, inputSource2);
 
         await Assert.That(result).IsFalse();
@@ -64,13 +73,13 @@ internal class InputSourceComparerTests
     [Test]
     public async Task Equals_WithDifferentLogCalls_ShouldReturnFalse()
     {
-        ImmutableArray<LogCall> logCalls = [new LogCall { Message = "message1"}];
-        ImmutableArray<LogCall> logCalls2 = [new LogCall { Message = "message2"}];
+        ImmutableArray<LogMessageCall> logCalls = [new LogMessageCall { Message = "message1"}];
+        ImmutableArray<LogMessageCall> logCalls2 = [new LogMessageCall { Message = "message2"}];
 
         var inputSource1  = CreateInputSource(logCalls: logCalls);
         var inputSource2 = CreateInputSource(logCalls: logCalls2);
 
-        var sut = new InputSourceComparer();
+        var sut = new LogCallInputSourceComparer();
         var result = sut.Equals(inputSource1, inputSource2);
 
         await Assert.That(result).IsFalse();
@@ -79,14 +88,14 @@ internal class InputSourceComparerTests
     private static InputSource CreateInputSource(Compilation? compilation = default,
         SourceGeneratorConfiguration? configuration = default,
         ImmutableArray<Reference>? references = default,
-        ImmutableArray<LogCall>? logCalls = default)
+        ImmutableArray<LogMessageCall>? logCalls = default)
     {
         compilation ??= CSharpCompilation.Create(default);
-        configuration ??= new SourceGeneratorConfiguration(true, true, true, true, true);
+        configuration ??= new SourceGeneratorConfiguration(true, true, true, true, true, true);
         references ??= [new Reference("some lib", new Version("1.2.3"))];
         logCalls ??=
         [
-            new LogCall(Guid.NewGuid(), MockLogCallLocationBuilder.Build("some file", 1, 2), "namespace", "class", "name",
+            new LogMessageCall(Guid.NewGuid(), MockLogCallLocationBuilder.Build("some file", 1, 2), "namespace", "class", "name",
                 "information", "message", [])
         ];
 

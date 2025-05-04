@@ -11,6 +11,7 @@ internal static class GeneratorOptionsProvider
     private const string GenerateOmitReferenceNameKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateOmitReferenceName)}";
     private const string GenerateSkipNullPropertiesKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateSkipNullProperties)}";
     private const string GenerateTransitiveKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateTransitive)}";
+    private const string OverrideBeginScopeBehavior = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.OverrideBeginScopeBehavior)}";
 
     public static IncrementalValueProvider<SourceGeneratorConfiguration> Provide(IncrementalGeneratorInitializationContext context) =>
         context.AnalyzerConfigOptionsProvider.Select((options, _) => new SourceGeneratorConfiguration(
@@ -18,7 +19,8 @@ internal static class GeneratorOptionsProvider
             GenerateSkipEnabledCheck: GetValue(options.GlobalOptions, GenerateSkipEnabledCheckKey, true),
             GenerateOmitReferenceName: GetValue(options.GlobalOptions, GenerateOmitReferenceNameKey, false),
             GenerateSkipNullProperties: GetValue(options.GlobalOptions, GenerateSkipNullPropertiesKey, false),
-            GenerateTransitive: GetValue(options.GlobalOptions, GenerateTransitiveKey, false)
+            GenerateTransitive: GetValue(options.GlobalOptions, GenerateTransitiveKey, false),
+            OverrideBeginScopeBehavior: GetValue(options.GlobalOptions, OverrideBeginScopeBehavior, true)
         ));
 
     private static bool GetValue(AnalyzerConfigOptions options, string key, bool defaultValue = true) =>

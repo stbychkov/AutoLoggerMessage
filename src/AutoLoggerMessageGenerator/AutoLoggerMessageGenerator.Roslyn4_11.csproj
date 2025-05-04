@@ -7,5 +7,14 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Update="Generators\AutoLoggerMessageGenerator.LoggerMessage.cs">
+      <DependentUpon>AutoLoggerMessageGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Generators\AutoLoggerMessageGenerator.LoggerScopes.cs">
+      <DependentUpon>AutoLoggerMessageGenerator.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
   <Import Project="AutoLoggerMessageGenerator.Build.targets" />
 </Project>

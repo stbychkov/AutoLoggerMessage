@@ -24,7 +24,7 @@ internal class LogLevelExtractorTests : BaseSourceGeneratorTest
     public async Task Extract_WithGivenMethodCall_ShouldReturnExpectedLogLevel(string methodCall, string? expectedLogLevel)
     {
         var (compilation, syntaxTree) = await CompileSourceCode($"{LoggerName}.{methodCall};");
-        var (invocationExpression, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
+        var (invocationExpression, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
         var result = LogLevelExtractor.Extract(methodSymbol!, invocationExpression);
 
@@ -39,7 +39,7 @@ internal class LogLevelExtractorTests : BaseSourceGeneratorTest
                          Log(logLevel, default);
                          """;
         var (compilation, syntaxTree) = await CompileSourceCode(sourceCode);
-        var (invocationExpression, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
+        var (invocationExpression, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
         var result = LogLevelExtractor.Extract(methodSymbol!, invocationExpression);
 

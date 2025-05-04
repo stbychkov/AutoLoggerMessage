@@ -6,20 +6,21 @@ namespace AutoLoggerMessageGenerator.UnitTests.Extractors;
 internal class LogCallExtractorTests : BaseSourceGeneratorTest
 {
     [Test]
-    [Arguments($$"""{{LoggerName}}.LogInformation("Hello world {arg1} {arg2}", 1, true);""", true)]
-    [Arguments($$"""{{LoggerName}}.LogInformation(null);""", false)]
-    [Arguments($$"""{{LoggerName}}.LogInformation("Hello world {arg1}", 1, true);""", false)]
-    public async Task Extract_WithLogMethodInvocationCode_ShouldTransformThemIntoLogCallObject(string sourceCode, bool isValidCall)
+    [Arguments("without parameters", $$"""{{LoggerName}}.LogInformation("Hello world");""", true)]
+    [Arguments("with parameters", $$"""{{LoggerName}}.LogInformation("Hello world {arg1} {arg2}", 1, true);""", true)]
+    [Arguments("with only null passed", $$"""{{LoggerName}}.LogInformation(null);""", false)]
+    [Arguments("with parameter count mismatch", $$"""{{LoggerName}}.LogInformation("Hello world {arg1}", 1, true);""", false)]
+    public async Task Extract_WithLogMethodInvocationCode_ShouldTransformThemIntoLogCallObject(string description, string sourceCode, bool isValidCall)
     {
         var (compilation, syntaxTree) = await CompileSourceCode(sourceCode);
-        var (invocationExpression, methodSymbol, semanticModel) = FindLoggerMethodInvocation(compilation, syntaxTree);
+        var (invocationExpression, methodSymbol, semanticModel) = FindMethodInvocation(compilation, syntaxTree);
 
         var logCall = LogCallExtractor.Extract(methodSymbol!, invocationExpression, semanticModel!);
 
         if (isValidCall)
         {
             var configuration = InterceptorConfigurationUtilities.GetInterceptorConfiguration();
-            await Verify(logCall).UseTextForParameters(configuration);
+            await Verify(logCall).UseParameters(description, configuration);
         }
         else
         {

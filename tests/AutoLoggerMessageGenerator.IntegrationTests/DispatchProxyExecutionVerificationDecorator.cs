@@ -5,7 +5,7 @@ namespace AutoLoggerMessageGenerator.IntegrationTests;
 public class DispatchProxyExecutionVerificationDecorator<T> : DispatchProxy
 {
     private T? Target { get; set; }
-
+    private string? GeneratorName { get; set; }
     private Func<string, bool>? MethodFilter { get; set; }
 
     private readonly List<string> _executionsFromGenerator = [];
@@ -14,13 +14,15 @@ public class DispatchProxyExecutionVerificationDecorator<T> : DispatchProxy
     public IReadOnlyList<string> ExecutionsFromGenerator => _executionsFromGenerator.AsReadOnly();
     public IReadOnlyList<string> ExecutionsWithoutGenerator => _executionsWithoutGenerator.AsReadOnly();
 
-    public static DispatchProxyExecutionVerificationDecorator<T> Decorate(T target, Func<string, bool>? methodFilter = default)
+    public static DispatchProxyExecutionVerificationDecorator<T> Decorate(T target, string generatorName, Func<string, bool>? methodFilter = default)
     {
         if (Create<T, DispatchProxyExecutionVerificationDecorator<T>>() is not DispatchProxyExecutionVerificationDecorator<T> proxy)
             throw new InvalidOperationException($"Unable to create DispatchProxyExecutionVerificationDecorator for {typeof(T).FullName}");
 
         proxy.Target = target;
+        proxy.GeneratorName = generatorName;
         proxy.MethodFilter = methodFilter;
+
         return proxy;
     }
 
@@ -35,7 +37,7 @@ public class DispatchProxyExecutionVerificationDecorator<T> : DispatchProxy
     private void CaptureExecutionCall()
     {
         var stackTrace = Environment.StackTrace;
-        var callFromGenerator = stackTrace.Contains("LoggerMessage.g.cs");
+        var callFromGenerator = stackTrace.Contains($"{GeneratorName}.g.cs");
 
         var executionList = callFromGenerator ? _executionsFromGenerator : _executionsWithoutGenerator;
         executionList.Add(stackTrace);

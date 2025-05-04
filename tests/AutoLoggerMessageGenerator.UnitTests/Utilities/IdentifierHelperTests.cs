@@ -1,4 +1,5 @@
 using AutoLoggerMessageGenerator.Utilities;
+using TUnit.Assertions.AssertConditions.Throws;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Utilities;
 

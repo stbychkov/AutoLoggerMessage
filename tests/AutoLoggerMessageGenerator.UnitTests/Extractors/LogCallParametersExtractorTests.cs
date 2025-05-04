@@ -24,17 +24,17 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
                                          """;
 
          var (compilation, syntaxTree) = await CompileSourceCode($"Log({parameters});", extensionDeclaration);
-         var (_, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
+         var (_, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
          var sut = new LogCallParametersExtractor();
 
          var result = sut.Extract(message, methodSymbol!);
 
-         await Assert.That(result).IsEquivalentTo(new LogCallParameter[]
+         await Assert.That(result).IsEquivalentTo(new CallParameter[]
          {
-             new("global::System.String", MessageParameterName, LogCallParameterType.Message),
-             new("global::System.String", "@EventName", LogCallParameterType.Others),
-             new("global::System.Int32", "@Time", LogCallParameterType.Others),
+             new("global::System.String", MessageParameterName, CallParameterType.Message),
+             new("global::System.String", "@EventName", CallParameterType.Others),
+             new("global::System.Int32", "@Time", CallParameterType.Others),
          });
      }
 
@@ -46,7 +46,7 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
          string extensionDeclaration = $"private static void Log(string {MessageParameterName}) {{}}";
 
          var (compilation, syntaxTree) = await CompileSourceCode($"""Log("{message}");""", extensionDeclaration);
-         var (_, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
+         var (_, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
          var sut = new LogCallParametersExtractor();
 
@@ -55,10 +55,10 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
          await Assert.That(result.HasValue).IsTrue();
          await Assert.That(result!.Value.Length).IsEqualTo(1);
          await Assert.That(result.Value[0]).IsEquivalentTo(
-             new LogCallParameter(
+             new CallParameter(
                  "global::System.String",
                  MessageParameterName,
-                 LogCallParameterType.Message
+                 CallParameterType.Message
              )
          );
      }
@@ -88,20 +88,20 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
                                                                40
                                                            );
                                                            """, extensionDeclaration);
-         var (_, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
+         var (_, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
          var sut = new LogCallParametersExtractor();
 
          var result = sut.Extract(message, methodSymbol!);
 
-         await Assert.That(result).IsEquivalentTo(new LogCallParameter[]
+         await Assert.That(result).IsEquivalentTo(new CallParameter[]
          {
-             new("global::Microsoft.Extensions.Logging.LogLevel", LogLevelParameterName, LogCallParameterType.LogLevel),
-             new("global::Microsoft.Extensions.Logging.EventId", EventIdParameterName, LogCallParameterType.EventId),
-             new("global::System.Exception", ExceptionParameterName, LogCallParameterType.Exception),
-             new("global::System.String", MessageParameterName, LogCallParameterType.Message),
-             new("global::System.String", "@EventName", LogCallParameterType.Others),
-             new("global::System.Int32", "@Time", LogCallParameterType.Others),
+             new("global::Microsoft.Extensions.Logging.LogLevel", LogLevelParameterName, CallParameterType.LogLevel),
+             new("global::Microsoft.Extensions.Logging.EventId", EventIdParameterName, CallParameterType.EventId),
+             new("global::System.Exception", ExceptionParameterName, CallParameterType.Exception),
+             new("global::System.String", MessageParameterName, CallParameterType.Message),
+             new("global::System.String", "@EventName", CallParameterType.Others),
+             new("global::System.Int32", "@Time", CallParameterType.Others),
          });
      }
 
@@ -132,13 +132,13 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
 
          var result = sut.Extract(message, methodSymbol);
 
-         await Assert.That(result).IsEquivalentTo(new LogCallParameter[]
+         await Assert.That(result).IsEquivalentTo(new CallParameter[]
          {
-             new("global::Microsoft.Extensions.Logging.EventId", "@eventId__", LogCallParameterType.EventId),
-             new("global::System.String", "@message__", LogCallParameterType.Message),
-             new("global::System.Int32", "@eventId_", LogCallParameterType.Others),
-             new("global::System.String", "@message", LogCallParameterType.Others),
-             new("global::System.Int32", "@time", LogCallParameterType.Others),
+             new("global::Microsoft.Extensions.Logging.EventId", "@eventId__", CallParameterType.EventId),
+             new("global::System.String", "@message__", CallParameterType.Message),
+             new("global::System.Int32", "@eventId_", CallParameterType.Others),
+             new("global::System.String", "@message", CallParameterType.Others),
+             new("global::System.Int32", "@time", CallParameterType.Others),
          });
      }
 
@@ -157,7 +157,7 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
                     Log<{{genericType}}>("{{message}}", arg);
                 }
             """);
-         var (_, methodSymbol, _) = FindLoggerMethodInvocation(compilation, syntaxTree);
+         var (_, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
          var sut = new LogCallParametersExtractor();
 

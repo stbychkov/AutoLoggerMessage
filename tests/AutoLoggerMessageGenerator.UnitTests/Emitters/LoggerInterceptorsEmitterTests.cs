@@ -11,44 +11,44 @@ internal class LoggerInterceptorsEmitterTests
     [Test]
     public async Task Emit_ShouldGenerateValidLoggingExtensionsAttribute()
     {
-        ImmutableArray<LogCall> logCalls =
+        ImmutableArray<LogMessageCall> logCalls =
         [
-            new LogCall(
+            new LogMessageCall(
                 Id: Guid.NewGuid(),
                 Location: MockLogCallLocationBuilder.Build("file", 1, 11),
                 Namespace: "namespace1",
                 ClassName: "class1",
-                Name: "name1",
+                MethodName: "name1",
                 LogLevel: "Information",
                 Message: "Message1",
-                Parameters: [new LogCallParameter("string", MessageParameterName, LogCallParameterType.Message)]
+                Parameters: [new CallParameter("string", MessageParameterName, CallParameterType.Message)]
             ),
-            new LogCall(
+            new LogMessageCall(
                 Id: Guid.NewGuid(),
                 Location: MockLogCallLocationBuilder.Build("file2", 2, 22),
                 Namespace: "namespace2",
                 ClassName: "class2",
-                Name: "name2",
+                MethodName: "name2",
                 LogLevel: "Warning",
                 Message: "Message2",
                 Parameters: [
-                    new LogCallParameter("string", MessageParameterName, LogCallParameterType.Message),
-                    new LogCallParameter("int", "@intParam", LogCallParameterType.Others)
+                    new CallParameter("string", MessageParameterName, CallParameterType.Message),
+                    new CallParameter("int", "@intParam", CallParameterType.Others)
                 ]
             ),
-            new LogCall(
+            new LogMessageCall(
                 Id: Guid.NewGuid(),
                 Location: MockLogCallLocationBuilder.Build("file3", 3, 33),
                 Namespace: "namespace3",
                 ClassName: "class3",
-                Name: "name3",
+                MethodName: "name3",
                 LogLevel: "Error",
                 Message: "Message3",
                 Parameters: [
-                    new LogCallParameter("string", MessageParameterName, LogCallParameterType.Message),
-                    new LogCallParameter("int", "@intParam", LogCallParameterType.Others),
-                    new LogCallParameter("bool", "@boolParam", LogCallParameterType.Others),
-                    new LogCallParameter("SomeClass", "@objectParam", LogCallParameterType.Others, true)
+                    new CallParameter("string", MessageParameterName, CallParameterType.Message),
+                    new CallParameter("int", "@intParam", CallParameterType.Others),
+                    new CallParameter("bool", "@boolParam", CallParameterType.Others),
+                    new CallParameter("SomeClass", "@objectParam", CallParameterType.Others, true)
                 ]
             ),
         ];

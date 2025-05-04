@@ -10,9 +10,9 @@ namespace AutoLoggerMessageGenerator.Extractors;
 
 internal class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck = null)
 {
-    public ImmutableArray<LogCallParameter>? Extract(string message, IMethodSymbol methodSymbol)
+    public ImmutableArray<CallParameter>? Extract(string message, IMethodSymbol methodSymbol)
     {
-        var templateParametersNames = LogCallMessageParameterNamesExtractor.Extract(message)
+        var templateParametersNames = MessageParameterNamesExtractor.Extract(message)
             .Select(IdentifierHelper.AddAtPrefixIfNotExists)
             .ToArray();
 
@@ -40,12 +40,12 @@ internal class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck
                 var parameterName = TransformParameterName(parameter.Name);
                 var type = parameterName switch
                 {
-                    LoggerParameterName => LogCallParameterType.Logger,
-                    LogLevelParameterName => LogCallParameterType.LogLevel,
-                    ExceptionParameterName => LogCallParameterType.Exception,
-                    EventIdParameterName => LogCallParameterType.EventId,
-                    MessageParameterName => LogCallParameterType.Message,
-                    _ => LogCallParameterType.None
+                    LoggerParameterName => CallParameterType.Logger,
+                    LogLevelParameterName => CallParameterType.LogLevel,
+                    ExceptionParameterName => CallParameterType.Exception,
+                    EventIdParameterName => CallParameterType.EventId,
+                    MessageParameterName => CallParameterType.Message,
+                    _ => CallParameterType.None
                 };
                 return CreateLogCallParameter(parameter.Type, $"{parameterName}{uniqueNameSuffix}", type, false);
             });
@@ -54,7 +54,7 @@ internal class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck
             .Select((parameter, ix) => CreateLogCallParameter(
                     nativeType: parameter.Type,
                     name: templateParametersNames[ix],
-                    type: LogCallParameterType.Others,
+                    type: CallParameterType.Others,
                     hasPropertiesToLog: logPropertiesCheck?.IsApplicable(parameter.Type) ?? false
                 )
             );
@@ -62,8 +62,7 @@ internal class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck
         return utilityParameters.Concat(messageParameters).ToImmutableArray();
     }
 
-    private static LogCallParameter CreateLogCallParameter(ITypeSymbol @nativeType, string name,
-        LogCallParameterType type, bool hasPropertiesToLog) =>
+    private static CallParameter CreateLogCallParameter(ITypeSymbol @nativeType, string name, CallParameterType type, bool hasPropertiesToLog) =>
         new(
             NativeType: nativeType.ToDisplayString(
                 SymbolDisplayFormat.FullyQualifiedFormat.WithMiscellaneousOptions(SymbolDisplayMiscellaneousOptions

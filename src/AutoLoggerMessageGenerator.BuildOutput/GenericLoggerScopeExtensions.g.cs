@@ -11,11 +11,6 @@ namespace Microsoft.Extensions.Logging
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public static class GenericLoggerScopeExtensions
     {
-        public static IDisposable? BeginScope(this ILogger @logger, string @message)
-        {
-            return Microsoft.Extensions.Logging.LoggerExtensions.BeginScope(@logger, @message);
-        }
-
         public static IDisposable? BeginScope<T0>(this ILogger @logger, string @message, T0 @arg0)
         {
             return Microsoft.Extensions.Logging.LoggerExtensions.BeginScope(@logger, @message, new object?[] { @arg0 });

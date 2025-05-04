@@ -31,7 +31,7 @@ internal static class GenericLoggerScopeExtensionsEmitter
         sb.WriteLine('{');
         sb.Indent++;
 
-        for (int i = 0; i <= MaxLogParameters; i++)
+        for (int i = 1; i <= MaxLogParameters; i++)
         {
             var parameters = Enumerable.Range(0, i).ToArray();
 

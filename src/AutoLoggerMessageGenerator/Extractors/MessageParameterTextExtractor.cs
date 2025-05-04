@@ -9,7 +9,10 @@ internal static class MessageParameterTextExtractor
     public static string? Extract(IMethodSymbol methodSymbol, InvocationExpressionSyntax invocationExpressionSyntax,
         SemanticModel semanticModel)
     {
-        var messageParameter = methodSymbol.Parameters.Single(c => c.Name == Constants.MessageParameterName.TrimStart('@'));
+        var messageParameter = methodSymbol.Parameters.FirstOrDefault(c => c.Name == Constants.MessageParameterName.TrimStart('@'));
+        if (messageParameter is null)
+            return null;
+
         var messageParameterIx = methodSymbol.Parameters.IndexOf(messageParameter);
 
         var valueExpression = invocationExpressionSyntax.ArgumentList.Arguments[messageParameterIx].Expression;

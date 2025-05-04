@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 [RankColumn]
 [MemoryDiagnoser]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
-public partial class ExecutionTimeBenchmark
+public partial class LogCallBenchmark
 {
     private ILogger _logger = null!;
     private ConfigurationExample _configuration = null!;
@@ -13,7 +13,7 @@ public partial class ExecutionTimeBenchmark
     [GlobalSetup]
     public void Setup()
     {
-        _logger = CustomNullLogger<ExecutionTimeBenchmark>.Instance;
+        _logger = CustomNullLogger<LogCallBenchmark>.Instance;
         _configuration = new ConfigurationExample(
             0, "Root", new ConfigurationExample(
                 1, "First Level", new ConfigurationExample(
@@ -29,6 +29,8 @@ public partial class ExecutionTimeBenchmark
         _logger.LogInformation("Hello world!");
     }
 
+#if DEFAULT && !TELEMETRY && !AUTO_LOGGER_MESSAGE
+
     [Benchmark]
     [BenchmarkCategory("Without parameters")]
     public void LoggerMessageWithoutParameters()
@@ -39,12 +41,16 @@ public partial class ExecutionTimeBenchmark
     [LoggerMessage(LogLevel.Information, Message = "Hello world!")]
     partial void LoggerMessageWithoutParametersImpl();
 
+#endif
+
     [Benchmark(Baseline = true)]
     [BenchmarkCategory("With 6 Parameters")]
     public void LogInformationWith6PrimitiveParameters()
     {
         _logger.LogInformation("Hello world! {arg1} {arg2} {arg3} {arg4} {arg5} {arg6}", 1, 2, 3, 4, 5, 6);
     }
+
+#if DEFAULT && !TELEMETRY && !AUTO_LOGGER_MESSAGE
 
     [Benchmark]
     [BenchmarkCategory("With 6 Parameters")]
@@ -56,12 +62,16 @@ public partial class ExecutionTimeBenchmark
     [LoggerMessage(LogLevel.Information, Message = "Hello world! {arg1} {arg2} {arg3} {arg4} {arg5} {arg6}")]
     partial void LoggerMessageWith6ParametersImpl(int arg1, int arg2, int arg3, int arg4, int arg5, int arg6);
 
+#endif
+
     [Benchmark(Baseline = true)]
     [BenchmarkCategory("With 7 Parameters")]
     public void LogInformationWith7PrimitiveParameters()
     {
         _logger.LogInformation("Hello world! {arg1} {arg2} {arg3} {arg4} {arg5} {arg6} {arg7}", 1, 2, 3, 4, 5, 6, 7);
     }
+
+#if DEFAULT && !TELEMETRY && !AUTO_LOGGER_MESSAGE
 
     [Benchmark]
     [BenchmarkCategory("With 7 Parameters")]
@@ -74,6 +84,8 @@ public partial class ExecutionTimeBenchmark
     partial void LoggerMessageWith7ParametersImpl(int arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
         int arg7);
 
+#endif
+
     [Benchmark(Baseline = true)]
     [BenchmarkCategory("With Complex Types Parameters")]
     public void LogInformationWithComplexParameters()
@@ -82,6 +94,7 @@ public partial class ExecutionTimeBenchmark
             _configuration, _configuration, _configuration, _configuration, _configuration, _configuration);
     }
 
+#if DEFAULT && !TELEMETRY && !AUTO_LOGGER_MESSAGE
     [Benchmark]
     [BenchmarkCategory("With Complex Types Parameters")]
     public void LoggerMessageWithComplexParameters()
@@ -101,6 +114,8 @@ public partial class ExecutionTimeBenchmark
         ConfigurationExample arg5,
         ConfigurationExample arg6
     );
+
+#endif
 
 #if TELEMETRY
 

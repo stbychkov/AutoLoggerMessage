@@ -55,9 +55,7 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
 
     private async Task<(string OutputFolder, string projFilePath)> GenerateProjectFile(string projectName, string workingDirectory)
     {
-        var telemetryConstant = projectConfiguration.References.Contains(PackagesProvider.MicrosoftExtensionsTelemetryPackage)
-            ? "TELEMETRY"
-            : string.Empty;
+        var configurations = string.Join(";", GetProjectConfigurations());
 
         var targetFramework = TargetFrameworkMonikerDetector.Detect();
 
@@ -74,7 +72,7 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
                                       <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
                                       <IntermediateOutputPath>{outputFolder}</IntermediateOutputPath>
                                       <RootNamespace>{projectName}</RootNamespace>
-                                      <DefineConstants>$(DefineConstants);{telemetryConstant}</DefineConstants>
+                                      <DefineConstants>$(DefineConstants);{configurations}</DefineConstants>
                                     </PropertyGroup>
 
                                     <PropertyGroup>
@@ -97,6 +95,18 @@ internal class ProjectBuilder(ProjectConfiguration projectConfiguration)
         await File.WriteAllTextAsync(projFilePath, projFileContent);
 
         return (outputFolder, projFilePath);
+    }
+
+    private IEnumerable<string> GetProjectConfigurations()
+    {
+        if (projectConfiguration.References.Contains(PackagesProvider.MicrosoftExtensionsLoggingPackage))
+            yield return "DEFAULT";
+
+        if (projectConfiguration.References.Contains(PackagesProvider.MicrosoftExtensionsTelemetryPackage))
+            yield return "TELEMETRY";
+
+        if (projectConfiguration.References.Contains(PackagesProvider.AutoLoggerMessagePackage))
+            yield return "AUTO_LOGGER_MESSAGE";
     }
 
     internal class BuildResult

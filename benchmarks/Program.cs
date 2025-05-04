@@ -28,6 +28,7 @@ ProjectConfiguration[] projectConfigurations =
         {
             PackagesProvider.BenchmarkPackage,
             PackagesProvider.MicrosoftExtensionsLoggingPackage,
+            PackagesProvider.AutoLoggerMessageBuildOutput,
             PackagesProvider.AutoLoggerMessagePackage
         }
     },
@@ -38,6 +39,7 @@ ProjectConfiguration[] projectConfigurations =
         {
             PackagesProvider.BenchmarkPackage,
             PackagesProvider.AutoLoggerMessagePackage,
+            PackagesProvider.AutoLoggerMessageBuildOutput,
             PackagesProvider.MicrosoftExtensionsLoggingPackage,
             PackagesProvider.MicrosoftExtensionsTelemetryPackage,
         }

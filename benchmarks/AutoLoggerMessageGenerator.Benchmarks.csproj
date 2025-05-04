@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\src\AutoLoggerMessageGenerator.BuildOutput\AutoLoggerMessageGenerator.BuildOutput.csproj" />
     <ProjectReference Include="..\src\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn4_11.csproj"/>
   </ItemGroup>
 

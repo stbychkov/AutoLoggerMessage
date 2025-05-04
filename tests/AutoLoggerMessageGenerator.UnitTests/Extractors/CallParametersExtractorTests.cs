@@ -6,7 +6,7 @@ using static AutoLoggerMessageGenerator.Constants;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Extractors;
 
-internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
+internal class CallParametersExtractorTests : BaseSourceGeneratorTest
 {
      [Test]
      public async Task Extract_WithGivenMessageAndParameters_ShouldReturnMessageAndParsedParameters()
@@ -26,7 +26,7 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
          var (compilation, syntaxTree) = await CompileSourceCode($"Log({parameters});", extensionDeclaration);
          var (_, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
-         var sut = new LogCallParametersExtractor();
+         var sut = new CallParametersExtractor();
 
          var result = sut.Extract(message, methodSymbol!);
 
@@ -48,7 +48,7 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
          var (compilation, syntaxTree) = await CompileSourceCode($"""Log("{message}");""", extensionDeclaration);
          var (_, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
-         var sut = new LogCallParametersExtractor();
+         var sut = new CallParametersExtractor();
 
          var result = sut.Extract(message, methodSymbol!);
 
@@ -90,7 +90,7 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
                                                            """, extensionDeclaration);
          var (_, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
-         var sut = new LogCallParametersExtractor();
+         var sut = new CallParametersExtractor();
 
          var result = sut.Extract(message, methodSymbol!);
 
@@ -128,7 +128,7 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
          var semanticModel = compilation.GetSemanticModel(syntaxTree);
          var methodSymbol = (IMethodSymbol)semanticModel.GetSymbolInfo(invocationExpression).Symbol!;
 
-         var sut = new LogCallParametersExtractor();
+         var sut = new CallParametersExtractor();
 
          var result = sut.Extract(message, methodSymbol);
 
@@ -159,7 +159,7 @@ internal class LogCallParametersExtractorTests : BaseSourceGeneratorTest
             """);
          var (_, methodSymbol, _) = FindMethodInvocation(compilation, syntaxTree);
 
-         var sut = new LogCallParametersExtractor();
+         var sut = new CallParametersExtractor();
 
          var result = sut.Extract(message, methodSymbol!);
 

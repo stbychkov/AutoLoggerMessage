@@ -8,7 +8,7 @@ using static AutoLoggerMessageGenerator.Constants;
 
 namespace AutoLoggerMessageGenerator.Extractors;
 
-internal class LogCallParametersExtractor(LogPropertiesCheck? logPropertiesCheck = null)
+internal class CallParametersExtractor(LogPropertiesCheck? logPropertiesCheck = null)
 {
     public ImmutableArray<CallParameter>? Extract(string message, IMethodSymbol methodSymbol)
     {

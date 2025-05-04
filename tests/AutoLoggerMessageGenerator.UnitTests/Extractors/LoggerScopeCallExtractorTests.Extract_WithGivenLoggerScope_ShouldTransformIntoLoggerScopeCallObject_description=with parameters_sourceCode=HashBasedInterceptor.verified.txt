@@ -1,5 +1,4 @@
 ﻿{
-  Id: Guid_1,
   Location: {
     FilePath: path/testFile.cs,
     Line: 12,
@@ -29,7 +28,6 @@
   Namespace: Foo,
   ClassName: Test,
   MethodName: BeginScope,
-  LogLevel: inScope,
   Message: Hello world {arg1} {arg2},
   Parameters: [
     {
@@ -51,5 +49,5 @@
       HasPropertiesToLog: false
     }
   ],
-  GeneratedMethodName: Log_FooTest_12_16
+  GeneratedMethodName: LogScope_FooTest_12_16
 }

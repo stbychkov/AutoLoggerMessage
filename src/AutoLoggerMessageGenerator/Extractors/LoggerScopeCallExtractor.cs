@@ -23,7 +23,7 @@ internal static class LoggerScopeCallExtractor
             return default;
 
         var logPropertiesCheck = new LogPropertiesCheck(semanticModel.Compilation);
-        var parameters = new LogCallParametersExtractor(logPropertiesCheck)
+        var parameters = new CallParametersExtractor(logPropertiesCheck)
             .Extract(message, methodSymbol);
 
         if (parameters is null)

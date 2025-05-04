@@ -19,7 +19,7 @@ using InputSource = (
     ) Others
 );
 
-internal class InputSourceComparerTests
+internal class LogCallInputSourceComparerTests
 {
     [Test]
     public async Task Equals_WithDifferentCompilation_ShouldReturnTrue()

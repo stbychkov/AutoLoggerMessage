@@ -29,19 +29,7 @@ internal readonly record struct LogMessageCall(
         Message == other.Message &&
         Parameters.SequenceEqual(other.Parameters);
 
-    public override int GetHashCode()
-    {
-        unchecked
-        {
-            var hashCode = Location.GetHashCode();
-            hashCode = (hashCode * 397) ^ Namespace.GetHashCode();
-            hashCode = (hashCode * 397) ^ ClassName.GetHashCode();
-            hashCode = (hashCode * 397) ^ MethodName.GetHashCode();
-            hashCode = (hashCode * 397) ^ LogLevel.GetHashCode();
-            hashCode = (hashCode * 397) ^ Message.GetHashCode();
-            hashCode = (hashCode * 397) ^ Parameters.GetHashCode();
-            return hashCode;
-        }
-    }
+    public override int GetHashCode() =>
+        (Location, Namespace, ClassName, MethodName, LogLevel, Message, Parameters).GetHashCode();
 };
 

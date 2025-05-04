@@ -7,39 +7,40 @@ namespace AutoLoggerMessageGenerator.UnitTests.VirtualLoggerMessage;
 
 internal class VirtualLoggerMessageClassBuilderTests
 {
-    private readonly LogCall _logCall = new()
+    private readonly LogMessageCall _logMessageCall = new()
     {
         Id = Guid.NewGuid(),
-        Location = new LogCallLocation
+        Location = new CallLocation
         {
             FilePath = "./some/path/to/file.cs",
             Line = 2,
             Character = 22
         },
         Message = "Hello, World!",
-        Name = "LogCall",
+        MethodName = "LogCall",
         Namespace = "SomeNamespace",
         ClassName = "SomeClass",
         LogLevel = "Critical",
-        Parameters = [
-            new LogCallParameter("int", "@intParam", LogCallParameterType.Others),
-            new LogCallParameter("string", "@stringParam", LogCallParameterType.Others),
-            new LogCallParameter("bool", "@boolParam", LogCallParameterType.Others),
-            new LogCallParameter("SomeClass", "@classParam", LogCallParameterType.Others, true),
-            new LogCallParameter("SomeStruct", "@structParam", LogCallParameterType.Others, true)
+        Parameters =
+        [
+            new CallParameter("int", "@intParam", CallParameterType.Others),
+            new CallParameter("string", "@stringParam", CallParameterType.Others),
+            new CallParameter("bool", "@boolParam", CallParameterType.Others),
+            new CallParameter("SomeClass", "@classParam", CallParameterType.Others, true),
+            new CallParameter("SomeStruct", "@structParam", CallParameterType.Others, true)
         ]
     };
 
     [Test]
     [MethodDataSource(nameof(TestConfigurations))]
     public async Task Build_WithDifferentConfiguration_ShouldReturnLegitLoggerMessageDeclaration(
-        SourceGeneratorConfiguration configuration, bool useTelemetryExtensions)
+        string description, SourceGeneratorConfiguration configuration, bool useTelemetryExtensions)
     {
         var sut = new VirtualLoggerMessageClassBuilder(configuration, useTelemetryExtensions);
 
         var result = sut.Build([
-            _logCall,
-            _logCall with
+            _logMessageCall,
+            _logMessageCall with
             {
                 Id = Guid.NewGuid(),
                 Location = MockLogCallLocationBuilder.Build("path/to/another/file.cs", 3, 33),
@@ -51,8 +52,7 @@ internal class VirtualLoggerMessageClassBuilderTests
         var syntaxTree = (await result.SyntaxTree.GetRootAsync()).NormalizeWhitespace().ToFullString();
 
         await Verify(syntaxTree)
-            .UseParameters(configuration, useTelemetryExtensions)
-            .HashParameters()
+            .UseTextForParameters(description)
             .ScrubInlineGuids();
     }
 
@@ -62,7 +62,7 @@ internal class VirtualLoggerMessageClassBuilderTests
         var sut = new VirtualLoggerMessageClassBuilder(default);
 
         var result = sut.Build([
-            _logCall with
+            _logMessageCall with
             {
                 Id = Guid.NewGuid(),
                 Location = MockLogCallLocationBuilder.Build("path/to/another/file.cs", 3, 33),
@@ -76,11 +76,47 @@ internal class VirtualLoggerMessageClassBuilderTests
         await Verify(syntaxTree).ScrubInlineGuids();
     }
 
-    public static IEnumerable<Func<(SourceGeneratorConfiguration, bool)>> TestConfigurations() =>
+    public static IEnumerable<Func<(string, SourceGeneratorConfiguration, bool)>> TestConfigurations() =>
     [
-        () => (new SourceGeneratorConfiguration(default, true, true, true, true), true),
-        () => (new SourceGeneratorConfiguration(default, true, true, true, true), false),
-        () => (new SourceGeneratorConfiguration(default, false, false, false, false), true),
-        () => (new SourceGeneratorConfiguration(default, false, false, false, false), false),
+        () => (
+            "all_enabled",
+            new SourceGeneratorConfiguration(
+                GenerateInterceptorAttribute: false,
+                GenerateSkipEnabledCheck: true,
+                GenerateOmitReferenceName: true,
+                GenerateSkipNullProperties: true,
+                GenerateTransitive: true,
+                OverrideBeginScopeBehavior: false
+            ), true),
+        () => (
+            "telemetry_disabled",
+            new SourceGeneratorConfiguration(
+                GenerateInterceptorAttribute: false,
+                GenerateSkipEnabledCheck: true,
+                GenerateOmitReferenceName: true,
+                GenerateSkipNullProperties: true,
+                GenerateTransitive: true,
+                OverrideBeginScopeBehavior: false),
+            false),
+        () => (
+            "only_telemetry_enabled",
+            new SourceGeneratorConfiguration(
+                GenerateInterceptorAttribute: false,
+                GenerateSkipEnabledCheck: false,
+                GenerateOmitReferenceName: false,
+                GenerateSkipNullProperties: false,
+                GenerateTransitive: false,
+                OverrideBeginScopeBehavior: false),
+            true),
+        () => (
+            "all_disabled",
+            new SourceGeneratorConfiguration(
+                GenerateInterceptorAttribute: false,
+                GenerateSkipEnabledCheck: false,
+                GenerateOmitReferenceName: false,
+                GenerateSkipNullProperties: false,
+                GenerateTransitive: false,
+                OverrideBeginScopeBehavior: false),
+            false),
     ];
 }

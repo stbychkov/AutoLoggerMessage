@@ -3,12 +3,12 @@ using AutoLoggerMessageGenerator.UnitTests.Scrubbers;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Emitters;
 
-internal class LoggerExtensionsEmitterTests
+internal class GenericLoggerExtensionsEmitterTests
 {
     [Test]
-    public async Task Emit_ShouldGenerateValidLoggingExtensionsAttribute()
+    public async Task Emit_ShouldGenerateValidLoggingExtensionsOverrides()
     {
-        var sourceCode = LoggerExtensionsEmitter.Emit();
+        var sourceCode = GenericLoggerExtensionsEmitter.Emit();
         await Verify(sourceCode).AddCodeGeneratedAttributeScrubber();
     }
 }

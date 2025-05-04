@@ -31,33 +31,55 @@ public class InvalidTemplateParameterNameAnalyser : DiagnosticAnalyzer
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze |
                                                GeneratedCodeAnalysisFlags.ReportDiagnostics);
 
-        context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.InvocationExpression);
+        context.RegisterSyntaxNodeAction(AnalyzeLoggerMessageNode, SyntaxKind.InvocationExpression);
+        context.RegisterSyntaxNodeAction(AnalyzeLoggerScopeNode, SyntaxKind.InvocationExpression);
     }
 
-    private static void AnalyzeNode(SyntaxNodeAnalysisContext context)
+    private static void AnalyzeLoggerMessageNode(SyntaxNodeAnalysisContext context)
     {
         var invocationExpression = (InvocationExpressionSyntax)context.Node;
 
-        if (!LogCallFilter.IsLogCallInvocation(invocationExpression, context.CancellationToken))
+        if (!LogMessageCallFilter.IsLogCallInvocation(invocationExpression, context.CancellationToken))
             return;
 
         var semanticModel = context.SemanticModel;
         var methodSymbol = semanticModel.GetSymbolInfo(invocationExpression).Symbol as IMethodSymbol;
-        if (methodSymbol is null || !LogCallFilter.IsLoggerMethod(methodSymbol))
+        if (methodSymbol is null || !LogMessageCallFilter.IsLoggerMethod(methodSymbol))
             return;
 
-        var message = LogCallMessageExtractor.Extract(methodSymbol, invocationExpression, semanticModel);
+        AnalyzeNode(context, methodSymbol, invocationExpression, semanticModel);
+    }
+
+    private static void AnalyzeLoggerScopeNode(SyntaxNodeAnalysisContext context)
+    {
+        var invocationExpression = (InvocationExpressionSyntax)context.Node;
+
+        if (!LoggerScopeFilter.IsLoggerScopeInvocation(invocationExpression, context.CancellationToken))
+            return;
+
+        var semanticModel = context.SemanticModel;
+        var methodSymbol = semanticModel.GetSymbolInfo(invocationExpression).Symbol as IMethodSymbol;
+        if (methodSymbol is null || !LoggerScopeFilter.IsLoggerScopeMethod(methodSymbol))
+            return;
+
+        AnalyzeNode(context, methodSymbol, invocationExpression, semanticModel);
+    }
+
+    private static void AnalyzeNode(SyntaxNodeAnalysisContext context, IMethodSymbol methodSymbol,
+        InvocationExpressionSyntax invocationExpression, SemanticModel semanticModel)
+    {
+        var message = MessageParameterTextExtractor.Extract(methodSymbol, invocationExpression, semanticModel);
         if (message is null)
             return;
 
-        var templateParameterNames = LogCallMessageParameterNamesExtractor.Extract(message)
+        var templateParameterNames = MessageParameterNamesExtractor.Extract(message)
             .Where(parameterName => !IdentifierHelper.IsValidCSharpParameterName(parameterName))
             .ToImmutableArray();
 
         if (!templateParameterNames.Any())
             return;
 
-        var location = LogCallLocationMapper.Map(semanticModel, invocationExpression);
+        var location = CallLocationMapper.Map(semanticModel, invocationExpression);
         if (location is null)
             return;
 

@@ -7,9 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0"/>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.1"/>
-    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.13.1"/>
-    <PackageReference Include="TUnit" Version="0.6.156"/>
-    <PackageReference Include="Verify.TUnit" Version="28.9.0"/>
+    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.14.2"/>
+    <PackageReference Include="TUnit" Version="0.19.116"/>
+    <PackageReference Include="Verify.TUnit" Version="30.0.0"/>
   </ItemGroup>
 
   <ItemGroup>

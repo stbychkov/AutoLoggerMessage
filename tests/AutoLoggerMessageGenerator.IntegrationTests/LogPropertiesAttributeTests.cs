@@ -13,7 +13,9 @@ internal class LogPropertiesAttributeTests
     public async Task AllLogPropertiesHaveToBeLogged()
     {
         IEvent generatorCallCapturedEvent = new GeneratorCallCapturedEvent { Id = Guid.NewGuid() };
-        var proxy = DispatchProxyExecutionVerificationDecorator<IEvent>.Decorate(generatorCallCapturedEvent);
+        var proxy = DispatchProxyExecutionVerificationDecorator<IEvent>.Decorate(
+            generatorCallCapturedEvent, Constants.LoggerMessageGeneratorName
+        );
         generatorCallCapturedEvent = (IEvent) proxy;
 
         var propertiesCount = typeof(GeneratorCallCapturedEvent)

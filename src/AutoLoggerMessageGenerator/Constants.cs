@@ -11,6 +11,7 @@ internal static class Constants
     public const string InterceptorAttributeName = "InterceptsLocationAttribute";
 
     public const string LogMethodPrefix = "Log_";
+    public const string LogScopeMethodPrefix = "LogScope_";
     public const string LoggerClassName = "AutoLoggerMessage";
 
     public const string ParameterName = "@arg";
@@ -20,6 +21,9 @@ internal static class Constants
     public const string ExceptionParameterName = "@exception";
     public const string MessageParameterName = "@message";
 
+    public const string LoggerMessageGeneratorName = "LoggerMessage";
+    public const string LoggerScopesGeneratorName = "LoggerScopes";
+
     public static readonly HashSet<string> ReservedParameterNames =
     [
         LoggerParameterName, LogLevelParameterName,
@@ -28,8 +32,8 @@ internal static class Constants
     ];
 
     // List of parameters that will be moved to LoggerMessage attribute arguments
-    public static readonly HashSet<LogCallParameterType> LoggerMessageAttributeParameterTypes =
-        [LogCallParameterType.LogLevel, LogCallParameterType.Message];
+    public static readonly HashSet<CallParameterType> LoggerMessageAttributeParameterTypes =
+        [CallParameterType.LogLevel, CallParameterType.Message];
 
     /// <summary>
     /// Support for an arbitrary number of logging parameters. LoggerMessage.Define supports a maximum of six.

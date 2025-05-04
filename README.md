@@ -28,13 +28,23 @@ Check [this](https://github.com/stbychkov/AutoLoggerMessage/wiki/Configuration) 
 
 ## Benchmarks
 
-You can achieve performance boosts of up to 90% according to my benchmarks just by including this source generator in your project.
+You can achieve performance boosts of up to 90% just by including this source generator in your project.
 
-| Configuration          | Mean      | Ratio | Allocated |
-|------------------------|-----------|-------|-----------|
-| Default implementation | 38.149 ns | 1.00  | 216 B     |
-| Default + AutoLogger   | 3.734 ns  | 0.10  | -         |
-| AutoLoggerMessage      | 3.747 ns  | 0.10  | -         |
+For `ILogger.Log*` methods:
+
+| Configuration           | Mean      | Ratio | Allocated |
+|-------------------------|-----------|-------|-----------|
+| Default implementation  | 41.419 ns | 1.00  | 216 B     |
+| Default + LoggerMessage | 4.004 ns  | 0.10  | -         |
+| AutoLoggerMessage       | 4.577 ns  | 0.11  | -         |
+
+And for `ILogger.DefineScope`:
+
+| Configuration           | Mean      | Ratio | Allocated |
+|-------------------------|-----------|-------|-----------|
+| BeginScope              | 39.566 ns | 1.00  | 216 B     |
+| DefineScope             | 5.197 ns  | 0.13  | -         |
+| AutoLoggerMessage       | 5.296 ns  | 0.13  | -         |
 
 Take a look at [benchmark](https://github.com/stbychkov/AutoLoggerMessage/wiki/Benchmarks) page for more details.
 

@@ -8,13 +8,13 @@ namespace AutoLoggerMessageGenerator.Extractors;
 
 internal static class LogCallExtractor
 {
-    public static LogCall? Extract(IMethodSymbol methodSymbol,
+    public static LogMessageCall? Extract(IMethodSymbol methodSymbol,
         InvocationExpressionSyntax invocationExpression,
         SemanticModel semanticModel)
     {
-        var (ns, className) = LogCallCallerExtractor.Extract(invocationExpression);
+        var (ns, className) = EnclosingClassExtractor.Extract(invocationExpression);
 
-        var location = LogCallLocationMapper.Map(semanticModel, invocationExpression);
+        var location = CallLocationMapper.Map(semanticModel, invocationExpression);
         if (location is null)
             return default;
 
@@ -22,17 +22,17 @@ internal static class LogCallExtractor
         if (logLevel is null)
             return default;
 
-        var message = LogCallMessageExtractor.Extract(methodSymbol, invocationExpression, semanticModel);
+        var message = MessageParameterTextExtractor.Extract(methodSymbol, invocationExpression, semanticModel);
         if (message is null)
             return default;
 
         var logPropertiesCheck = new LogPropertiesCheck(semanticModel.Compilation);
-        var parameters = new LogCallParametersExtractor(logPropertiesCheck)
+        var parameters = new CallParametersExtractor(logPropertiesCheck)
             .Extract(message, methodSymbol);
 
         if (parameters is null)
             return default;
 
-        return new LogCall(Guid.NewGuid(), location.Value, ns, className, methodSymbol.Name, logLevel, message, parameters.Value);
+        return new LogMessageCall(Guid.NewGuid(), location.Value, ns, className, methodSymbol.Name, logLevel, message, parameters.Value);
     }
 }

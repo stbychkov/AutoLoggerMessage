@@ -8,5 +8,6 @@ internal record struct SourceGeneratorConfiguration
     bool GenerateSkipEnabledCheck,
     bool GenerateOmitReferenceName,
     bool GenerateSkipNullProperties,
-    bool GenerateTransitive
+    bool GenerateTransitive,
+    bool OverrideBeginScopeBehavior
 );

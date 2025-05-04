@@ -55,6 +55,9 @@
       <_Parameter1>$(AssemblyName).UnitTests.Roslyn4_11</_Parameter1>
     </AssemblyAttribute>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).IntegrationTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>$(AssemblyName).Benchmarks</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>

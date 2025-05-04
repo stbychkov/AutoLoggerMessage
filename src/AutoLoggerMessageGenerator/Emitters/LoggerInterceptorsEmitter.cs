@@ -1,12 +1,11 @@
 using System.CodeDom.Compiler;
 using AutoLoggerMessageGenerator.Models;
-using AutoLoggerMessageGenerator.Utilities;
 
 namespace AutoLoggerMessageGenerator.Emitters;
 
 internal static class LoggerInterceptorsEmitter
 {
-    public static string Emit(IEnumerable<LogCall> logCalls)
+    public static string Emit(IEnumerable<LogMessageCall> logCalls)
     {
         using var sb = new IndentedTextWriter(new StringWriter());
 
@@ -26,7 +25,6 @@ internal static class LoggerInterceptorsEmitter
 
         foreach (var logCall in logCalls)
         {
-            sb.WriteLine(Constants.EditorNotBrowsableAttribute);
             sb.WriteLine(logCall.Location.InterceptableLocationSyntax);
 
             var parameters = string.Join(", ", logCall.Parameters.Select((c, i) => $"{c.NativeType} {c.Name}"));
@@ -37,15 +35,11 @@ internal static class LoggerInterceptorsEmitter
                 .Select((c, i) => c.Name));
             parameterValues = string.IsNullOrEmpty(parameterValues) ? string.Empty : $", {parameterValues}";
 
-            var methodName = IdentifierHelper.ToValidCSharpMethodName(
-                $"{Constants.LogMethodPrefix}{logCall.Namespace}{logCall.ClassName}_{logCall.Location.Line}_{logCall.Location.Character}"
-            );
-
-            sb.WriteLine($"public static void {methodName}(this ILogger {Constants.LoggerParameterName}{parameters})");
+            sb.WriteLine($"public static void {logCall.GeneratedMethodName}(this ILogger {Constants.LoggerParameterName}{parameters})");
             sb.WriteLine('{');
             sb.Indent++;
 
-            sb.WriteLine($"{Constants.GeneratorNamespace}.{Constants.LoggerClassName}.{methodName}({Constants.LoggerParameterName}{parameterValues});");
+            sb.WriteLine($"{Constants.GeneratorNamespace}.{Constants.LoggerClassName}.{logCall.GeneratedMethodName}({Constants.LoggerParameterName}{parameterValues});");
 
             sb.Indent--;
             sb.WriteLine('}');

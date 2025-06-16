@@ -5,7 +5,7 @@
     <IsRoslynComponent>true</IsRoslynComponent>
     <NoWarn>RSEXPERIMENTAL002;RS2008</NoWarn>
     <Version>1.0.10</Version>
-    <DevelopmentDependency>true</DevelopmentDependency>
+    <DevelopmentDependency>false</DevelopmentDependency>
     <AssemblyName>AutoLoggerMessageGenerator</AssemblyName>
     <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>

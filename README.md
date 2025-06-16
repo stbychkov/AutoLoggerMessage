@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/github/license/stbychkov/AutoLoggerMessage)](https://github.com/stbychkov/AutoLoggerMessage/blob/main/LICENSE)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/stbychkov.AutoLoggerMessage)](https://www.nuget.org/packages/stbychkov.AutoLoggerMessage/)
 [![PRs Welcome](https://img.shields.io/badge/PR-Welcome-blue)](https://github.com/stbychkov/stbychkov.AutoLoggerMessage/pulls)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/stbychkov/AutoLoggerMessage)
 
 ---
 

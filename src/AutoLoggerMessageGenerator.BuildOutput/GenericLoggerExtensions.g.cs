@@ -2,994 +2,995 @@
 #nullable enable
 
 using System;
+using JetBrains.Annotations;
 
 namespace Microsoft.Extensions.Logging
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("AutoLoggerMessageGenerator", "1.0.10.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("AutoLoggerMessageGenerator", "1.0.12.0")]
     [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
     [System.Diagnostics.DebuggerStepThrough]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public static class GenericLoggerExtensions
     {
-        public static void LogTrace(this ILogger @logger, string @message)
+        public static void LogTrace(this ILogger @logger, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @message);
         }
 
-        public static void LogDebug(this ILogger @logger, string @message)
+        public static void LogDebug(this ILogger @logger, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @message);
         }
 
-        public static void LogInformation(this ILogger @logger, string @message)
+        public static void LogInformation(this ILogger @logger, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @message);
         }
 
-        public static void LogWarning(this ILogger @logger, string @message)
+        public static void LogWarning(this ILogger @logger, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @message);
         }
 
-        public static void LogError(this ILogger @logger, string @message)
+        public static void LogError(this ILogger @logger, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @message);
         }
 
-        public static void LogCritical(this ILogger @logger, string @message)
+        public static void LogCritical(this ILogger @logger, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @message);
         }
 
-        public static void Log(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, string @message)
+        public static void Log(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @message);
         }
 
-        public static void LogTrace<T0>(this ILogger @logger, string @message, T0 @arg0)
+        public static void LogTrace<T0>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @message, new object?[] { @arg0 });
         }
 
-        public static void LogDebug<T0>(this ILogger @logger, string @message, T0 @arg0)
+        public static void LogDebug<T0>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @message, new object?[] { @arg0 });
         }
 
-        public static void LogInformation<T0>(this ILogger @logger, string @message, T0 @arg0)
+        public static void LogInformation<T0>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @message, new object?[] { @arg0 });
         }
 
-        public static void LogWarning<T0>(this ILogger @logger, string @message, T0 @arg0)
+        public static void LogWarning<T0>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @message, new object?[] { @arg0 });
         }
 
-        public static void LogError<T0>(this ILogger @logger, string @message, T0 @arg0)
+        public static void LogError<T0>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @message, new object?[] { @arg0 });
         }
 
-        public static void LogCritical<T0>(this ILogger @logger, string @message, T0 @arg0)
+        public static void LogCritical<T0>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @message, new object?[] { @arg0 });
         }
 
-        public static void Log<T0>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, string @message, T0 @arg0)
+        public static void Log<T0>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @message, new object?[] { @arg0 });
         }
 
-        public static void LogTrace<T0, T1>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1)
+        public static void LogTrace<T0, T1>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogDebug<T0, T1>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1)
+        public static void LogDebug<T0, T1>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogInformation<T0, T1>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1)
+        public static void LogInformation<T0, T1>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogWarning<T0, T1>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1)
+        public static void LogWarning<T0, T1>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogError<T0, T1>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1)
+        public static void LogError<T0, T1>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogCritical<T0, T1>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1)
+        public static void LogCritical<T0, T1>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void Log<T0, T1>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, string @message, T0 @arg0, T1 @arg1)
+        public static void Log<T0, T1>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogTrace<T0, T1, T2>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogTrace<T0, T1, T2>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogDebug<T0, T1, T2>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogDebug<T0, T1, T2>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogInformation<T0, T1, T2>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogInformation<T0, T1, T2>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogWarning<T0, T1, T2>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogWarning<T0, T1, T2>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogError<T0, T1, T2>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogError<T0, T1, T2>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogCritical<T0, T1, T2>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogCritical<T0, T1, T2>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void Log<T0, T1, T2>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void Log<T0, T1, T2>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogTrace<T0, T1, T2, T3>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogDebug<T0, T1, T2, T3>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogInformation<T0, T1, T2, T3>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogWarning<T0, T1, T2, T3>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogError<T0, T1, T2, T3>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogError<T0, T1, T2, T3>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogCritical<T0, T1, T2, T3>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void Log<T0, T1, T2, T3>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void Log<T0, T1, T2, T3>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3, T4>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogTrace<T0, T1, T2, T3, T4>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3, T4>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogDebug<T0, T1, T2, T3, T4>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3, T4>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogInformation<T0, T1, T2, T3, T4>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3, T4>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogWarning<T0, T1, T2, T3, T4>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogError<T0, T1, T2, T3, T4>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogError<T0, T1, T2, T3, T4>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3, T4>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogCritical<T0, T1, T2, T3, T4>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void Log<T0, T1, T2, T3, T4>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void Log<T0, T1, T2, T3, T4>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3, T4, T5>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogTrace<T0, T1, T2, T3, T4, T5>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3, T4, T5>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogDebug<T0, T1, T2, T3, T4, T5>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3, T4, T5>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogInformation<T0, T1, T2, T3, T4, T5>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3, T4, T5>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogWarning<T0, T1, T2, T3, T4, T5>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogError<T0, T1, T2, T3, T4, T5>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogError<T0, T1, T2, T3, T4, T5>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3, T4, T5>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogCritical<T0, T1, T2, T3, T4, T5>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void Log<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void Log<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
 
-        public static void LogTrace(this ILogger @logger, Exception? @exception, string @message)
+        public static void LogTrace(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @exception, @message);
         }
 
-        public static void LogDebug(this ILogger @logger, Exception? @exception, string @message)
+        public static void LogDebug(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @exception, @message);
         }
 
-        public static void LogInformation(this ILogger @logger, Exception? @exception, string @message)
+        public static void LogInformation(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @exception, @message);
         }
 
-        public static void LogWarning(this ILogger @logger, Exception? @exception, string @message)
+        public static void LogWarning(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @exception, @message);
         }
 
-        public static void LogError(this ILogger @logger, Exception? @exception, string @message)
+        public static void LogError(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @exception, @message);
         }
 
-        public static void LogCritical(this ILogger @logger, Exception? @exception, string @message)
+        public static void LogCritical(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @exception, @message);
         }
 
-        public static void Log(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, string @message)
+        public static void Log(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @exception, @message);
         }
 
-        public static void LogTrace<T0>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0)
+        public static void LogTrace<T0>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogDebug<T0>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0)
+        public static void LogDebug<T0>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogInformation<T0>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0)
+        public static void LogInformation<T0>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogWarning<T0>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0)
+        public static void LogWarning<T0>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogError<T0>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0)
+        public static void LogError<T0>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogCritical<T0>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0)
+        public static void LogCritical<T0>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void Log<T0>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, string @message, T0 @arg0)
+        public static void Log<T0>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogTrace<T0, T1>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogTrace<T0, T1>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogDebug<T0, T1>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogDebug<T0, T1>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogInformation<T0, T1>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogInformation<T0, T1>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogWarning<T0, T1>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogWarning<T0, T1>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogError<T0, T1>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogError<T0, T1>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogCritical<T0, T1>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogCritical<T0, T1>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void Log<T0, T1>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void Log<T0, T1>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogTrace<T0, T1, T2>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogTrace<T0, T1, T2>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogDebug<T0, T1, T2>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogDebug<T0, T1, T2>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogInformation<T0, T1, T2>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogInformation<T0, T1, T2>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogWarning<T0, T1, T2>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogWarning<T0, T1, T2>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogError<T0, T1, T2>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogError<T0, T1, T2>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogCritical<T0, T1, T2>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogCritical<T0, T1, T2>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void Log<T0, T1, T2>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void Log<T0, T1, T2>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogTrace<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogDebug<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogInformation<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogWarning<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogError<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogError<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogCritical<T0, T1, T2, T3>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void Log<T0, T1, T2, T3>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void Log<T0, T1, T2, T3>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogTrace<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogDebug<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogInformation<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogWarning<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogError<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogError<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogCritical<T0, T1, T2, T3, T4>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void Log<T0, T1, T2, T3, T4>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void Log<T0, T1, T2, T3, T4>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogTrace<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogDebug<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogInformation<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogWarning<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogError<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogError<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogCritical<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void Log<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void Log<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
 
-        public static void LogTrace(this ILogger @logger, EventId @eventId, string @message)
+        public static void LogTrace(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @message);
         }
 
-        public static void LogDebug(this ILogger @logger, EventId @eventId, string @message)
+        public static void LogDebug(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @message);
         }
 
-        public static void LogInformation(this ILogger @logger, EventId @eventId, string @message)
+        public static void LogInformation(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @message);
         }
 
-        public static void LogWarning(this ILogger @logger, EventId @eventId, string @message)
+        public static void LogWarning(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @message);
         }
 
-        public static void LogError(this ILogger @logger, EventId @eventId, string @message)
+        public static void LogError(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @message);
         }
 
-        public static void LogCritical(this ILogger @logger, EventId @eventId, string @message)
+        public static void LogCritical(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @message);
         }
 
-        public static void Log(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, string @message)
+        public static void Log(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @message);
         }
 
-        public static void LogTrace<T0>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0)
+        public static void LogTrace<T0>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @message, new object?[] { @arg0 });
         }
 
-        public static void LogDebug<T0>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0)
+        public static void LogDebug<T0>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @message, new object?[] { @arg0 });
         }
 
-        public static void LogInformation<T0>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0)
+        public static void LogInformation<T0>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @message, new object?[] { @arg0 });
         }
 
-        public static void LogWarning<T0>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0)
+        public static void LogWarning<T0>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @message, new object?[] { @arg0 });
         }
 
-        public static void LogError<T0>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0)
+        public static void LogError<T0>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @message, new object?[] { @arg0 });
         }
 
-        public static void LogCritical<T0>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0)
+        public static void LogCritical<T0>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @message, new object?[] { @arg0 });
         }
 
-        public static void Log<T0>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, string @message, T0 @arg0)
+        public static void Log<T0>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @message, new object?[] { @arg0 });
         }
 
-        public static void LogTrace<T0, T1>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1)
+        public static void LogTrace<T0, T1>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogDebug<T0, T1>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1)
+        public static void LogDebug<T0, T1>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogInformation<T0, T1>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1)
+        public static void LogInformation<T0, T1>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogWarning<T0, T1>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1)
+        public static void LogWarning<T0, T1>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogError<T0, T1>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1)
+        public static void LogError<T0, T1>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogCritical<T0, T1>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1)
+        public static void LogCritical<T0, T1>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void Log<T0, T1>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, string @message, T0 @arg0, T1 @arg1)
+        public static void Log<T0, T1>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogTrace<T0, T1, T2>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogTrace<T0, T1, T2>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogDebug<T0, T1, T2>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogDebug<T0, T1, T2>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogInformation<T0, T1, T2>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogInformation<T0, T1, T2>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogWarning<T0, T1, T2>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogWarning<T0, T1, T2>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogError<T0, T1, T2>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogError<T0, T1, T2>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogCritical<T0, T1, T2>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogCritical<T0, T1, T2>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void Log<T0, T1, T2>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void Log<T0, T1, T2>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogTrace<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogDebug<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogInformation<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogWarning<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogError<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogError<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogCritical<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void Log<T0, T1, T2, T3>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void Log<T0, T1, T2, T3>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogTrace<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogDebug<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogInformation<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogWarning<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogError<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogError<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogCritical<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void Log<T0, T1, T2, T3, T4>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void Log<T0, T1, T2, T3, T4>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogTrace<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogDebug<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogInformation<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogWarning<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogError<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogError<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogCritical<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void Log<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void Log<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
 
-        public static void LogTrace(this ILogger @logger, EventId @eventId, Exception? @exception, string @message)
+        public static void LogTrace(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @exception, @message);
         }
 
-        public static void LogDebug(this ILogger @logger, EventId @eventId, Exception? @exception, string @message)
+        public static void LogDebug(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @exception, @message);
         }
 
-        public static void LogInformation(this ILogger @logger, EventId @eventId, Exception? @exception, string @message)
+        public static void LogInformation(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @exception, @message);
         }
 
-        public static void LogWarning(this ILogger @logger, EventId @eventId, Exception? @exception, string @message)
+        public static void LogWarning(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @exception, @message);
         }
 
-        public static void LogError(this ILogger @logger, EventId @eventId, Exception? @exception, string @message)
+        public static void LogError(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @exception, @message);
         }
 
-        public static void LogCritical(this ILogger @logger, EventId @eventId, Exception? @exception, string @message)
+        public static void LogCritical(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @exception, @message);
         }
 
-        public static void Log(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, string @message)
+        public static void Log(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @exception, @message);
         }
 
-        public static void LogTrace<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0)
+        public static void LogTrace<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogDebug<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0)
+        public static void LogDebug<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogInformation<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0)
+        public static void LogInformation<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogWarning<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0)
+        public static void LogWarning<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogError<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0)
+        public static void LogError<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogCritical<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0)
+        public static void LogCritical<T0>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void Log<T0>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, string @message, T0 @arg0)
+        public static void Log<T0>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @exception, @message, new object?[] { @arg0 });
         }
 
-        public static void LogTrace<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogTrace<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogDebug<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogDebug<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogInformation<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogInformation<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogWarning<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogWarning<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogError<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogError<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogCritical<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void LogCritical<T0, T1>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void Log<T0, T1>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1)
+        public static void Log<T0, T1>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @exception, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static void LogTrace<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogTrace<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogDebug<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogDebug<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogInformation<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogInformation<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogWarning<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogWarning<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogError<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogError<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogCritical<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void LogCritical<T0, T1, T2>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void Log<T0, T1, T2>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static void Log<T0, T1, T2>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogTrace<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogDebug<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogInformation<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogWarning<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogError<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogError<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void LogCritical<T0, T1, T2, T3>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void Log<T0, T1, T2, T3>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static void Log<T0, T1, T2, T3>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogTrace<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogDebug<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogInformation<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogWarning<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogError<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogError<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void LogCritical<T0, T1, T2, T3, T4>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void Log<T0, T1, T2, T3, T4>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static void Log<T0, T1, T2, T3, T4>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static void LogTrace<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogTrace<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogTrace(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogDebug<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogDebug<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogDebug(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogInformation<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogInformation<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogWarning<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogWarning<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogWarning(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogError<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogError<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogError(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void LogCritical<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void LogCritical<T0, T1, T2, T3, T4, T5>(this ILogger @logger, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.LogCritical(@logger, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }
 
-        public static void Log<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static void Log<T0, T1, T2, T3, T4, T5>(this ILogger @logger, Microsoft.Extensions.Logging.LogLevel @logLevel, EventId @eventId, Exception? @exception, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             Microsoft.Extensions.Logging.LoggerExtensions.Log(@logger, @logLevel, @eventId, @exception, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }

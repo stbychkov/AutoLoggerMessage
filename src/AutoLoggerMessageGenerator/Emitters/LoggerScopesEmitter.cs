@@ -12,6 +12,7 @@ internal static class LoggerScopesEmitter
         using var sb = new IndentedTextWriter(new StringWriter());
 
         sb.WriteLine(GeneratedFileHeader);
+        sb.WriteLine();
 
         sb.WriteLine($"namespace {GeneratorNamespace}");
         sb.WriteLine('{');

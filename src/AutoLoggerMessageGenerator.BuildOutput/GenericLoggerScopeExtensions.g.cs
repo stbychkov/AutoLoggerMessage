@@ -2,41 +2,42 @@
 #nullable enable
 
 using System;
+using JetBrains.Annotations;
 
 namespace Microsoft.Extensions.Logging
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("AutoLoggerMessageGenerator", "1.0.10.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("AutoLoggerMessageGenerator", "1.0.12.0")]
     [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
     [System.Diagnostics.DebuggerStepThrough]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public static class GenericLoggerScopeExtensions
     {
-        public static IDisposable? BeginScope<T0>(this ILogger @logger, string @message, T0 @arg0)
+        public static IDisposable? BeginScope<T0>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0)
         {
             return Microsoft.Extensions.Logging.LoggerExtensions.BeginScope(@logger, @message, new object?[] { @arg0 });
         }
 
-        public static IDisposable? BeginScope<T0, T1>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1)
+        public static IDisposable? BeginScope<T0, T1>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1)
         {
             return Microsoft.Extensions.Logging.LoggerExtensions.BeginScope(@logger, @message, new object?[] { @arg0, @arg1 });
         }
 
-        public static IDisposable? BeginScope<T0, T1, T2>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2)
+        public static IDisposable? BeginScope<T0, T1, T2>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2)
         {
             return Microsoft.Extensions.Logging.LoggerExtensions.BeginScope(@logger, @message, new object?[] { @arg0, @arg1, @arg2 });
         }
 
-        public static IDisposable? BeginScope<T0, T1, T2, T3>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
+        public static IDisposable? BeginScope<T0, T1, T2, T3>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3)
         {
             return Microsoft.Extensions.Logging.LoggerExtensions.BeginScope(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3 });
         }
 
-        public static IDisposable? BeginScope<T0, T1, T2, T3, T4>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
+        public static IDisposable? BeginScope<T0, T1, T2, T3, T4>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4)
         {
             return Microsoft.Extensions.Logging.LoggerExtensions.BeginScope(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4 });
         }
 
-        public static IDisposable? BeginScope<T0, T1, T2, T3, T4, T5>(this ILogger @logger, string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
+        public static IDisposable? BeginScope<T0, T1, T2, T3, T4, T5>(this ILogger @logger, [StructuredMessageTemplate] string @message, T0 @arg0, T1 @arg1, T2 @arg2, T3 @arg3, T4 @arg4, T5 @arg5)
         {
             return Microsoft.Extensions.Logging.LoggerExtensions.BeginScope(@logger, @message, new object?[] { @arg0, @arg1, @arg2, @arg3, @arg4, @arg5 });
         }

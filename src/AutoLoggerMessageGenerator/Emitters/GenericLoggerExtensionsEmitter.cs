@@ -18,6 +18,8 @@ internal static class GenericLoggerExtensionsEmitter
         using var sb = new IndentedTextWriter(new StringWriter());
 
         sb.WriteLine(GeneratedFileHeader);
+        sb.WriteLine(JetBrainsAnnotationsImport);
+        sb.WriteLine();
 
         sb.WriteLine($"namespace {DefaultLoggingNamespace}");
         sb.WriteLine('{');
@@ -33,9 +35,9 @@ internal static class GenericLoggerExtensionsEmitter
 
         string[] logLevels = ["Trace", "Debug", "Information", "Warning", "Error", "Critical"];
 
-        var messageParameter = ("string", MessageArgumentName: MessageParameterName);
-        var exceptionParameter = ("Exception?", ExceptionArgumentName: ExceptionParameterName);
-        var eventIdParameter = ("EventId", EventIdArgumentName: EventIdParameterName);
+        var messageParameter = ($"{MessageTemplateDecorator} string", MessageParameterName);
+        var exceptionParameter = ("Exception?", ExceptionParameterName);
+        var eventIdParameter = ("EventId", EventIdParameterName);
 
         (string Type, string Name)[][] fixedParametersOverloads =
         [

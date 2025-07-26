@@ -18,6 +18,8 @@ internal static class GenericLoggerScopeExtensionsEmitter
         using var sb = new IndentedTextWriter(new StringWriter());
 
         sb.WriteLine(GeneratedFileHeader);
+        sb.WriteLine(JetBrainsAnnotationsImport);
+        sb.WriteLine();
 
         sb.WriteLine($"namespace {DefaultLoggingNamespace}");
         sb.WriteLine('{');
@@ -51,7 +53,7 @@ internal static class GenericLoggerScopeExtensionsEmitter
                 ? string.Empty
                 : $", new object?[] {{ {objectParameters} }}";
 
-            sb.WriteLine($"public static IDisposable? BeginScope{genericTypesDefinition}(this ILogger {LoggerParameterName}, string {MessageParameterName}{genericParametersDefinition})");
+            sb.WriteLine($"public static IDisposable? BeginScope{genericTypesDefinition}(this ILogger {LoggerParameterName}, {MessageTemplateDecorator} string {MessageParameterName}{genericParametersDefinition})");
             sb.WriteLine('{');
             sb.Indent++;
 

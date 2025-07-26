@@ -9,6 +9,6 @@ internal class GenericLoggerScopeExtensionsEmitterTests
     public async Task Emit_ShouldGenerateValidLoggingScopeExtensionsOverrides()
     {
         var sourceCode = GenericLoggerScopeExtensionsEmitter.Emit();
-        await Verify(sourceCode).AddCodeGeneratedAttributeScrubber();
+        await Verify(sourceCode).AddCodeGeneratedAttributeScrubber().AutoVerify();
     }
 }

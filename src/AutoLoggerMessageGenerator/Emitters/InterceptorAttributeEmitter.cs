@@ -9,6 +9,7 @@ internal static class InterceptorAttributeEmitter
         using var sb = new IndentedTextWriter(new StringWriter());
 
         sb.WriteLine(Constants.GeneratedFileHeader);
+        sb.WriteLine();
 
         sb.WriteLine($"namespace {Constants.InterceptorNamespace}");
         sb.WriteLine('{');

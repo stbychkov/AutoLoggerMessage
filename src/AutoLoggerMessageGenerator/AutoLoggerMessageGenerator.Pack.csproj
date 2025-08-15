@@ -7,9 +7,14 @@
 
   <Import Project="AutoLoggerMessageGenerator.Build.targets" />
 
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);JETBRAINS_ANNOTATIONS</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="AutoLoggerMessageGenerator.Roslyn4_11.csproj" PrivateAssets="All" ReferenceOutputAssembly="false" />
     <ProjectReference Include="AutoLoggerMessageGenerator.Roslyn4_8.csproj" PrivateAssets="All" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="AutoLoggerMessageGenerator.Roslyn4_11.csproj" PrivateAssets="All" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="AutoLoggerMessageGenerator.Roslyn4_14.csproj" PrivateAssets="All" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +23,8 @@
           Pack="true" PackagePath="analyzers/dotnet/roslyn4.8/cs" Visible="false" />
     <None Include="$(OutputPath)\..\..\AutoLoggerMessageGenerator.Roslyn4_11\$(ArtifactsPivots)\$(AssemblyName).dll"
           Pack="true" PackagePath="analyzers/dotnet/roslyn4.11/cs" Visible="false" />
+    <None Include="$(OutputPath)\..\..\AutoLoggerMessageGenerator.Roslyn4_14\$(ArtifactsPivots)\$(AssemblyName).dll"
+          Pack="true" PackagePath="analyzers/dotnet/roslyn4.14/cs" Visible="false" />
     <None Include="$(OutputPath)\AutoLoggerMessageGenerator.BuildOutput.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="false" />
   </ItemGroup>
 

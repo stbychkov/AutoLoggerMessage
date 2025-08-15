@@ -2,13 +2,17 @@
 
   <PropertyGroup>
     <RoslynApiVersion>4.11.0</RoslynApiVersion>
-    <DefineConstants>$(DefineConstants);HASH_BASED_INTERCEPTORS</DefineConstants>
+    <DefineConstants>$(DefineConstants);HASH_BASED_INTERCEPTORS;Roslyn411</DefineConstants>
   </PropertyGroup>
 
   <Import Project="AutoLoggerMessageGenerator.UnitTests.Build.targets" />
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn4_11.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Extractors\LogCallExtractorTests.Extract_WithLogMethodInvocationCode_ShouldTransformThemIntoLogCallObject_description=with parameters_sourceCode=HashBasedInterceptor.verified.txt" />
   </ItemGroup>
 
 </Project>

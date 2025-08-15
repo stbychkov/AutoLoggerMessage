@@ -135,12 +135,16 @@ internal static class GeneratorUtilities
     ///   2. <see href="https://github.com/dotnet/roslyn/blob/6c9697c56fe39d2335b61ae7c6b342e7b76779ef/docs/features/code-generation.cookbook.md#consume-msbuild-properties-and-metadata">
     ///   Reading MSBuild Properties in Source Generators</see>.
     /// </summary>
+#pragma warning disable RS1035
     /// <param name="context"><see cref="GeneratorExecutionContext"/>.</param>
+#pragma warning restore RS1035
     /// <param name="msBuildProperty">The name of the MSBuild property that determines whether to produce a report.</param>
     /// <returns>bool value to indicate if reports should be generated.</returns>
     public static bool ShouldGenerateReport(GeneratorExecutionContext context, string msBuildProperty)
     {
+#pragma warning disable RS1035
         _ = context.AnalyzerConfigOptions.GlobalOptions.TryGetValue(msBuildProperty, out var generateFiles);
+#pragma warning restore RS1035
 
         return string.Equals(generateFiles, bool.TrueString, StringComparison.OrdinalIgnoreCase);
     }

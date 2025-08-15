@@ -7,11 +7,13 @@
     <Project Path="src/AutoLoggerMessageGenerator/AutoLoggerMessageGenerator.Pack.csproj" />
     <Project Path="src/AutoLoggerMessageGenerator/AutoLoggerMessageGenerator.Roslyn4_11.csproj" />
     <Project Path="src/AutoLoggerMessageGenerator/AutoLoggerMessageGenerator.Roslyn4_8.csproj" />
+    <Project Path="src/AutoLoggerMessageGenerator/AutoLoggerMessageGenerator.Roslyn4_14.csproj" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/AutoLoggerMessageGenerator.IntegrationTests/AutoLoggerMessageGenerator.IntegrationTests.csproj" />
     <Project Path="tests/AutoLoggerMessageGenerator.UnitTests/AutoLoggerMessageGenerator.UnitTests.Roslyn4_11.csproj" />
     <Project Path="tests/AutoLoggerMessageGenerator.UnitTests/AutoLoggerMessageGenerator.UnitTests.Roslyn4_8.csproj" />
+    <Project Path="tests/AutoLoggerMessageGenerator.UnitTests/AutoLoggerMessageGenerator.UnitTests.Roslyn4_14.csproj" />
   </Folder>
   <Project Path="src/AutoLoggerMessageGenerator.Sandbox/AutoLoggerMessageGenerator.Sandbox.csproj" />
 </Solution>

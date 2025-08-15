@@ -24,9 +24,17 @@ public partial class AutoLoggerMessageGenerator : IIncrementalGenerator
         GenerateInterceptorAttribute(context, configuration);
     }
 
-    private static void GenerateInterceptorAttribute(IncrementalGeneratorInitializationContext context,
+    private static void GenerateInterceptorAttribute(
+        IncrementalGeneratorInitializationContext context,
         IncrementalValueProvider<SourceGeneratorConfiguration> configuration)
     {
+        #if EMBEDDED
+        context.RegisterPostInitializationOutput(ctx =>
+        {
+            ctx.AddEmbeddedAttributeDefinition();
+        });
+        #endif
+
         context.RegisterImplementationSourceOutput(configuration, static (ctx, configuration) =>
         {
             if (configuration.GenerateInterceptorAttribute)

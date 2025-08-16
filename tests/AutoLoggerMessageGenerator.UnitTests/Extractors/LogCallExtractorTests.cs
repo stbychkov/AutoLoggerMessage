@@ -20,7 +20,8 @@ internal class LogCallExtractorTests : BaseSourceGeneratorTest
         if (isValidCall)
         {
             var configuration = InterceptorConfigurationUtilities.GetInterceptorConfiguration();
-            await Verify(logCall).UseParameters(description, configuration);
+            var roslynVersion = RoslynConfigurationUtilities.GetRoslynVersion();
+            await Verify(logCall).UseParameters(description, configuration, roslynVersion);
         }
         else
         {

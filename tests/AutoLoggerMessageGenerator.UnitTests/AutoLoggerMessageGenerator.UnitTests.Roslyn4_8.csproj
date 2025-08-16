@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RoslynApiVersion>4.8.0</RoslynApiVersion>
-    <DefineConstants>$(DefineConstants);PATH_BASED_INTERCEPTORS</DefineConstants>
+    <DefineConstants>$(DefineConstants);PATH_BASED_INTERCEPTORS;Roslyn408</DefineConstants>
   </PropertyGroup>
 
   <Import Project="AutoLoggerMessageGenerator.UnitTests.Build.targets"/>
@@ -11,4 +11,5 @@
     <ProjectReference Include="..\..\src\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn4_8.csproj"
                       ReferenceOutputAssembly="true"/>
   </ItemGroup>
+
 </Project>

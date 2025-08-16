@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RoslynApiVersion>4.14.0</RoslynApiVersion>
+    <DefineConstants>$(DefineConstants);HASH_BASED_INTERCEPTORS;EMBEDDED</DefineConstants>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="Generators\AutoLoggerMessageGenerator.LoggerMessage.cs">
+      <DependentUpon>AutoLoggerMessageGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Generators\AutoLoggerMessageGenerator.LoggerScopes.cs">
+      <DependentUpon>AutoLoggerMessageGenerator.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <Import Project="AutoLoggerMessageGenerator.Build.targets" />
+</Project>

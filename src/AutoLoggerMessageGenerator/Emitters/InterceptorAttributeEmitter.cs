@@ -15,6 +15,10 @@ internal static class InterceptorAttributeEmitter
         sb.WriteLine('{');
         sb.Indent++;
 
+        #if EMBEDDED
+        sb.WriteLine(Constants.EmbeddedAttribute);
+        #endif
+
         sb.WriteLine(Constants.GeneratedCodeAttribute);
         sb.WriteLine(Constants.EditorNotBrowsableAttribute);
         sb.WriteLine("[AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]");

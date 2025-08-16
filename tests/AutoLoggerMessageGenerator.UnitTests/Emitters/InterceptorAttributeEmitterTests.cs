@@ -11,9 +11,10 @@ internal class InterceptorAttributeEmitterTests
     {
         var sourceCode = InterceptorAttributeEmitter.Emit();
         var configuration = InterceptorConfigurationUtilities.GetInterceptorConfiguration();
+        var roslynVersion = RoslynConfigurationUtilities.GetRoslynVersion();
 
         await Verify(sourceCode)
-            .UseTextForParameters(configuration)
+            .UseTextForParameters($"{configuration}_{roslynVersion}")
             .AddCodeGeneratedAttributeScrubber();
     }
 }

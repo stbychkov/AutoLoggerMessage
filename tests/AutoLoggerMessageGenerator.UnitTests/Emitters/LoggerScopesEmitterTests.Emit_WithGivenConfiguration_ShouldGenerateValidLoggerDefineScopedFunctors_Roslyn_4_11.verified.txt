@@ -7,7 +7,7 @@ namespace Microsoft.Extensions.Logging.AutoLoggerMessage
 {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("AutoLoggerMessageGenerator", "1.2.3.4")]
     [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-    public static class LoggerScopes
+    internal static class LoggerScopes
     {
         private static readonly Func<ILogger, IDisposable?> _LogScope_namespace1class1_1_11 = LoggerMessage.DefineScope("Message1");
         public static IDisposable? LogScope_namespace1class1_1_11(ILogger @logger)

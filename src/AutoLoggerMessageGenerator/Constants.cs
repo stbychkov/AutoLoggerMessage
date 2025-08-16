@@ -49,6 +49,8 @@ internal static class Constants
         $"[global::System.CodeDom.Compiler.GeneratedCodeAttribute(" +
         $"\"{typeof(Generators.AutoLoggerMessageGenerator).Assembly.GetName().Name}\", " +
         $"\"{typeof(Generators.AutoLoggerMessageGenerator).Assembly.GetName().Version}\")]";
+
+    public const string EmbeddedAttribute = "[global::Microsoft.CodeAnalysis.EmbeddedAttribute]";
     public const string EditorNotBrowsableAttribute = "[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]";
 
     public const string GeneratedFileHeader = """

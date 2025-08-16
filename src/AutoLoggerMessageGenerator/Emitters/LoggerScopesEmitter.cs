@@ -18,9 +18,13 @@ internal static class LoggerScopesEmitter
         sb.WriteLine('{');
         sb.Indent++;
 
+        #if EMBEDDED
+        sb.WriteLine(EmbeddedAttribute);
+        #endif
+
         sb.WriteLine(Constants.GeneratedCodeAttribute);
         sb.WriteLine(EditorNotBrowsableAttribute);
-        sb.WriteLine($"public static class {LoggerScopesGeneratorName}");
+        sb.WriteLine($"internal static class {LoggerScopesGeneratorName}");
         sb.WriteLine('{');
         sb.Indent++;
 

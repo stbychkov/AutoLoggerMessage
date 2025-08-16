@@ -16,6 +16,10 @@ internal static class LoggerInterceptorsEmitter
         sb.WriteLine('{');
         sb.Indent++;
 
+        #if EMBEDDED
+        sb.WriteLine(Constants.EmbeddedAttribute);
+        #endif
+
         sb.WriteLine(Constants.GeneratedCodeAttribute);
         sb.WriteLine(Constants.EditorNotBrowsableAttribute);
         sb.WriteLine(Constants.ExcludeFromCoverageAttribute);

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RoslynApiVersion>4.11.0</RoslynApiVersion>
-    <DefineConstants>$(DefineConstants);HASH_BASED_INTERCEPTORS</DefineConstants>
+    <DefineConstants>$(DefineConstants);HASH_BASED_INTERCEPTORS;Roslyn411</DefineConstants>
   </PropertyGroup>
 
   <Import Project="AutoLoggerMessageGenerator.UnitTests.Build.targets" />

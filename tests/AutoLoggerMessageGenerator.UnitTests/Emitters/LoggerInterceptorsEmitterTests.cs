@@ -2,6 +2,7 @@ using System.Collections.Immutable;
 using AutoLoggerMessageGenerator.Emitters;
 using AutoLoggerMessageGenerator.Models;
 using AutoLoggerMessageGenerator.UnitTests.Scrubbers;
+using AutoLoggerMessageGenerator.UnitTests.Utilities;
 using static AutoLoggerMessageGenerator.Constants;
 
 namespace AutoLoggerMessageGenerator.UnitTests.Emitters;
@@ -54,6 +55,7 @@ internal class LoggerInterceptorsEmitterTests
         ];
 
         var sourceCode = LoggerInterceptorsEmitter.Emit(logCalls);
-        await Verify(sourceCode).AddCodeGeneratedAttributeScrubber();
+        await Verify(sourceCode).AddCodeGeneratedAttributeScrubber()
+            .UseTextForParameters(RoslynConfigurationUtilities.GetRoslynVersion());
     }
 }

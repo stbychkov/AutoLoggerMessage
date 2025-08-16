@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace Microsoft.Extensions.Logging
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("AutoLoggerMessageGenerator", "1.0.12.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("AutoLoggerMessageGenerator", "1.0.13.0")]
     [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
     [System.Diagnostics.DebuggerStepThrough]
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]

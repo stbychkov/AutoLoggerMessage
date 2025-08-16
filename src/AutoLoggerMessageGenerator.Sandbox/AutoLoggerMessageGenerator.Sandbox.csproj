@@ -11,7 +11,7 @@
     <PackageReference Include="Microsoft.Extensions.Telemetry.Abstractions" Version="9.1.0"/>
 
     <ProjectReference Include="..\AutoLoggerMessageGenerator.BuildOutput\AutoLoggerMessageGenerator.BuildOutput.csproj" />
-    <ProjectReference Include="..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn4_11.csproj"
+    <ProjectReference Include="..\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn4_14.csproj"
                       OutputItemType="Analyzer"
                       ReferenceOutputAssembly="true" />
   </ItemGroup>

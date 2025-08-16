@@ -1,26 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="$([MSBuild]::VersionLessThan('$(NETCoreSdkVersion)', '8.0.402'))">
+    <RoslynVersion>4_8</RoslynVersion>
+  </PropertyGroup>
+
   <PropertyGroup Condition="$([MSBuild]::VersionGreaterThanOrEquals('$(NETCoreSdkVersion)', '8.0.402'))">
-    <UseNewRoslyn>true</UseNewRoslyn>
+    <RoslynVersion>4_11</RoslynVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::VersionGreaterThanOrEquals('$(NETCoreSdkVersion)', '8.0.402'))">
+    <RoslynVersion>4_14</RoslynVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AutoLoggerMessageGenerator.BuildOutput\AutoLoggerMessageGenerator.BuildOutput.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(UseNewRoslyn) == true">
-    <ProjectReference Include="..\..\src\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn4_11.csproj"
-                      OutputItemType="Analyzer"
-                      ReferenceOutputAssembly="true"/>
-  </ItemGroup>
-
-  <ItemGroup Condition="$(UseNewRoslyn) != true">
-    <ProjectReference Include="..\..\src\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn4_8.csproj"
+    <ProjectReference Include="..\..\src\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn$(RoslynVersion).csproj"
                       OutputItemType="Analyzer"
                       ReferenceOutputAssembly="true"/>
   </ItemGroup>

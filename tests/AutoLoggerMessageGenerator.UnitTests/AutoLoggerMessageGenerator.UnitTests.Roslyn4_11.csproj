@@ -11,8 +11,4 @@
     <ProjectReference Include="..\..\src\AutoLoggerMessageGenerator\AutoLoggerMessageGenerator.Roslyn4_11.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Extractors\LogCallExtractorTests.Extract_WithLogMethodInvocationCode_ShouldTransformThemIntoLogCallObject_description=with parameters_sourceCode=HashBasedInterceptor.verified.txt" />
-  </ItemGroup>
-
 </Project>

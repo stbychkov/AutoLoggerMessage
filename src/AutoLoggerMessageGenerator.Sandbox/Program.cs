@@ -10,10 +10,6 @@ var logger = loggerFactory.CreateLogger<Program>();
 
 using var parentScope = logger.BeginScope("Scope {Level}", 1);
 
-var a = () =>
-{
-    logger.LogInformation("Hellllllllo");
-};
 logger.LogTrace("Log message without parameters");
 logger.LogDebug("Log message with parameters: {Param1}, {Param2}", 42, "Hello, World!");
 

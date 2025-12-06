@@ -28,7 +28,8 @@
   },
   Namespace: Foo,
   ClassName: Test,
-  MethodName: LogInformation,
+  MethodName: Main,
+  LogMethodName: LogInformation,
   LogLevel: Information,
   Message: Hello world {arg1} {arg2},
   Parameters: [
@@ -51,5 +52,5 @@
       HasPropertiesToLog: false
     }
   ],
-  GeneratedMethodName: Log_FooTest_12_16
+  GeneratedMethodName: Log_Foo_Test_Main_12_16
 }

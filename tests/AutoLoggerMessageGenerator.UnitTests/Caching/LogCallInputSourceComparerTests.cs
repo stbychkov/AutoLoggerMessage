@@ -95,8 +95,16 @@ internal class LogCallInputSourceComparerTests
         references ??= [new Reference("some lib", new Version("1.2.3"))];
         logCalls ??=
         [
-            new LogMessageCall(Guid.NewGuid(), MockLogCallLocationBuilder.Build("some file", 1, 2), "namespace", "class", "name",
-                "information", "message", [])
+            new LogMessageCall(
+                Guid.NewGuid(),
+                MockLogCallLocationBuilder.Build("some file", 1, 2),
+                "namespace",
+                "class",
+                "method",
+                "name",
+                "information",
+                "message",
+                [])
         ];
 
         return new InputSource(compilation, (configuration.Value, (references.Value, logCalls.Value)));

@@ -8,13 +8,14 @@ internal readonly record struct LoggerScopeCall(
     string Namespace,
     string ClassName,
     string MethodName,
+    string LogScopeMethodName,
     string Message,
     ImmutableArray<CallParameter> Parameters
 )
 {
     public string GeneratedMethodName =>
         IdentifierHelper.ToValidCSharpMethodName(
-            $"{Constants.LogScopeMethodPrefix}{Namespace}{ClassName}_{Location.Line}_{Location.Character}"
+            $"{Constants.LogScopeMethodPrefix}{Namespace}_{ClassName}_{MethodName}_{Location.Line}_{Location.Character}"
         );
 
     public bool Equals(LoggerScopeCall other) =>
@@ -22,9 +23,12 @@ internal readonly record struct LoggerScopeCall(
         Namespace == other.Namespace &&
         ClassName == other.ClassName &&
         MethodName == other.MethodName &&
+        LogScopeMethodName == other.LogScopeMethodName &&
         Message == other.Message &&
         Parameters.SequenceEqual(other.Parameters);
 
-    public override int GetHashCode() => (Location, Namespace, ClassName, MethodName, Message, Parameters).GetHashCode();
+    public override int GetHashCode() =>
+        (Location, Namespace, ClassName, MethodName, LogScopeMethodName, Message, Parameters)
+            .GetHashCode();
 };
 

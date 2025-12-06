@@ -12,21 +12,21 @@ namespace Microsoft.Extensions.Logging.AutoLoggerMessage
     internal static class LoggerInterceptors
     {
         [FakeInterceptableLocation(-1, "ZmlsZSgxLDExKQ==")]
-        public static void Log_namespace1class1_1_11(this ILogger @logger, string @message)
+        public static void Log_namespace1_class1_method1_1_11(this ILogger @logger, string @message)
         {
-            Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace1class1_1_11(@logger);
+            Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace1_class1_method1_1_11(@logger);
         }
         
         [FakeInterceptableLocation(-1, "ZmlsZTIoMiwyMik=")]
-        public static void Log_namespace2class2_2_22(this ILogger @logger, string @message, int @intParam)
+        public static void Log_namespace2_class2_method2_2_22(this ILogger @logger, string @message, int @intParam)
         {
-            Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace2class2_2_22(@logger, @intParam);
+            Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace2_class2_method2_2_22(@logger, @intParam);
         }
         
         [FakeInterceptableLocation(-1, "ZmlsZTMoMywzMyk=")]
-        public static void Log_namespace3class3_3_33(this ILogger @logger, string @message, int @intParam, bool @boolParam, SomeClass @objectParam)
+        public static void Log_namespace3_class3_method3_3_33(this ILogger @logger, string @message, int @intParam, bool @boolParam, SomeClass @objectParam)
         {
-            Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace3class3_3_33(@logger, @intParam, @boolParam, @objectParam);
+            Microsoft.Extensions.Logging.AutoLoggerMessage.AutoLoggerMessage.Log_namespace3_class3_method3_3_33(@logger, @intParam, @boolParam, @objectParam);
         }
         
     }

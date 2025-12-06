@@ -10,6 +10,7 @@ internal abstract class BaseSourceGeneratorTest
     public const string LoggerName = "logger";
     public const string Namespace = "Foo";
     public const string ClassName = "Test";
+    public const string Method = "Main";
 
     protected static async Task<(CSharpCompilation Compilation, SyntaxTree SyntaxTree)> CompileSourceCode(
         string body, string additionalClassMemberDeclarations = "",
@@ -25,7 +26,7 @@ internal abstract class BaseSourceGeneratorTest
                            {
                                {{additionalClassMemberDeclarations}}
 
-                               public void Main()
+                               public void {{Method}}()
                                {
                                    {{body}}
                                }

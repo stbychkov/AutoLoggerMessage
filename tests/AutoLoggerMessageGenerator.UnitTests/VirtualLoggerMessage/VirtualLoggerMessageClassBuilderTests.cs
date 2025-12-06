@@ -17,7 +17,8 @@ internal class VirtualLoggerMessageClassBuilderTests
             Character = 22
         },
         Message = "Hello, World!",
-        MethodName = "LogCall",
+        MethodName = "Method",
+        LogMethodName = "LogCall",
         Namespace = "SomeNamespace",
         ClassName = "SomeClass",
         LogLevel = "Critical",

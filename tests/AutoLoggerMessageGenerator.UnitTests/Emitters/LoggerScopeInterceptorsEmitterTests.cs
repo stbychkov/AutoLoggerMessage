@@ -18,7 +18,8 @@ internal class LoggerScopeInterceptorsEmitterTests
                 Location: MockLogCallLocationBuilder.Build("file", 1, 11),
                 Namespace: "namespace1",
                 ClassName: "class1",
-                MethodName: "name1",
+                MethodName: "method1",
+                LogScopeMethodName: "name1",
                 Message: "Message1",
                 Parameters: [new CallParameter("string", MessageParameterName, CallParameterType.Message)]
             ),
@@ -26,7 +27,8 @@ internal class LoggerScopeInterceptorsEmitterTests
                 Location: MockLogCallLocationBuilder.Build("file2", 2, 22),
                 Namespace: "namespace2",
                 ClassName: "class2",
-                MethodName: "name2",
+                MethodName: "method2",
+                LogScopeMethodName: "name2",
                 Message: "Message2",
                 Parameters: [
                     new CallParameter("string", MessageParameterName, CallParameterType.Message),
@@ -37,7 +39,8 @@ internal class LoggerScopeInterceptorsEmitterTests
                 Location: MockLogCallLocationBuilder.Build("file3", 3, 33),
                 Namespace: "namespace3",
                 ClassName: "class3",
-                MethodName: "name3",
+                MethodName: "method3",
+                LogScopeMethodName: "name3",
                 Message: "Message3",
                 Parameters: [
                     new CallParameter("string", MessageParameterName, CallParameterType.Message),

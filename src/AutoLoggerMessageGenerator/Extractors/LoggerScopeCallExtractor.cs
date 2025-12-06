@@ -12,7 +12,7 @@ internal static class LoggerScopeCallExtractor
         InvocationExpressionSyntax invocationExpression,
         SemanticModel semanticModel)
     {
-        var (ns, className) = EnclosingClassExtractor.Extract(invocationExpression);
+        var (ns, className, parentMethodName) = LocationContextExtractor.Extract(invocationExpression);
 
         var location = CallLocationMapper.Map(semanticModel, invocationExpression);
         if (location is null)
@@ -29,6 +29,6 @@ internal static class LoggerScopeCallExtractor
         if (parameters is null)
             return default;
 
-        return new LoggerScopeCall(location.Value, ns, className, methodSymbol.Name, message, parameters.Value);
+        return new LoggerScopeCall(location.Value, ns, className, parentMethodName, methodSymbol.Name, message, parameters.Value);
     }
 }

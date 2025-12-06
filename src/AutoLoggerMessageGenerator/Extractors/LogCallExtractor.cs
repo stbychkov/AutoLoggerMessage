@@ -12,7 +12,7 @@ internal static class LogCallExtractor
         InvocationExpressionSyntax invocationExpression,
         SemanticModel semanticModel)
     {
-        var (ns, className) = EnclosingClassExtractor.Extract(invocationExpression);
+        var (ns, className, parentMethodName) = LocationContextExtractor.Extract(invocationExpression);
 
         var location = CallLocationMapper.Map(semanticModel, invocationExpression);
         if (location is null)
@@ -33,6 +33,16 @@ internal static class LogCallExtractor
         if (parameters is null)
             return default;
 
-        return new LogMessageCall(Guid.NewGuid(), location.Value, ns, className, methodSymbol.Name, logLevel, message, parameters.Value);
+        return new LogMessageCall(
+            Guid.NewGuid(),
+            location.Value,
+            ns,
+            className,
+            parentMethodName,
+            methodSymbol.Name,
+            logLevel,
+            message,
+            parameters.Value
+        );
     }
 }

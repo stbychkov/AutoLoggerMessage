@@ -12,21 +12,21 @@ namespace Microsoft.Extensions.Logging.AutoLoggerMessage
     internal static class LoggerScopeInterceptors
     {
         [FakeInterceptableLocation(-1, "ZmlsZSgxLDExKQ==")]
-        public static IDisposable? LogScope_namespace1class1_1_11(this ILogger @logger, string @message)
+        public static IDisposable? LogScope_namespace1_class1_method1_1_11(this ILogger @logger, string @message)
         {
-            return Microsoft.Extensions.Logging.AutoLoggerMessage.LoggerScopes.LogScope_namespace1class1_1_11(@logger);
+            return Microsoft.Extensions.Logging.AutoLoggerMessage.LoggerScopes.LogScope_namespace1_class1_method1_1_11(@logger);
         }
         
         [FakeInterceptableLocation(-1, "ZmlsZTIoMiwyMik=")]
-        public static IDisposable? LogScope_namespace2class2_2_22(this ILogger @logger, string @message, int @intParam)
+        public static IDisposable? LogScope_namespace2_class2_method2_2_22(this ILogger @logger, string @message, int @intParam)
         {
-            return Microsoft.Extensions.Logging.AutoLoggerMessage.LoggerScopes.LogScope_namespace2class2_2_22(@logger, @intParam);
+            return Microsoft.Extensions.Logging.AutoLoggerMessage.LoggerScopes.LogScope_namespace2_class2_method2_2_22(@logger, @intParam);
         }
         
         [FakeInterceptableLocation(-1, "ZmlsZTMoMywzMyk=")]
-        public static IDisposable? LogScope_namespace3class3_3_33(this ILogger @logger, string @message, int @intParam, bool @boolParam, SomeClass @objectParam)
+        public static IDisposable? LogScope_namespace3_class3_method3_3_33(this ILogger @logger, string @message, int @intParam, bool @boolParam, SomeClass @objectParam)
         {
-            return Microsoft.Extensions.Logging.AutoLoggerMessage.LoggerScopes.LogScope_namespace3class3_3_33(@logger, @intParam, @boolParam, @objectParam);
+            return Microsoft.Extensions.Logging.AutoLoggerMessage.LoggerScopes.LogScope_namespace3_class3_method3_3_33(@logger, @intParam, @boolParam, @objectParam);
         }
         
     }

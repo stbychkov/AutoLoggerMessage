@@ -10,6 +10,7 @@ internal readonly record struct LogMessageCall(
     string Namespace,
     string ClassName,
     string MethodName,
+    string LogMethodName,
     string LogLevel,
     string Message,
     ImmutableArray<CallParameter> Parameters
@@ -17,7 +18,7 @@ internal readonly record struct LogMessageCall(
 {
     public string GeneratedMethodName =>
         IdentifierHelper.ToValidCSharpMethodName(
-            $"{Constants.LogMethodPrefix}{Namespace}{ClassName}_{Location.Line}_{Location.Character}"
+            $"{Constants.LogMethodPrefix}{Namespace}_{ClassName}_{MethodName}_{Location.Line}_{Location.Character}"
         );
 
     public bool Equals(LogMessageCall other) =>
@@ -25,11 +26,13 @@ internal readonly record struct LogMessageCall(
         Namespace == other.Namespace &&
         ClassName == other.ClassName &&
         MethodName == other.MethodName &&
+        LogMethodName == other.LogMethodName &&
         LogLevel == other.LogLevel &&
         Message == other.Message &&
         Parameters.SequenceEqual(other.Parameters);
 
     public override int GetHashCode() =>
-        (Location, Namespace, ClassName, MethodName, LogLevel, Message, Parameters).GetHashCode();
+        (Location, Namespace, ClassName, MethodName, LogMethodName, LogLevel, Message, Parameters)
+            .GetHashCode();
 };
 

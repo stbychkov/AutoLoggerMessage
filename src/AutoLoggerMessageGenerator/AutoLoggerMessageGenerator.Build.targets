@@ -4,7 +4,7 @@
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <IsRoslynComponent>true</IsRoslynComponent>
     <NoWarn>RSEXPERIMENTAL002;RS2008</NoWarn>
-    <Version>1.0.15</Version>
+    <Version>1.0.16</Version>
     <DevelopmentDependency>false</DevelopmentDependency>
     <AssemblyName>AutoLoggerMessageGenerator</AssemblyName>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -28,12 +28,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" PrivateAssets="all"/>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(RoslynApiVersion)" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="$(RoslynApiVersion)" PrivateAssets="all"/>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AutoLoggerMessageGenerator.BuildOutput\AutoLoggerMessageGenerator.BuildOutput.csproj"
-                      PrivateAssets="All" />
+                      PrivateAssets="All"/>
   </ItemGroup>
 
   <ItemGroup>

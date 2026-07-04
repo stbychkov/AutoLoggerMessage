@@ -63,4 +63,49 @@ internal class LocationContextExtractorTests : BaseSourceGeneratorTest
         await Assert.That(className).IsEqualTo("Foo");
         await Assert.That(methodName).IsEqualTo(string.Empty);
     }
+
+    [Test]
+    public async Task Extract_WithMemberAccessModifier_ShouldReturnExpectedNamespaceAndClassName()
+    {
+        const string additionalDeclaration = """
+                                             class Foo
+                                             {
+                                                 private ILogger logger;
+                                                 private void Bar() => this.logger.LogInformation("Hello world");
+                                             }
+                                             """;
+        var (_, syntaxTree) = await CompileSourceCode(string.Empty, additionalDeclaration);
+        var (invocationExpression, _, _) = FindMethodInvocation(null, syntaxTree);
+
+        var (ns, className, methodName) = LocationContextExtractor.Extract(invocationExpression);
+
+        await Assert.That(ns).IsEqualTo(Namespace);
+        await Assert.That(className).IsEqualTo("Foo");
+        await Assert.That(methodName).IsEqualTo("Bar");
+    }
+
+    [Test]
+    public async Task Extract_WithNestedMemberAccessModifier_ShouldReturnExpectedNamespaceAndClassName()
+    {
+        const string additionalDeclaration = """
+                                             class Outer
+                                             {
+                                                private readonly Foo foo;
+                                                class Foo
+                                                {
+                                                   public ILogger logger;
+                                                }
+
+                                                private void Bar() => this.foo.logger.LogInformation("Hello world");
+                                             }
+                                             """;
+        var (_, syntaxTree) = await CompileSourceCode(string.Empty, additionalDeclaration);
+        var (invocationExpression, _, _) = FindMethodInvocation(null, syntaxTree);
+
+        var (ns, className, methodName) = LocationContextExtractor.Extract(invocationExpression);
+
+        await Assert.That(ns).IsEqualTo(Namespace);
+        await Assert.That(className).IsEqualTo("Outer");
+        await Assert.That(methodName).IsEqualTo("Bar");
+    }
 }

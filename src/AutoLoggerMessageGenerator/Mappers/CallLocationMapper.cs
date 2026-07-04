@@ -9,8 +9,8 @@ internal static class CallLocationMapper
 {
     public static CallLocation? Map(SemanticModel semanticModel, InvocationExpressionSyntax invocationExpression)
     {
-        var memberAccessExpression = invocationExpression.Expression as MemberAccessExpressionSyntax;
-        if (memberAccessExpression?.Expression is not IdentifierNameSyntax identifierName)
+        var identifierName = GetIdentifierName(invocationExpression);
+        if (identifierName is null)
             return null;
 
         var skipSymbols = identifierName.Identifier.ValueText.Length + 1; // obj accessor + dot symbol
@@ -37,7 +37,18 @@ internal static class CallLocationMapper
         return new CallLocation(filePath, line, character, interceptableLocation, location);
     }
 
-    #if PATH_BASED_INTERCEPTORS
+    private static SimpleNameSyntax? GetIdentifierName(InvocationExpressionSyntax invocationExpression)
+    {
+        var memberAccessExpression = invocationExpression.Expression as MemberAccessExpressionSyntax;
+        return memberAccessExpression?.Expression switch
+        {
+            IdentifierNameSyntax i => i,
+            MemberAccessExpressionSyntax ma => ma.Name,
+            _ => null
+        };
+    }
+
+#if PATH_BASED_INTERCEPTORS
     private static string GeneratePathBasedInterceptableLocation(string filePath, int line, int character)
     {
         return $"[{Constants.InterceptorNamespace}.{Constants.InterceptorAttributeName}(" +
@@ -46,5 +57,5 @@ internal static class CallLocationMapper
                     $"character: {character}" +
                 $")]";
     }
-    #endif
+#endif
 }

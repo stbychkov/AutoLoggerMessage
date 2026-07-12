@@ -67,22 +67,38 @@ internal class VirtualLoggerMessageClassBuilder(
 
     private AttributeListSyntax GenerateLoggerMessageAttribute(LogMessageCall logMessageCall)
     {
+        var attributeArguments = SeparatedList(new[]
+            {
+                AttributeArgument(
+                    ParseExpression(
+                        $"Level = {Constants.DefaultLoggingNamespace}.LogLevel.{logMessageCall.LogLevel}")),
+                AttributeArgument(
+                    AssignmentExpression(SyntaxKind.SimpleAssignmentExpression,
+                        IdentifierName("Message"),
+                        LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(logMessageCall.Message)))),
+                AttributeArgument(
+                    ParseExpression(
+                        $"SkipEnabledCheck = {configuration.GenerateSkipEnabledCheck.ToLowerBooleanString()}"))
+            });
+
+        if (configuration.DefaultEventId is not null)
+        {
+            attributeArguments = attributeArguments.Add(
+                AttributeArgument(
+                    ParseExpression($"EventId = {configuration.DefaultEventId.Value.Id}")
+                )
+            );
+            attributeArguments = attributeArguments.Add(
+                AttributeArgument(
+                    ParseExpression($"EventName = \"{configuration.DefaultEventId.Value.Name}\"")
+                )
+            );
+        }
+
         var attribute = Attribute(ParseName(LoggerMessageAttributeName))
             .WithArgumentList(
                 AttributeArgumentList(
-                    SeparatedList(new[]
-                    {
-                        AttributeArgument(
-                            ParseExpression(
-                                $"Level = {Constants.DefaultLoggingNamespace}.LogLevel.{logMessageCall.LogLevel}")),
-                        AttributeArgument(
-                            AssignmentExpression(SyntaxKind.SimpleAssignmentExpression,
-                                IdentifierName("Message"),
-                                LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(logMessageCall.Message)))),
-                        AttributeArgument(
-                            ParseExpression(
-                                $"SkipEnabledCheck = {configuration.GenerateSkipEnabledCheck.ToLowerBooleanString()}"))
-                    })
+                    SeparatedList(attributeArguments)
                 )
             );
 

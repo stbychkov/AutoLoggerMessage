@@ -1,3 +1,5 @@
+using AutoLoggerMessageGenerator.Models;
+
 namespace AutoLoggerMessageGenerator.Configuration;
 
 internal record struct SourceGeneratorConfiguration
@@ -9,5 +11,6 @@ internal record struct SourceGeneratorConfiguration
     bool GenerateOmitReferenceName,
     bool GenerateSkipNullProperties,
     bool GenerateTransitive,
-    bool OverrideBeginScopeBehavior
+    bool OverrideBeginScopeBehavior,
+    EventId? DefaultEventId = null
 );

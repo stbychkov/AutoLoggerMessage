@@ -1,3 +1,4 @@
+using AutoLoggerMessageGenerator.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -12,6 +13,8 @@ internal static class GeneratorOptionsProvider
     private const string GenerateSkipNullPropertiesKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateSkipNullProperties)}";
     private const string GenerateTransitiveKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.GenerateTransitive)}";
     private const string OverrideBeginScopeBehaviorKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.OverrideBeginScopeBehavior)}";
+    private const string DefaultEventIdKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.DefaultEventId)}";
+    private const string DefaultEventNameKey = $"{CommonPrefix}_{nameof(SourceGeneratorConfiguration.DefaultEventId)}_Name";
 
     public static IncrementalValueProvider<SourceGeneratorConfiguration> Provide(IncrementalGeneratorInitializationContext context) =>
         context.AnalyzerConfigOptionsProvider.Select((options, _) => new SourceGeneratorConfiguration(
@@ -20,7 +23,8 @@ internal static class GeneratorOptionsProvider
             GenerateOmitReferenceName: GetValue(options.GlobalOptions, GenerateOmitReferenceNameKey, false),
             GenerateSkipNullProperties: GetValue(options.GlobalOptions, GenerateSkipNullPropertiesKey, false),
             GenerateTransitive: GetValue(options.GlobalOptions, GenerateTransitiveKey, false),
-            OverrideBeginScopeBehavior: GetValue(options.GlobalOptions, OverrideBeginScopeBehaviorKey, true)
+            OverrideBeginScopeBehavior: GetValue(options.GlobalOptions, OverrideBeginScopeBehaviorKey, true),
+            DefaultEventId: GetDefaultEventId(options.GlobalOptions)
         ));
 
     private static bool GetValue(AnalyzerConfigOptions options, string key, bool defaultValue = true) =>
@@ -31,4 +35,15 @@ internal static class GeneratorOptionsProvider
         || StringComparer.OrdinalIgnoreCase.Equals("enabled", value)
         || StringComparer.OrdinalIgnoreCase.Equals("true", value)
         || (bool.TryParse(value, out var boolVal) ? boolVal : defaultValue);
+
+    private static EventId? GetDefaultEventId(AnalyzerConfigOptions options)
+    {
+        if (options.TryGetValue(DefaultEventIdKey, out var defaultEventIdString) is false ||
+            int.TryParse(defaultEventIdString, out var parsedDefaultEventId) is false)
+            return null;
+
+        options.TryGetValue(DefaultEventNameKey, out var eventName);
+
+        return new EventId(parsedDefaultEventId, eventName);
+    }
 }

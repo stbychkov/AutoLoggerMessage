@@ -20,8 +20,10 @@ namespace AutoLoggerMessageGenerator.Generators;
 
 public partial class AutoLoggerMessageGenerator
 {
-    private static void GenerateLoggerMessages(IncrementalGeneratorInitializationContext context,
-        IncrementalValueProvider<SourceGeneratorConfiguration> configuration, IncrementalValueProvider<ImmutableArray<Reference>> modulesProvider)
+    private static void GenerateLoggerMessages(
+        IncrementalGeneratorInitializationContext context,
+        IncrementalValueProvider<SourceGeneratorConfiguration> configuration,
+        IncrementalValueProvider<ImmutableArray<Reference>> modulesProvider)
     {
         var logCallsProvider = context.SyntaxProvider.CreateSyntaxProvider(
                 LogMessageCallFilter.IsLogCallInvocation,

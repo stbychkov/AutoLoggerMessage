@@ -119,5 +119,16 @@ internal class VirtualLoggerMessageClassBuilderTests
                 GenerateTransitive: false,
                 OverrideBeginScopeBehavior: false),
             false),
+        () => (
+            "with_empty_event_id",
+            new SourceGeneratorConfiguration(
+                GenerateInterceptorAttribute: false,
+                GenerateSkipEnabledCheck: false,
+                GenerateOmitReferenceName: false,
+                GenerateSkipNullProperties: false,
+                GenerateTransitive: false,
+                OverrideBeginScopeBehavior: false,
+                DefaultEventId: new EventId(0, null)),
+            false),
     ];
 }
